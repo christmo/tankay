@@ -1,0 +1,12 @@
+{
+  "name": "material",
+  "version": "0.0.1",
+  "dependencies": {
+    "angular-animate":"^1.5",
+    "angular-resource":"^1.5",
+    "angular-bootstrap":"^0.9.0",
+    "angular-loading-bar":"0.8.0",
+    "angular-ui-router":"0.2.15",
+    "angular-route":"^1.5"
+  }
+}
