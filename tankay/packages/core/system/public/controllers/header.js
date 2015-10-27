@@ -17,13 +17,11 @@ angular.module('mean.system').controller('HeaderController', ['$scope', '$rootSc
 
     // Query menus added by modules. Only returns menus that user is allowed to see.
     function queryMenu(name, defaultMenu) {
-
-
       Menus.query({
         name: name,
         defaultMenu: defaultMenu
       }, function(menu) {
-        vm.menus[name] = menu;
+          vm.menus[name] = menu;
       });
     }
 

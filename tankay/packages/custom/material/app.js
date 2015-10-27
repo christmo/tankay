@@ -18,13 +18,12 @@ Material.register(function (app, auth, database) {
     Material.routes(app, auth, database);
 
     //We are adding a link to the main menu for all authenticated users
-    Material.menus.add({
-        title: 'material example page',
+    /*Material.menus.add({
+        title: 'material design theme',
         link: 'material',
         roles: ['authenticated'],
-        menu: 'main',
-        route: 'material-christmo'
-    });
+        menu: 'main'
+    });*/
 
     Material.aggregateAsset('js', '../lib/angular-ui-route/release/angular-ui-router.min.js');
     Material.aggregateAsset('js', '../lib/angular-route/angular-route.js');
