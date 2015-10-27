@@ -13,6 +13,40 @@ var mean = require('meanio');
 var cluster = require('cluster');
 var deferred = require('q').defer();
 
+var Sequelize = require('sequelize');
+var sequelize = new Sequelize('tankay', 'root', 'root', {
+    host: 'localhost',
+    dialect: 'mysql',
+    port: '8889',
+
+    pool: {
+        max: 5,
+        min: 0,
+        idle: 10000
+    }
+});
+
+
+var User = sequelize.define('user', {
+    firstName: {
+        type: Sequelize.STRING,
+        field: 'first_name' // Will result in an attribute that is firstName when user facing but first_name in the database
+    },
+    lastName: {
+        type: Sequelize.STRING
+    }
+}, {
+    freezeTableName: true // Model tableName will be the same as the model name
+});
+
+User.sync({force: true}).then(function () {
+    // Table created
+    return User.create({
+        firstName: 'John',
+        lastName: 'Hancock'
+    });
+});
+
 
 // Code to run if we're in the master process or if we are not in debug mode/ running tests
 
