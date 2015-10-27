@@ -1,0 +1,16 @@
+{
+  "name": "angular",
+  "version": "1.5.0-build.4326+sha.33c67ce",
+  "main": "./angular.js",
+  "ignore": [],
+  "dependencies": {},
+  "homepage": "https://github.com/angular/bower-angular",
+  "_release": "1.5.0-build.4326+sha.33c67ce",
+  "_resolution": {
+    "type": "version",
+    "tag": "v1.5.0-build.4326+sha.33c67ce",
+    "commit": "dac9bebcfbc53cc159ed0f0af8bcbc631e3f8a6e"
+  },
+  "_source": "git://github.com/angular/bower-angular.git",
+  "_target": "^1.5"
+}

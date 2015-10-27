@@ -1,0 +1,94 @@
+<header id="header" data-ng-include="'material/template/header.html'" data-ng-controller="headerCtrl as hctrl"></header>
+
+<section id="main">
+    <aside id="sidebar" data-ng-include="'material/template/sidebar-left.html'"
+           data-ng-class="{ 'toggled': mactrl.sidebarToggle.left === true }"></aside>
+
+    <section id="content" data-ng-controller="Clasificacion2Controller">
+        <div class="container">
+
+            <div class="block-header">
+                <h2>{{package.name}}</h2>
+
+                <ul class="actions">
+                    <li>
+                        <a href="">
+                            <i class="zmdi zmdi-trending-up"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <i class="zmdi zmdi-check-all"></i>
+                        </a>
+                    </li>
+                    <li class="dropdown" dropdown>
+                        <a href="" dropdown-toggle>
+                            <i class="zmdi zmdi-more-vert"></i>
+                        </a>
+
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li>
+                                <a href="">Refresh</a>
+                            </li>
+                            <li>
+                                <a href="">Manage Widgets</a>
+                            </li>
+                            <li>
+                                <a href="">Widgets Settings</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h2>Select
+                        <small>Use the default option, or add multiple to show multiple options at once.</small>
+                    </h2>
+                </div>
+
+
+                <div class="card-body card-padding">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <p class="c-black f-500 m-b-20">Basic Example {{package.name}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>
+<footer id="footer" data-ng-include="'material/template/footer.html'"></footer>
+
+
+<!--
+<div class="" data-ng-controller="Clasificacion2Controller">
+  <h1>Example view from your new awesome package</h1>
+  <h2>Package: {{package.name}}</h2>
+  <ol>
+    <li>
+      <a href="/api/clasificacion2/example/anyone" target="_self">Server route that anyone can access</a>
+    </li>
+    <li>
+      <a href="/api/clasificacion2/example/auth" target="_self">Server route that requires authentication</a>
+    </li>
+    <li>
+      <a href="/api/clasificacion2/example/admin" target="_self">Server route that requires admin user</a>
+    </li>
+    <li>
+      <a href="/api/clasificacion2/example/render" target="_self">Raw Html rendering example from using swig</a>
+    </li>
+  </ol>
+  <h3><img src="/clasificacion-2/assets/img/logo.png" /></h3>
+  </br>
+  <p class="alert alert-info">You can find your package in /packages/clasificacion-2</p>
+  </br>
+  <p class="alert alert-warning">MEAN versions prior to 0.3.2 will be in /node_modules/clasificacion2</p>
+  </br>
+  <h3><a href="http://learn.mean.io">Documentation</a></h3>
+  </br>
+</div>
+
+-->
