@@ -20,9 +20,10 @@ Material.register(function (app, auth, database) {
     //We are adding a link to the main menu for all authenticated users
     Material.menus.add({
         title: 'material example page',
-        link: 'material example page',
+        link: 'material',
         roles: ['authenticated'],
-        menu: 'main'
+        menu: 'main',
+        route: 'material-christmo'
     });
 
     Material.aggregateAsset('js', '../lib/angular-ui-route/release/angular-ui-router.min.js');
@@ -37,6 +38,7 @@ Material.register(function (app, auth, database) {
     Material.aggregateAsset('js', '../lib/sparklines/jquery.sparkline.min.js');
     Material.aggregateAsset('js', '../lib/jquery.easy-pie-chart/dist/jquery.easypiechart.min.js');
     Material.aggregateAsset('js', '../lib/simpleWeather/jquery.simpleWeather.min.js');
+    Material.aggregateAsset('js', '../lib/autosize/dist/autosize.min.js');
     Material.aggregateAsset('css', '../lib/animate.css/animate.min.css');
     Material.aggregateAsset('css', '../lib/material-design-iconic-font/dist/css/material-design-iconic-font.min.css');
     Material.aggregateAsset('css', '../lib/fullcalendar/dist/fullcalendar.min.css');
@@ -46,9 +48,10 @@ Material.register(function (app, auth, database) {
 
     Material.angularDependencies(['ngRoute','ui.router',
         'ngAnimate','ngResource','ui.bootstrap', 'ngTable',
-        'angular-loading-bar','oc.lazyLoad', 'nouislider']);
+        'angular-loading-bar','oc.lazyLoad', 'nouislider',
+        'ngClipboard']);
 
-    Material.aggregateAsset('css', 'material.css');
+    //Material.aggregateAsset('css', 'material.css');
 
 
     return Material;

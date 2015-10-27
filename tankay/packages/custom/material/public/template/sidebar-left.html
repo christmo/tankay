@@ -14,7 +14,8 @@
 
         <ul class="main-menu">
             <li>
-                <a data-ui-sref="pages.profile.profile-about" data-ng-click="mactrl.sidebarStat($event)"><i class="zmdi zmdi-account"></i> View Profile</a>
+                <a data-ui-sref="pages.profile.profile-about" data-ng-click="mactrl.sidebarStat($event)"><i
+                        class="zmdi zmdi-account"></i> View Profile</a>
             </li>
             <li>
                 <a href=""><i class="zmdi zmdi-input-antenna"></i> Privacy Settings</a>
@@ -28,11 +29,18 @@
         </ul>
     </div>
 
-    <ul class="main-menu">
+    <ul class="main-menu" ng-controller="HeaderController as menu">
         <li data-ui-sref-active="active">
             <a data-ui-sref="home" data-ng-click="mactrl.sidebarStat($event)"><i class="zmdi zmdi-home"></i> Home</a>
         </li>
-        <li data-ui-sref-active="active">
+
+
+        <li data-ui-sref-active="active" ng-repeat="item in menu.menus.main">
+            <a ui-sref='{{item.link}}' mean-token="item.link" data-ng-click="mactrl.sidebarStat($event)"><i
+                    class="zmdi zmdi-home"></i> {{item.title}}</a>
+        </li>
+
+        <!--<li data-ui-sref-active="active">
             <a data-ui-sref="typography" data-ng-click="mactrl.sidebarStat($event)"><i class="zmdi zmdi-format-underlined"></i> Typography</a>
         </li>
         <li class="sub-menu" data-ng-class="{ 'active toggled': mactrl.$state.includes('widgets') }">
@@ -118,6 +126,6 @@
                 <li><a href="lockscreen.html">Lockscreen</a></li>
                 <li><a href="404.html">Error 404</a></li>
             </ul>
-        </li>
+        </li>-->
     </ul>
 </div>
