@@ -50,7 +50,7 @@ angular.module('mean.users').factory('MeanUser', [ '$rootScope', '$http', '$loca
       $http.get('/api/users/me').success(function(response) {
         if(!response && $cookies.get('token') && $cookies.get('redirect')) {
           self.onIdentity.bind(self)({
-            token: $cookies.get('token'), 
+            token: $cookies.get('token'),
             redirect: $cookies.get('redirect').replace(/^"|"$/g, '')
           });
           $cookies.remove('token');
@@ -67,14 +67,14 @@ angular.module('mean.users').factory('MeanUser', [ '$rootScope', '$http', '$loca
       if (angular.isDefined(response.token)) {
         localStorage.setItem('JWT', response.token);
         encodedUser = decodeURI(b64_to_utf8(response.token.split('.')[1]));
-        user = JSON.parse(encodedUser); 
+        user = JSON.parse(encodedUser);
       }
       destination = angular.isDefined(response.redirect) ? response.redirect : destination;
       this.user = user || response;
       this.loggedin = true;
       this.loginError = 0;
       this.registerError = 0;
-      this.isAdmin = !! (this.user.roles.indexOf('admin') + 1);
+      this.isAdmin = !!(this.user.roles.indexOf('admin') + 1);
       if (destination) $location.path(destination);
       $rootScope.$emit('loggedin');
     };

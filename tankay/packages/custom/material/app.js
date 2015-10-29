@@ -25,7 +25,7 @@ Material.register(function (app, auth, database) {
         menu: 'main'
     });*/
 
-    Material.aggregateAsset('js', '../lib/angular-ui-route/release/angular-ui-router.min.js');
+    Material.aggregateAsset('js', '../lib/angular-ui-router/release/angular-ui-router.min.js');
     Material.aggregateAsset('js', '../lib/angular-route/angular-route.js');
     Material.aggregateAsset('js', '../lib/angular-animate/angular-animate.js');
     Material.aggregateAsset('js', '../lib/angular-loading-bar/src/loading-bar.js');

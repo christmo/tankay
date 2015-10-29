@@ -1,7 +1,8 @@
 'use strict';
 
 /* jshint -W098 */
-angular.module('mean.material')
+//angular.module('mean.material')
+material
     .controller('MaterialController', ['$scope', 'Global', 'Material',
         function ($scope, Global, Material) {
             $scope.global = Global;
@@ -121,16 +122,16 @@ angular.module('mean.material')
 
             //Get confirmation, if confirmed clear the localStorage
             swal({
-                title: "Are you sure?",
-                text: "All your saved localStorage values will be removed",
-                type: "warning",
+                title: 'Are you sure?',
+                text: 'All your saved localStorage values will be removed',
+                type: 'warning',
                 showCancelButton: true,
-                confirmButtonColor: "#F44336",
-                confirmButtonText: "Yes, delete it!",
+                confirmButtonColor: '#F44336',
+                confirmButtonText: 'Yes, delete it!',
                 closeOnConfirm: false
             }, function () {
                 localStorage.clear();
-                swal("Done!", "localStorage is cleared", "success");
+                swal('Done!', 'localStorage is cleared', 'success');
             });
 
         };

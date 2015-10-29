@@ -1,6 +1,6 @@
 'use strict';
 
-material
+angular.module('mean.material')
     .factory('Material', [
         function () {
             return {
@@ -14,10 +14,10 @@ material
 // Header Messages and Notifications list Data
 // =========================================================================
 
-material
+angular.module('mean.material')
     .service('messageService', ['$resource', function ($resource) {
         this.getMessage = function (img, user, text) {
-            var gmList = $resource("material/data/messages-notifications.json");
+            var gmList = $resource('material/data/messages-notifications.json');
 
             return gmList.get({
                 img: img,
