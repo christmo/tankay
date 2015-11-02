@@ -38,6 +38,7 @@ Material.register(function (app, auth, database) {
     Material.aggregateAsset('js', '../lib/jquery.easy-pie-chart/dist/jquery.easypiechart.min.js');
     Material.aggregateAsset('js', '../lib/simpleWeather/jquery.simpleWeather.min.js');
     Material.aggregateAsset('js', '../lib/autosize/dist/autosize.min.js');
+
     Material.aggregateAsset('css', '../lib/animate.css/animate.min.css');
     Material.aggregateAsset('css', '../lib/material-design-iconic-font/dist/css/material-design-iconic-font.min.css');
     Material.aggregateAsset('css', '../lib/fullcalendar/dist/fullcalendar.min.css');

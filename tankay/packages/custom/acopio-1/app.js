@@ -6,10 +6,11 @@
 var Module = require('meanio').Module;
 var mean = require('meanio');
 var config = mean.loadConfig();
-var winston = require('winston');
+
 var Acopio1 = new Module('acopio-1');
-var db = require('persister');
-db.loadModels(__dirname+'/server/models/');
+
+
+//winston.info();
 //winston.info(db.Lote.findAll().success(function(lotes){
 //    winston.info(lotes);
 //}));
@@ -31,37 +32,36 @@ Acopio1.register(function (app, auth, database) {
         order: '1'
     });
 
-    Acopio1.settings({'menu_order': '1'},
+
+    Acopio1.settings({'dir_module': __dirname},
         function (err, settings) {
             // You will receive the settings object on success
-            winston.info(settings.settings.menu_order);
+            //winston.info(settings.settings.dir_module);
         });
-
+/*
     for (var i = 0; i < Acopio1.menus.length; i++) {
         winston.info(Acopio1.menus[i]);
     }
 
     //Acopio1.aggregateAsset('css', 'acopio1.css');
 
-    /*var User = db.define('user', {
-     firstName: {
-     type: db.STRING,
-     field: 'first_name' // Will result in an attribute that is firstName when user facing but first_name in the database
-     },
-     lastName: {
-     type: db.STRING
-     }
-     }, {
-     freezeTableName: true // Model tableName will be the same as the model name
-     });
+    Lote.create({sector:'hola'+Math.random(),campacity:Math.random(),start_date:new Date(),start_time:new Date()})
+        .then(function(lote){
+            var l = Lote.build({sector:'test'});
+            //console.log(lote.sector);
+        });
 
-     User.sync({force: true}).then(function () {
-     // Table created
-     return User.create({
-     firstName: 'John',
-     lastName: 'Hancock'
-     });
-     });*/
+    Lote.findById(3).then(function(a) {
+        // project will be an instance of Project and stores the content of the table entry
+        // with id 123. if such an entry is not defined you will get null
+        console.log(a.sector);
+        //a.sector = 'overrided for christmo';
+        a.update({
+            sector: 'a very different title now'
+        }).then(function() {console.log('hecho')})
+    });
 
+    Lote.findAll({ limit: 10 }).then(function(projects) {console.log(projects)});
+*/
     return Acopio1;
 });

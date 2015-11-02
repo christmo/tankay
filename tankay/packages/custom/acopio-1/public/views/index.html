@@ -10,7 +10,7 @@
             <div class="block-header">
                 <h2>{{package.name}}</h2>
 
-                <ul class="actions">
+                <!--<ul class="actions">
                     <li>
                         <a href="">
                             <i class="zmdi zmdi-trending-up"></i>
@@ -38,26 +38,126 @@
                             </li>
                         </ul>
                     </li>
-                </ul>
+                </ul>-->
 
             </div>
+
+
             <div class="card">
-                <div class="card-header">
+                <!--<div class="card-header">
                     <h2>Select
                         <small>Use the default option, or add multiple to show multiple options at once.</small>
                     </h2>
-                </div>
+                </div>-->
 
 
                 <div class="card-body card-padding">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <p class="c-black f-500 m-b-20">Basic Example {{package.name}}</p>
+
+                    <form role="form" data-ng-submit="save()">
+                        <div class="form-group fg-line">
+                            <label for="codigo_lote">Código de Lote</label>
+                            <input type="number" class="input-lg form-control fg-input" id="codigo_lote"
+                                   placeholder="Número de Lote" ng-model="lote.lote"/>
                         </div>
-                    </div>
+                        <div class="form-group fg-line">
+                            <label for="start_date">Fecha de Ingreso</label>
+                            <input type="text" class="input-lg form-control fg-input" id="start_date"
+                                   placeholder="Seleccionar Fecha" ng-model="lote.start_date"/>
+                        </div>
+                        <div class="form-group fg-line">
+                            <label for="start_time">Hora de Ingreso</label>
+                            <input type="text" class="input-lg form-control fg-input" id="start_time"
+                                   placeholder="Seleccionar Hora" ng-model="lote.start_time"/>
+                        </div>
+                        <div class="form-group fg-line">
+                            <label for="capacity">Capacidad</label>
+                            <input type="text" class="input-lg form-control fg-input" id="capacity"
+                                   placeholder="Capacidad # Kg" ng-model="lote.capacity"/>
+                        </div>
+                        <div class="form-group fg-line">
+                            <label for="category">Categoría</label>
+                            <input type="text" class="input-lg form-control fg-input" id="category"
+                                   placeholder="Seleccionar Categoría" ng-model="lote.category"/>
+                        </div>
+                        <div class="form-group fg-line">
+                            <label for="storage_time">Tiempo de Almacenamiento</label>
+                            <input type="text" class="input-lg form-control fg-input" id="storage_time"
+                                   placeholder="Número de Horas" ng-model="lote.storage_time"/>
+                        </div>
+                        <div class="form-group fg-line">
+                            <label for="sector">Sector</label>
+                            <input type="text" class="input-lg form-control fg-input" id="sector"
+                                   placeholder="Seleccionar Sector" ng-model="lote.sector"/>
+                        </div>
+                        <div class="form-group fg-line">
+                            <label for="phase">Etapa</label>
+                            <input type="text" class="input-lg form-control fg-input" id="phase"
+                                   placeholder="Seleccionar Etapa" ng-model="lote.phase"/>
+                        </div>
+                        <div class="form-group fg-line">
+                            <label for="reponsible">Responsable</label>
+                            <input type="text" class="input-lg form-control fg-input" id="reponsible"
+                                   placeholder="Ingresar Responsable" ng-model="lote.reponsible"/>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-6 m-b-20">
+                                <div class="toggle-switch">
+                                    <label for="presion" class="ts-label">Presión</label>
+                                    <input id="presion" type="checkbox" hidden="hidden" ng-model="lote.presion">
+                                    <label for="presion" class="ts-helper"></label>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6 m-b-20">
+                                <div class="toggle-switch">
+                                    <label for="temperature" class="ts-label">Temperatura</label>
+                                    <input id="temperature" type="checkbox" hidden="hidden" ng-model="lote.temperature">
+                                    <label for="temperature" class="ts-helper"></label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--<div class="checkbox">
+                            <label>
+                                <input type="checkbox" value="">
+                                <i class="input-helper"></i>
+                                Don't forget to check me out
+                            </label>
+                        </div>-->
+
+                        <button type="submit" class="btn btn-primary btn-sm m-t-10" >Guadar</button>
+                    </form>
+
+                    <!--
+                                        <div class="row">
+                                            <div class="col-sm-10">
+                                                <div class="form-group fg-float">
+                                                    <div class="fg-line">
+                                                        <input type="text" class="input-lg form-control fg-input">
+                                                    </div>
+                                                    <label class="fg-label">Input Large</label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-4 m-b-20">
+                                            <div class="toggle-switch">
+                                                <label for="ts1" class="ts-label">Toggle Swith Default</label>
+                                                <input id="ts1" type="checkbox" hidden="hidden">
+                                                <label for="ts1" class="ts-helper"></label>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <p class="c-black f-500 m-b-20">Basic Example {{package.name}}</p>
+                                            </div>
+                                        </div>-->
                 </div>
             </div>
         </div>
+        <a href="/step-1/save" target="_self">Server route that anyone can access</a>
     </section>
 </section>
 <footer id="footer" data-ng-include="'material/template/footer.html'"></footer>

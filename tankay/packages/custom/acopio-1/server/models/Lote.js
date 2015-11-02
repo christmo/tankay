@@ -17,11 +17,10 @@ module.exports = function(sequelize, DataTypes) {
             presion:DataTypes.BOOLEAN,
             temperature:DataTypes.BOOLEAN,
             sector:DataTypes.STRING,
-            etapa:DataTypes.STRING,
-            reesponsable:DataTypes.STRING
+            phase:DataTypes.STRING,
+            reponsible:DataTypes.STRING
         }
     );
-
 
     return Lote;
 };
