@@ -9,29 +9,28 @@ var path = require('path');
 var db = require('../../../persister');
 db.loadModels(path.resolve(__dirname,'../models/'));
 
-var Clasification = db.getModel('Clasification');
+var Empacado = db.getModel('Empacado');
 
 
-module.exports = function(clasificacion) {
+module.exports = function(empacado) {
 
-    clasificacion.settings({'dir_module': path.resolve(__dirname,'../models/')});
-    var acopio = new Module('acopio');
+    empacado.settings({'dir_module': path.resolve(__dirname,'../models/')});
 
-    acopio.settings(function(err,settings){
+    var secado = new Module('secado');
+
+    secado.settings(function(err,settings){
         console.log('controller: '+settings.settings.dir_module);
         db.loadModels(settings.settings.dir_module);
-        var Lote = db.getModel('Lote');
+        var Secado = db.getModel('Secado');
 
-        Lote.belongsTo(Clasification, {foreignKey: 'fk_clasification', targetKey: 'lote'});
+        Secado.belongsTo(Empacado, {foreignKey: 'fk_empacado', targetKey: 'lote'});
     });
-    //var Lote = db.getModel('Lote');
-    //Lote.belongsTo(Clasification);
 
     return {
         save:function(req, res,next){
-            console.log('Guardar clasificacion'+req.body.presion);
-            Clasification.create(req.body)
-                .then(function(clasification) {
+            console.log('Guardar Empacado: '+req.body);
+            Empacado.create(req.body)
+                .then(function(empacado) {
                     res.json({status:'OK'});
                 }).catch(function(error) {
                     var response = {

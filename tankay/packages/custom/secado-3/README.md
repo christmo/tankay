@@ -1,1 +1,0 @@
-README: secado3

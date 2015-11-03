@@ -1,27 +1,62 @@
-<div class="" data-ng-controller="EmpacadoController">
-  <h1>Example view from your new awesome package</h1>
-  <h2>Package: {{package.name}}</h2>
-  <ol>
-    <li>
-      <a href="/api/empacado/example/anyone" target="_self">Server route that anyone can access</a>
-    </li>
-    <li>
-      <a href="/api/empacado/example/auth" target="_self">Server route that requires authentication</a>
-    </li>
-    <li>
-      <a href="/api/empacado/example/admin" target="_self">Server route that requires admin user</a>
-    </li>
-    <li>
-      <a href="/api/empacado/example/render" target="_self">Raw Html rendering example from using swig</a>
-    </li>
-  </ol>
-  <h3><img src="/empacado/assets/img/logo.png" /></h3>
-  </br>
-  <p class="alert alert-info">You can find your package in /packages/empacado</p>
-  </br>
-  <p class="alert alert-warning">MEAN versions prior to 0.3.2 will be in /node_modules/empacado</p>
-  </br>
-  <h3><a href="http://learn.mean.io">Documentation</a></h3>
-  </br>
-</div>
+<header id="header" data-ng-include="'material/template/header.html'" data-ng-controller="headerCtrl as hctrl"></header>
 
+<section id="main">
+    <aside id="sidebar" data-ng-include="'material/template/sidebar-left.html'"
+           data-ng-class="{ 'toggled': mactrl.sidebarToggle.left === true }"></aside>
+
+    <section id="content" data-ng-controller="EmpacadoController">
+        <div class="container">
+
+            <div class="block-header">
+                <h2>{{package.name}}</h2>
+
+            </div>
+            <div class="card">
+                <div class="card-body card-padding">
+
+                    <form role="form" data-ng-submit="save()">
+                        <div class="form-group fg-line">
+                            <label for="codigo_lote">Código de Lote</label>
+                            <input type="number" class="input-lg form-control fg-input" id="codigo_lote"
+                                   placeholder="Número de lote" ng-model="empacado.lote"/>
+                        </div>
+                        <div class="form-group fg-line">
+                            <label for="production">Rendimiento</label>
+                            <input type="number" class="input-lg form-control fg-input" id="production"
+                                   placeholder="Número de cajas por persona" ng-model="empacado.production"/>
+                        </div>
+                        <div class="form-group fg-line">
+                            <label for="fruit_flow">Flujo de Fruta</label>
+                            <input type="number" class="input-lg form-control fg-input" id="fruit_flow"
+                                   placeholder="Flujo de fruta por día # Kg" ng-model="empacado.fruit_flow"/>
+                        </div>
+                        <div class="form-group fg-line">
+                            <label for="capacity">Capacidad</label>
+                            <input type="munber" class="input-lg form-control fg-input" id="capacity"
+                                   placeholder="Número de personas" ng-model="empacado.capacity"/>
+                        </div>
+                        <div class="form-group fg-line">
+                            <label for="responsible">Responsable</label>
+                            <input type="text" class="input-lg form-control fg-input" id="responsible"
+                                   placeholder="Ingresar Responsable" ng-model="empacado.responsible"/>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-12 m-b-20">
+                                <div class="toggle-switch">
+                                    <label for="temperature" class="ts-label">Temperatura</label>
+                                    <input id="temperature" type="checkbox" hidden="hidden"
+                                           ng-model="empacado.temperature">
+                                    <label for="temperature" class="ts-helper"></label>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-sm m-t-10">Guadar</button>
+                    </form>
+                </div>
+            </div>
+    </section>
+</section>
+<footer id="footer" data-ng-include="'material/template/footer.html'"></footer>

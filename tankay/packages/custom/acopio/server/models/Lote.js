@@ -16,7 +16,7 @@ module.exports = function(sequelize, DataTypes) {
             temperature:DataTypes.BOOLEAN,
             sector:DataTypes.STRING,
             phase:DataTypes.STRING,
-            reponsible:DataTypes.STRING
+            responsible:DataTypes.STRING
         }
     );
 

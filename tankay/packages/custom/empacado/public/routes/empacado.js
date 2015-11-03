@@ -1,10 +1,11 @@
 'use strict';
 
-angular.module('mean.empacado').config(['$stateProvider',
-  function($stateProvider) {
-    $stateProvider.state('empacado example page', {
-      url: '/empacado/example',
-      templateUrl: 'empacado/views/index.html'
-    });
-  }
-]);
+angular.module('mean.empacado')
+    .config(['$stateProvider',
+        function ($stateProvider) {
+            $stateProvider.state('empacado', {
+                url: '/empacado',
+                templateUrl: 'empacado/views/index.html'
+            });
+        }
+    ]);

@@ -10,85 +10,77 @@
             <div class="block-header">
                 <h2>{{package.name}}</h2>
 
-                <ul class="actions">
-                    <li>
-                        <a href="">
-                            <i class="zmdi zmdi-trending-up"></i>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="">
-                            <i class="zmdi zmdi-check-all"></i>
-                        </a>
-                    </li>
-                    <li class="dropdown" dropdown>
-                        <a href="" dropdown-toggle>
-                            <i class="zmdi zmdi-more-vert"></i>
-                        </a>
-
-                        <ul class="dropdown-menu dropdown-menu-right">
-                            <li>
-                                <a href="">Refresh</a>
-                            </li>
-                            <li>
-                                <a href="">Manage Widgets</a>
-                            </li>
-                            <li>
-                                <a href="">Widgets Settings</a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-
             </div>
             <div class="card">
-                <div class="card-header">
-                    <h2>Select
-                        <small>Use the default option, or add multiple to show multiple options at once.</small>
-                    </h2>
-                </div>
-
-
                 <div class="card-body card-padding">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <p class="c-black f-500 m-b-20">Basic Example {{package.name}}</p>
+
+                    <form role="form" data-ng-submit="save()">
+                        <div class="form-group fg-line">
+                            <label for="codigo_lote">Código de Lote</label>
+                            <input type="number" class="input-lg form-control fg-input" id="codigo_lote"
+                                   placeholder="Número de lote" ng-model="secado.lote"/>
                         </div>
-                    </div>
+                        <div class="form-group fg-line">
+                            <label for="drying_time">Duración del Secado</label>
+                            <input type="number" class="input-lg form-control fg-input" id="drying_time"
+                                   placeholder="Número de horas de secado" ng-model="secado.drying_time"/>
+                        </div>
+                        <div class="form-group fg-line">
+                            <label for="fruit_flow">Flujo de Fruta</label>
+                            <input type="number" class="input-lg form-control fg-input" id="fruit_flow"
+                                   placeholder="Flujo de fruta por día # Kg" ng-model="secado.fruit_flow"/>
+                        </div>
+                        <div class="form-group fg-line">
+                            <label for="capacity">Capacidad</label>
+                            <input type="text" class="input-lg form-control fg-input" id="capacity"
+                                   placeholder="# de personas" ng-model="secado.capacity"/>
+                        </div>
+                        <div class="form-group fg-line">
+                            <label for="responsible">Responsable</label>
+                            <input type="text" class="input-lg form-control fg-input" id="responsible"
+                                   placeholder="Ingresar responsable" ng-model="secado.responsible"/>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-6 m-b-20">
+                                <div class="toggle-switch">
+                                    <label for="humidity_control" class="ts-label">Control de Humedad</label>
+                                    <input id="humidity_control" type="checkbox" hidden="hidden" ng-model="secado.humidity_control">
+                                    <label for="humidity_control" class="ts-helper"></label>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 m-b-20">
+                                <div class="toggle-switch">
+                                    <label for="hot_air_control" class="ts-label">Control de Aire Caliente</label>
+                                    <input id="hot_air_control" type="checkbox" hidden="hidden" ng-model="secado.hot_air_control">
+                                    <label for="hot_air_control" class="ts-helper"></label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-6 m-b-20">
+                                <div class="toggle-switch">
+                                    <label for="air_flow" class="ts-label">Flujo de Aire</label>
+                                    <input id="air_flow" type="checkbox" hidden="hidden" ng-model="secado.air_flow">
+                                    <label for="air_flow" class="ts-helper"></label>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 m-b-20">
+                                <div class="toggle-switch">
+                                    <label for="temperature" class="ts-label">Temperatura</label>
+                                    <input id="temperature" type="checkbox" hidden="hidden" ng-model="secado.temperature">
+                                    <label for="temperature" class="ts-helper"></label>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-sm m-t-10">Guadar</button>
+                    </form>
                 </div>
-            </div>
         </div>
     </section>
 </section>
 <footer id="footer" data-ng-include="'material/template/footer.html'"></footer>
 
-<!--
-
-<div class="" data-ng-controller="Secado3Controller">
-  <h1>Example view from your new awesome package</h1>
-  <h2>Package: {{package.name}}</h2>
-  <ol>
-    <li>
-      <a href="/api/secado3/example/anyone" target="_self">Server route that anyone can access</a>
-    </li>
-    <li>
-      <a href="/api/secado3/example/auth" target="_self">Server route that requires authentication</a>
-    </li>
-    <li>
-      <a href="/api/secado3/example/admin" target="_self">Server route that requires admin user</a>
-    </li>
-    <li>
-      <a href="/api/secado3/example/render" target="_self">Raw Html rendering example from using swig</a>
-    </li>
-  </ol>
-  <h3><img src="/secado-3/assets/img/logo.png" /></h3>
-  </br>
-  <p class="alert alert-info">You can find your package in /packages/secado-3</p>
-  </br>
-  <p class="alert alert-warning">MEAN versions prior to 0.3.2 will be in /node_modules/secado3</p>
-  </br>
-  <h3><a href="http://learn.mean.io">Documentation</a></h3>
-  </br>
-</div>
-
--->
