@@ -1,0 +1,314 @@
+<header id="header" data-ng-include="'material/template/header.html'" data-ng-controller="headerCtrl as hctrl"></header>
+
+<section id="main">
+    <aside id="sidebar" data-ng-include="'material/template/sidebar-left.html'"
+           data-ng-class="{ 'toggled': mactrl.sidebarToggle.left === true }"></aside>
+
+    <section id="content" data-ng-controller="AcopioController as acopio">
+        <div class="container">
+
+            <div class="block-header">
+                <h2>{{package.name}}</h2>
+
+                <!--<ul class="actions">
+                    <li>
+                        <a href="">
+                            <i class="zmdi zmdi-trending-up"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <i class="zmdi zmdi-check-all"></i>
+                        </a>
+                    </li>
+                    <li class="dropdown" dropdown>
+                        <a href="" dropdown-toggle>
+                            <i class="zmdi zmdi-more-vert"></i>
+                        </a>
+
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li>
+                                <a href="">Refresh</a>
+                            </li>
+                            <li>
+                                <a href="">Manage Widgets</a>
+                            </li>
+                            <li>
+                                <a href="">Widgets Settings</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>-->
+
+            </div>
+<!--
+            <div class="card">
+                <div class="card-header">
+                    <h2>Date Time Picker <small>Date/time picker widget based on twitter bootstrap</small></h2>
+                </div>
+
+                <div class="card-padding card-header">
+
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <p class="c-black f-500 m-b-20">Basic Example</p>
+
+                            <div class="input-group form-group">
+                                <span class="input-group-addon"><i class="zmdi zmdi-calendar"></i></span>
+                                <div class="dtp-container fg-line">
+                                    <input type='text' class="form-control date-time-picker" placeholder="Click here...">
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-sm-4">
+                            <p class="c-black f-500 m-b-20">Date Picker</p>
+
+                            <div class="input-group form-group">
+                                <span class="input-group-addon"><i class="zmdi zmdi-calendar"></i></span>
+                                <div class="dtp-container fg-line">
+                                    <input type='text' class="form-control date-picker" placeholder="Click here...">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <p class="c-black f-500 m-b-20">Time Picker</p>
+
+                            <div class="input-group form-group">
+                                <span class="input-group-addon"><i class="zmdi zmdi-time"></i></span>
+                                <div class="dtp-container fg-line">
+                                    <input type='text' class="form-control time-picker" placeholder="Click here...">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="card-body card-padding p-t-0" data-ng-controller="DatepickerDemoCtrl">
+
+                <p>A clean, flexible, and fully customizable date picker. User can navigate through months and years. The datepicker shows dates that come from other than the main month being displayed. These other dates are also selectable. <a href="http://angular-ui.github.io/bootstrap/#/datepicker">Read more...</a></p>
+
+                <br/>
+
+                <p class="f-500 c-black m-b-5">Inline Examples</p>
+                <small class="c-gray">Displaying the Datepicker by default</small>
+
+                <br/>
+                <br/>
+
+                <div class="datepicker-demo">
+                    <div class="dd-block">
+                        <div class="date-picker">
+                            <datepicker show-weeks="false" ng-model="dtInline" min-date="minDate" class="dp-inline"></datepicker>
+                        </div>
+                    </div>
+
+                    <div class="dd-block">
+                        <div class="date-picker dp-blue">
+                            <datepicker show-weeks="false" ng-model="dtInline2" min-date="minDate" class="dp-inline"></datepicker>
+                        </div>
+                    </div>
+
+                    <div class="dd-block">
+                        <div class="date-picker dp-red">
+                            <datepicker show-weeks="false" ng-model="dtInline3" min-date="minDate" class="dp-inline"></datepicker>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <br/>
+                <br/>
+
+                <p class="f-500 c-black m-b-5">Multiple Popup Examples</p>
+                <small class="c-gray">Displaying on focus</small>
+
+                <br/>
+                <br/>
+
+                <div class="row">
+                    <div class="col-sm-4">
+
+                        <div class="date-picker input-group" ng-class="{ 'is-opened': opened == true }">
+                            <span class="input-group-addon"><i class="zmdi zmdi-calendar ma-icon"></i></span>
+                            <div class="fg-line" ng-class="{ 'fg-toggled': opened == true }">
+                                <input ng-click="open($event, 'opened')" type="text" class="form-control" datepicker-popup="{{format}}" show-weeks="false" ng-model="dtPopup" is-open="opened" min-date="minDate" datepicker-options="dateOptions" ng-required="true" close-text="Close" placeholder="Select Date" />
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-sm-4">
+
+                        <div class="date-picker input-group dp-blue" ng-class="{ 'is-opened': opened2 == true }">
+                            <span class="input-group-addon"><i class="zmdi zmdi-calendar ma-icon"></i></span>
+                            <div class="fg-line" ng-class="{ 'fg-toggled': opened2 == true }">
+                                <input ng-click="open($event, 'opened2')" type="text" class="form-control" datepicker-popup="{{format}}" show-weeks="false" ng-model="dtPopup2" is-open="opened2" min-date="minDate" datepicker-options="dateOptions" ng-required="true" close-text="Close" placeholder="Select Date" />
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-sm-4">
+
+                        <div class="date-picker input-group dp-red" ng-class="{ 'is-opened': opened3 == true }">
+                            <span class="input-group-addon"><i class="zmdi zmdi-calendar ma-icon"></i></span>
+                            <div class="fg-line" ng-class="{ 'fg-toggled': opened3 == true }">
+                                <input ng-click="open($event, 'opened3')" type="text" class="form-control" datepicker-popup="{{format}}" show-weeks="false" ng-model="dtPopup3" is-open="opened3" min-date="minDate" datepicker-options="dateOptions" ng-required="true" close-text="Close" placeholder="Select Date" />
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <br/>
+                <br/>
+
+                <p class="f-500 c-black m-b-5">Other Examples</p>
+                <small class="c-gray">Dropup, Month and Year Pickers</small>
+
+                <br/>
+                <br/>
+
+                <div class="row">
+                    <div class="col-sm-4">
+
+                        <div class="date-picker input-group dropup" ng-class="{ 'is-opened': opened4 == true }">
+                            <span class="input-group-addon"><i class="zmdi zmdi-calendar ma-icon"></i></span>
+                            <div class="fg-line" ng-class="{ 'fg-toggled': opened4 == true }">
+                                <input ng-click="open($event, 'opened4')" type="text" class="form-control" datepicker-popup="{{format}}" show-weeks="false" ng-model="dtUp" is-open="opened4" min-date="minDate" datepicker-options="dateOptions" ng-required="true" close-text="Close" placeholder="This is a dropup" />
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </div>-->
+
+            <div class="card">
+                <!--<div class="card-header">
+                    <h2>Select
+                        <small>Use the default option, or add multiple to show multiple options at once.</small>
+                    </h2>
+                </div>-->
+
+
+                <div class="card-body card-padding">
+
+
+
+                    <form role="form" data-ng-submit="save()">
+                        <div class="form-group fg-line">
+                            <label for="codigo_lote">Código de Lote</label>
+                            <input type="number" class="input-lg form-control fg-input" id="codigo_lote"
+                                   placeholder="Número de Lote" ng-model="lote.lote"/>
+                        </div>
+                        <div class="form-group fg-line">
+                            <label for="start_date">Fecha de Ingreso</label>
+                            <input type="text" class="input-lg form-control fg-input" id="start_date"
+                                   placeholder="Seleccionar Fecha" ng-model="lote.start_date"/>
+                        </div>
+                        <div class="form-group fg-line">
+                            <label for="start_time">Hora de Ingreso</label>
+                            <input type="text" class="input-lg form-control fg-input" id="start_time"
+                                   placeholder="Seleccionar Hora" ng-model="lote.start_time"/>
+                        </div>
+                        <div class="form-group fg-line">
+                            <label for="capacity">Capacidad</label>
+                            <input type="text" class="input-lg form-control fg-input" id="capacity"
+                                   placeholder="Capacidad # Kg" ng-model="lote.capacity"/>
+                        </div>
+                        <div class="form-group fg-line">
+                            <label for="category">Categoría</label>
+                            <input type="text" class="input-lg form-control fg-input" id="category"
+                                   placeholder="Seleccionar Categoría" ng-model="lote.category"/>
+                        </div>
+                        <div class="form-group fg-line">
+                            <label for="storage_time">Tiempo de Almacenamiento</label>
+                            <input type="text" class="input-lg form-control fg-input" id="storage_time"
+                                   placeholder="Número de Horas" ng-model="lote.storage_time"/>
+                        </div>
+                        <div class="form-group fg-line">
+                            <label for="sector">Sector</label>
+                            <input type="text" class="input-lg form-control fg-input" id="sector"
+                                   placeholder="Seleccionar Sector" ng-model="lote.sector"/>
+                        </div>
+                        <div class="form-group fg-line">
+                            <label for="phase">Etapa</label>
+                            <input type="text" class="input-lg form-control fg-input" id="phase"
+                                   placeholder="Seleccionar Etapa" ng-model="lote.phase"/>
+                        </div>
+                        <div class="form-group fg-line">
+                            <label for="reponsible">Responsable</label>
+                            <input type="text" class="input-lg form-control fg-input" id="reponsible"
+                                   placeholder="Ingresar Responsable" ng-model="lote.reponsible"/>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-6 m-b-20">
+                                <div class="toggle-switch">
+                                    <label for="presion" class="ts-label">Presión</label>
+                                    <input id="presion" type="checkbox" hidden="hidden" ng-model="lote.presion">
+                                    <label for="presion" class="ts-helper"></label>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6 m-b-20">
+                                <div class="toggle-switch">
+                                    <label for="temperature" class="ts-label">Temperatura</label>
+                                    <input id="temperature" type="checkbox" hidden="hidden" ng-model="lote.temperature">
+                                    <label for="temperature" class="ts-helper"></label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--<div class="checkbox">
+                            <label>
+                                <input type="checkbox" value="">
+                                <i class="input-helper"></i>
+                                Don't forget to check me out
+                            </label>
+                        </div>-->
+
+                        <button type="submit" class="btn btn-primary btn-sm m-t-10">Guadar</button>
+                    </form>
+
+                    <!--
+                                        <div class="row">
+                                            <div class="col-sm-10">
+                                                <div class="form-group fg-float">
+                                                    <div class="fg-line">
+                                                        <input type="text" class="input-lg form-control fg-input">
+                                                    </div>
+                                                    <label class="fg-label">Input Large</label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-4 m-b-20">
+                                            <div class="toggle-switch">
+                                                <label for="ts1" class="ts-label">Toggle Swith Default</label>
+                                                <input id="ts1" type="checkbox" hidden="hidden">
+                                                <label for="ts1" class="ts-helper"></label>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <p class="c-black f-500 m-b-20">Basic Example {{package.name}}</p>
+                                            </div>
+                                        </div>-->
+                </div>
+            </div>
+        </div>
+    </section>
+</section>
+<footer id="footer" data-ng-include="'material/template/footer.html'"></footer>
+

@@ -1,0 +1,87 @@
+<header id="header" data-ng-include="'material/template/header.html'" data-ng-controller="headerCtrl as hctrl"></header>
+
+<section id="main">
+    <aside id="sidebar" data-ng-include="'material/template/sidebar-left.html'"
+           data-ng-class="{ 'toggled': mactrl.sidebarToggle.left === true }"></aside>
+
+    <section id="content" data-ng-controller="ClasificacionController">
+        <div class="container">
+
+            <div class="block-header">
+                <h2>{{package.name}}</h2>
+
+            </div>
+            <div class="card">
+                <div class="card-body card-padding">
+
+                    <form role="form" data-ng-submit="save()">
+                        <div class="form-group fg-line">
+                            <label for="codigo_lote">Código de Lote</label>
+                            <input type="number" class="input-lg form-control fg-input" id="codigo_lote"
+                                   placeholder="Número de lote" ng-model="clasification.lote"/>
+                        </div>
+                        <div class="form-group fg-line">
+                            <label for="peeled_fruit">Rendimiento Fruta Pelada</label>
+                            <input type="number" class="input-lg form-control fg-input" id="peeled_fruit"
+                                   placeholder="Producción fruta pelada # Kg" ng-model="clasification.peeled_fruit"/>
+                        </div>
+                        <div class="form-group fg-line">
+                            <label for="clasified_fruit">Rendimiento Fruta Clasificada</label>
+                            <input type="number" class="input-lg form-control fg-input" id="clasified_fruit"
+                                   placeholder="Producción fruta clasificada # Kg" ng-model="clasification.clasified_fruit"/>
+                        </div>
+                        <div class="form-group fg-line">
+                            <label for="fruit_flow">Flujo de Fruta</label>
+                            <input type="number" class="input-lg form-control fg-input" id="fruit_flow"
+                                   placeholder="Flujo de fruta por día # Kg" ng-model="clasification.fruit_flow"/>
+                        </div>
+                        <div class="form-group fg-line">
+                            <label for="category">Categoría</label>
+                            <input type="text" class="input-lg form-control fg-input" id="category"
+                                   placeholder="Seleccionar categoría" ng-model="clasification.category"/>
+                        </div>
+                        <div class="form-group fg-line">
+                            <label for="capacity">Capacidad</label>
+                            <input type="text" class="input-lg form-control fg-input" id="capacity"
+                                   placeholder="Capacidad # Kg" ng-model="clasification.capacity"/>
+                        </div>
+                        <div class="form-group fg-line">
+                            <label for="reponsible">Responsable</label>
+                            <input type="text" class="input-lg form-control fg-input" id="reponsible"
+                                   placeholder="Ingresar responsable" ng-model="clasification.reponsible"/>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-4 m-b-20">
+                                <div class="toggle-switch">
+                                    <label for="presion" class="ts-label">Presión</label>
+                                    <input id="presion" type="checkbox" hidden="hidden" ng-model="clasification.presion">
+                                    <label for="presion" class="ts-helper"></label>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-4 m-b-20">
+                                <div class="toggle-switch">
+                                    <label for="temperature" class="ts-label">Temperatura</label>
+                                    <input id="temperature" type="checkbox" hidden="hidden" ng-model="clasification.temperature">
+                                    <label for="temperature" class="ts-helper"></label>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-4 m-b-20">
+                                <div class="toggle-switch">
+                                    <label for="light" class="ts-label">Luz</label>
+                                    <input id="light" type="checkbox" hidden="hidden" ng-model="clasification.light">
+                                    <label for="light" class="ts-helper"></label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-sm m-t-10">Guadar</button>
+                    </form>
+                </div>
+            </div>
+    </section>
+</section>
+<footer id="footer" data-ng-include="'material/template/footer.html'"></footer>
+
