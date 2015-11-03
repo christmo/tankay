@@ -6,7 +6,7 @@
  */
 var mean = require('meanio'),
     compression = require('compression'),
-    morgan = require('morgan'),
+    //morgan = require('morgan'),
     consolidate = require('consolidate'),
     express = require('express'),
     helpers = require('view-helpers'),
@@ -21,7 +21,7 @@ var mean = require('meanio'),
 module.exports = function (app, db) {
     app.use(bodyParser.json(config.bodyParser.json));
     app.use(bodyParser.urlencoded(config.bodyParser.urlencoded));
-    app.use(morgan('tiny'))
+    //app.use(morgan('tiny'))
 
     app.set('showStackError', true);
 

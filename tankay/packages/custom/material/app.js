@@ -38,10 +38,13 @@ Material.register(function (app, auth, database) {
     Material.aggregateAsset('js', '../lib/jquery.easy-pie-chart/dist/jquery.easypiechart.min.js');
     Material.aggregateAsset('js', '../lib/simpleWeather/jquery.simpleWeather.min.js');
     Material.aggregateAsset('js', '../lib/autosize/dist/autosize.min.js');
+    Material.aggregateAsset('js', '../lib/moment/min/moment.min.js');
+    Material.aggregateAsset('js', '../lib/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js');
 
     Material.aggregateAsset('css', '../lib/animate.css/animate.min.css');
     Material.aggregateAsset('css', '../lib/material-design-iconic-font/dist/css/material-design-iconic-font.min.css');
     Material.aggregateAsset('css', '../lib/fullcalendar/dist/fullcalendar.min.css');
+    Material.aggregateAsset('css', '../lib/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css',{global:true,  weight: 14, group: 'header'});
     Material.aggregateAsset('css', 'app.min.1.css',{global:true,  weight: 10, group: 'header'});
     Material.aggregateAsset('css', 'app.min.2.css',{global:true,  weight: 11, group: 'header'});
     //Material.aggregateAsset('css', 'demo.css',{global:true,  weight: 12, group: 'header'});
