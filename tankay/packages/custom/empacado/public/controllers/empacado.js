@@ -15,11 +15,9 @@ angular.module('mean.empacado')
             };
 
             $scope.save = function () {
-                console.log($scope.empacado);
                 var empacado = new Empacado($scope.empacado);
 
                 empacado.$save(function (response) {
-                    console.log(response);
                     if (response.status === 'OK') {
                         $location.path('/almacenado');
                         $scope.empacado = {};

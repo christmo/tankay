@@ -18,11 +18,9 @@ angular.module('mean.secado')
             };
 
             $scope.save = function () {
-                console.log($scope.secado);
                 var secado = new Secado($scope.secado);
 
                 secado.$save(function (response) {
-                    console.log(response);
                     if (response.status === 'OK') {
                         $location.path('/empacado');
                         $scope.secado = {};

@@ -1,4 +1,6 @@
-material
+'use strict';
+
+angular.module('mean.material')
 
     //====================================
     // ALERT

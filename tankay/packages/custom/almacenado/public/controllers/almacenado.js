@@ -6,7 +6,11 @@ angular.module('mean.almacenado')
         function ($scope, Global, Almacenado,$location) {
 
             $scope.almacenado = {
-                temperature:0
+                humidity_control:0,
+                temperature:0,
+                dehumidifier:0,
+                fourth_aroma:0,
+                packing_list:0
             };
 
             $scope.global = Global;
@@ -15,11 +19,9 @@ angular.module('mean.almacenado')
             };
 
             $scope.save = function () {
-                console.log($scope.almacenado);
                 var almacenado = new Almacenado($scope.almacenado);
 
                 almacenado.$save(function (response) {
-                    console.log(response);
                     if (response.status === 'OK') {
                         $location.path('/');
                         $scope.almacenado = {};

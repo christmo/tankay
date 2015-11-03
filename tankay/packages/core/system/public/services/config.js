@@ -1,23 +1,25 @@
-angular.module('mean.system').provider('$meanConfig', [function() {
-  function MeanConfigProvider() {
-    this.config = {};
+'use strict';
 
-    var self = this;
+angular.module('mean.system').provider('$meanConfig', [function () {
+    function MeanConfigProvider() {
+        this.config = {};
 
-    var xmlhttp = new XMLHttpRequest();
-    xmlhttp.onreadystatechange = function() {
-      if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
-        self.config = JSON.parse(xmlhttp.responseText);
-      }
+        var self = this;
+
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+                self.config = JSON.parse(xmlhttp.responseText);
+            }
+        }
+
+        xmlhttp.open('GET', '/api/get-public-config', false);
+        xmlhttp.send();
+
+        this.$get = function () {
+            return this.config;
+        };
     }
 
-    xmlhttp.open("GET", "/api/get-public-config", false);
-    xmlhttp.send();
-
-    this.$get = function() {
-      return this.config;
-    };
-  }
-
-  return new MeanConfigProvider();
+    return new MeanConfigProvider();
 }]);

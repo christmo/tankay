@@ -15,7 +15,7 @@ module.exports = function (System, app, auth, database) {
             if (menu === 'main' && roles.indexOf('admin') !== -1) {
                 roles.splice(roles.indexOf('admin'), 1);
             } else if (menu === 'modules') {
-                menu = 'main'
+                menu = 'main',
                 tmpMenu = 'modules';
             }
             ;

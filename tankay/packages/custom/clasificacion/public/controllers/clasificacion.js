@@ -17,11 +17,9 @@ angular.module('mean.clasificacion')
             };
 
             $scope.save = function () {
-                console.log($scope.clasification);
                 var clasificacion = new Clasificacion($scope.clasification);
 
                 clasificacion.$save(function (response) {
-                    console.log(response);
                     if (response.status === 'OK') {
                         $location.path('/secado');
                         $scope.clasification = {};
