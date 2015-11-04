@@ -29,7 +29,8 @@ Acopio.register(function(app, auth, database) {
         link: 'acopio',
         roles: ['authenticated'],
         menu: 'main',
-        order: '1'
+        order: '1',
+        icon:'zmdi-layers'
     });
 
 /*

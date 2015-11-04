@@ -22,7 +22,8 @@ Clasificacion.register(function(app, auth, database) {
         link: 'clasificacion',
         roles: ['authenticated'],
         menu: 'main',
-        order: '2'
+        order: '2',
+        icon:'zmdi-eye'
     });
 
     //console.log(acopio1.settings);

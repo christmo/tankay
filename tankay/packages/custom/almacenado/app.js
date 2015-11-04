@@ -11,19 +11,20 @@ var Almacenado = new Module('almacenado');
  * All MEAN packages require registration
  * Dependency injection is used to define required modules
  */
-Almacenado.register(function(app, auth, database) {
+Almacenado.register(function (app, auth, database) {
 
-  //We enable routing. By default the Package Object is passed to the routes
-  Almacenado.routes(app, auth, database);
+    //We enable routing. By default the Package Object is passed to the routes
+    Almacenado.routes(app, auth, database);
 
-  //We are adding a link to the main menu for all authenticated users
-  Almacenado.menus.add({
-    title: 'Almacenado',
-    link: 'almacenado',
-    roles: ['authenticated'],
-    menu: 'main',
-    order: '5'
-  });
+    //We are adding a link to the main menu for all authenticated users
+    Almacenado.menus.add({
+        title: 'Almacenado',
+        link: 'almacenado',
+        roles: ['authenticated'],
+        menu: 'main',
+        order: '5',
+        icon: 'zmdi-store'
+    });
 
-  return Almacenado;
+    return Almacenado;
 });

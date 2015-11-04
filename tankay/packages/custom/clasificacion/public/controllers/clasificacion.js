@@ -11,7 +11,7 @@ angular.module('mean.clasificacion')
                 presion: 0,
                 temperature: 0,
                 light:0,
-                id_clasification:lote.lote
+                id:lote
             };
 
             $scope.global = Global;
@@ -25,7 +25,7 @@ angular.module('mean.clasificacion')
                 clasificacion.$save(function (response) {
                     console.log(response);
                     if (response.status === 'OK') {
-                        $location.path('/secado').search('clasification',$scope.clasification);
+                        $location.path('/secado').search('clasification',$scope.clasification.id);
                         $scope.clasification = {};
                     } else {
                         $scope.error = response.error;

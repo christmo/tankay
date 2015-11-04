@@ -22,7 +22,8 @@ Secado.register(function (app, auth, database) {
         link: 'secado',
         roles: ['authenticated'],
         menu: 'main',
-        order: '3'
+        order: '3',
+        icon:'zmdi-sun'
     });
 
     return Secado;

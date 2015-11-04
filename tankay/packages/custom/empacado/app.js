@@ -22,7 +22,8 @@ Empacado.register(function (app, auth, database) {
         link: 'empacado',
         roles: ['authenticated'],
         menu: 'main',
-        order: '4'
+        order: '4',
+        icon: 'zmdi-case'
     });
 
 

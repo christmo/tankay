@@ -5,14 +5,14 @@ angular.module('mean.secado')
     .controller('SecadoController', ['$scope', 'Global', 'Secado', '$location',
         function ($scope, Global, Secado, $location) {
 
-            var clasification = $location.search().clasification;
+            var id = $location.search().clasification;
 
             $scope.secado = {
                 air_flow: 0,
                 hot_air_control: 0,
                 humidity_control: 0,
                 temperature:0,
-                id_secado: clasification.id_clasification
+                id: id
             };
 
             $scope.global = Global;
@@ -25,7 +25,7 @@ angular.module('mean.secado')
 
                 secado.$save(function (response) {
                     if (response.status === 'OK') {
-                        $location.path('/empacado').search('secado',$scope.secado);
+                        $location.path('/empacado').search('secado',$scope.secado.id);
                         $scope.secado = {};
                     } else {
                         $scope.error = response.error;
