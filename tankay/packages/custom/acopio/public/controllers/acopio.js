@@ -22,7 +22,7 @@ angular.module('mean.acopio')
 
                 lote.$save(function (response) {
                     if (response.status === 'OK') {
-                        $location.path('/clasificacion',$scope.lote);
+                        $location.path('/clasificacion').search('lote',$scope.lote);
                         $scope.lote = {};
                     } else {
                         $scope.error = response.error;

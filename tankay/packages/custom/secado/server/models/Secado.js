@@ -2,11 +2,6 @@
 
 module.exports = function(sequelize, DataTypes) {
     var Secado = sequelize.define('secado', {
-            lote:{
-                type:DataTypes.INTEGER,
-                primaryKey: true,
-                autoIncrement: true
-            },
             drying_time: DataTypes.INTEGER,
             fruit_flow:DataTypes.INTEGER,
             capacity:DataTypes.INTEGER,

@@ -43,15 +43,10 @@ function loadModels(pathModels) {
         }
     });
 
+
     // Synchronizing any model changes with database.
     // WARNING: this will DROP your database everytime you re-run your application
-    sequelize
-        .sync({force: config.forceSequelizeSync})
-        .then(function () {
-            winston.info('Database ' + (config.forceSequelizeSync ? '*DROPPED* and ' : '') + 'synchronized');
-        }).catch(function (err) {
-            winston.error('An error occured: %j', err);
-        });
+    //sync();
 };
 
 function getModel(model) {
@@ -63,5 +58,18 @@ module.exports = _.extend({
     sequelize: sequelize,
     Sequelize: Sequelize,
     loadModels: loadModels,
-    getModel: getModel
+    getModel: getModel,
+    sync: sync
 }, db_app);
+
+
+function sync() {
+    sequelize
+        .sync({force: config.forceSequelizeSync, logging: console.log })
+        .then(function () {
+            console.log('Database ' + (config.forceSequelizeSync ? '*DROPPED* and ' : '') + 'synchronized');
+            winston.info('Database ' + (config.forceSequelizeSync ? '*DROPPED* and ' : '') + 'synchronized');
+        }).catch(function (err) {
+            winston.error('An error occured: %j', err);
+        });
+}

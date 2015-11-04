@@ -3,9 +3,9 @@
 module.exports = function(sequelize, DataTypes) {
     var Almacenado = sequelize.define('almacenado', {
             lote:{
-                type:DataTypes.INTEGER,
+                type:DataTypes.INTEGER/*,
                 primaryKey: true,
-                autoIncrement: true
+                autoIncrement: true*/
             },
             responsible: DataTypes.STRING,
             humidity_control:DataTypes.BOOLEAN,

@@ -5,11 +5,7 @@ angular.module('mean.clasificacion')
         function ($stateProvider) {
             $stateProvider.state('clasificacion', {
                 url: '/clasificacion',
-                templateUrl: 'clasificacion/views/index.html',
-                controller:function($stateParams){
-                    console.log('Pasar');
-                    console.log($stateParams);
-                }
+                templateUrl: 'clasificacion/views/index.html'
             });
         }
     ]);

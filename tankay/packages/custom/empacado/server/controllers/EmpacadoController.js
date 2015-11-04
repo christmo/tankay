@@ -23,8 +23,19 @@ module.exports = function(empacado) {
         db.loadModels(settings.settings.dir_module);
         var Secado = db.getModel('Secado');
 
-        Secado.belongsTo(Empacado, {foreignKey: 'fk_empacado', targetKey: 'lote'});
+        console.log('empacado: '+ Empacado);
+        Empacado.belongsTo(Secado, {foreignKey: 'id'});
+
+        /**
+         * Al ser el ultimo modelo que carga se debe sincronizar
+         * la base de datos con todas las relaciones cargadas, si
+         * se incluye un nuevo modelo esto se debe mover hasta el
+         * modulo que cargue despues.
+         * @christmo
+         */
+        db.sync();
     });
+
 
     return {
         save:function(req, res,next){

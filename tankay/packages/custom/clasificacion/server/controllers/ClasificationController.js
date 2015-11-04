@@ -22,14 +22,13 @@ module.exports = function(clasificacion) {
         db.loadModels(settings.settings.dir_module);
         var Lote = db.getModel('Lote');
 
-        Lote.belongsTo(Clasification, {foreignKey: 'fk_clasification', targetKey: 'lote'});
+        Clasification.belongsTo(Lote,{foreignKey: 'id'});
     });
-    //var Lote = db.getModel('Lote');
-    //Lote.belongsTo(Clasification);
+
 
     return {
         save:function(req, res,next){
-            console.log('Guardar clasificacion'+req.body.presion);
+            console.log('Guardar clasificacion: '+req.body);
             Clasification.create(req.body)
                 .then(function(clasification) {
                     res.json({status:'OK'});

@@ -2,11 +2,6 @@
 
 module.exports = function(sequelize, DataTypes) {
     var Clasification = sequelize.define('clasification', {
-            lote:{
-                type:DataTypes.INTEGER,
-                primaryKey: true,
-                autoIncrement: true
-            },
             peeled_fruit: DataTypes.INTEGER,
             clasified_fruit: DataTypes.INTEGER,
             fruit_flow:DataTypes.INTEGER,

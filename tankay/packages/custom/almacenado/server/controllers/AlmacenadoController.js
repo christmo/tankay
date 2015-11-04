@@ -23,7 +23,7 @@ module.exports = function(almacenado) {
         db.loadModels(settings.settings.dir_module);
         var Empacado = db.getModel('Empacado');
 
-        Empacado.belongsTo(Almacenado, {foreignKey: 'fk_almacenado', targetKey: 'lote'});
+        Almacenado.belongsTo(Empacado,{foreignKey: 'id'});
     });
 
     return {

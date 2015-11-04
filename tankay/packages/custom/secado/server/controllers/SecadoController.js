@@ -17,13 +17,12 @@ module.exports = function(secado) {
     secado.settings({'dir_module': path.resolve(__dirname,'../models/')});
 
     var clasificacion = new Module('clasificacion');
-
     clasificacion.settings(function(err,settings){
         console.log('controller: '+settings.settings.dir_module);
         db.loadModels(settings.settings.dir_module);
         var Clasification = db.getModel('Clasification');
 
-        Clasification.belongsTo(Secado, {foreignKey: 'fk_secado', targetKey: 'lote'});
+        Secado.belongsTo(Clasification,{foreignKey: 'id'});
     });
 
     return {

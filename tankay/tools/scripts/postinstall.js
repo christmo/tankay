@@ -102,7 +102,7 @@ function install(module, options) {
             });
         });
     });
-};
+}
 
 function packagesMeanJson(source) {
     // Load mean.json
@@ -129,7 +129,7 @@ function loadPackageJson(path, callback) {
             return callback(err);
         }
     });
-};
+}
 
 
 function packagesNpmInstall(source) {
