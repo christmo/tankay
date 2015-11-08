@@ -1,3 +1,8 @@
-.material-example h1 {
-  background-color: purple
+body, html {
+    height: auto;
+}
+
+body {
+    background: #edecec;
+    height: auto;
 }

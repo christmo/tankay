@@ -27,6 +27,8 @@ module.exports = function(secado) {
 
     return {
         save:function(req, res,next){
+            req.body.step_detail="Iniciar Empacado";
+            req.body.next_step="/empacado";
             console.log('Guardar secado'+req.body);
                 Secado.create(req.body)
                 .then(function(secado) {

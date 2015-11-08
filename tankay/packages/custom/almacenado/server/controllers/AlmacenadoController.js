@@ -28,6 +28,8 @@ module.exports = function(almacenado) {
 
     return {
         save:function(req, res,next){
+            req.body.step_detail="Flujo Finalizado";
+            req.body.next_step="/";
             console.log('Guardar Almacenado: '+req.body);
             Almacenado.create(req.body)
                 .then(function(almacenado) {

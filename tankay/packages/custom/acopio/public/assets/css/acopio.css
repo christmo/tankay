@@ -1,0 +1,24 @@
+/*.acopio1-example h1 {
+    background-color: purple
+}
+
+.datepickerdemoBasicUsage {
+}
+
+.datepickerdemoBasicUsage md-content {
+    padding-bottom: 200px;
+}
+
+.datepickerdemoBasicUsage .validation-messages {
+    font-size: 11px;
+    color: darkred;
+    margin: 10px 0 0 25px;
+}
+*/
+.fg-line .form-control:not(:disabled) {
+    background-color : #fff;
+}
+
+.md-datepicker-input{
+    font-size: 100%;
+}

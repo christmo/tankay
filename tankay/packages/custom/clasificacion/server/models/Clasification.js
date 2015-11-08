@@ -10,7 +10,9 @@ module.exports = function(sequelize, DataTypes) {
             responsible:DataTypes.STRING,
             light:DataTypes.BOOLEAN,
             presion:DataTypes.BOOLEAN,
-            temperature:DataTypes.BOOLEAN
+            temperature:DataTypes.BOOLEAN,
+            step_detail:DataTypes.STRING,
+            next_step:DataTypes.STRING
         }
     );
 

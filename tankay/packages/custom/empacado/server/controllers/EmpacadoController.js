@@ -39,6 +39,8 @@ module.exports = function(empacado) {
 
     return {
         save:function(req, res,next){
+            req.body.step_detail="Iniciar Almacenado";
+            req.body.next_step="/almacenado";
             console.log('Guardar Empacado: '+req.body);
             Empacado.create(req.body)
                 .then(function(empacado) {
@@ -51,7 +53,8 @@ module.exports = function(empacado) {
                     res.json(response);
                 });
 
-        }
+        },
+        model:Empacado
     };
 
 }

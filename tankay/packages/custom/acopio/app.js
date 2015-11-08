@@ -33,6 +33,8 @@ Acopio.register(function(app, auth, database) {
         icon:'zmdi-layers'
     });
 
+
+    Acopio.aggregateAsset('css', 'acopio.css',{weight: 16});
 /*
     Acopio.settings({'dir_module': __dirname},
         function (err, settings) {
@@ -44,7 +46,6 @@ Acopio.register(function(app, auth, database) {
         winston.info(Acopio1.menus[i]);
     }
 
-    //Acopio1.aggregateAsset('css', 'acopio1.css');
 
     Lote.create({sector:'hola'+Math.random(),campacity:Math.random(),start_date:new Date(),start_time:new Date()})
         .then(function(lote){

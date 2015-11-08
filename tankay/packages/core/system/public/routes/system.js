@@ -53,11 +53,11 @@ angular.module('mean.system').config(['$meanStateProvider', '$urlRouterProvider'
         $urlRouterProvider.otherwise('/');
 
         // states for my app
-        $meanStateProvider
+        /*$meanStateProvider
             .state('index', {
                 url: '/home',
                 templateUrl: 'system/views/index.html'
-            });
+            });*/
     }
 ]).config(['$locationProvider',
     function ($locationProvider) {

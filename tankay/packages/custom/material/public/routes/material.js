@@ -32,8 +32,8 @@ angular.module('mean.material')
                                     files: [
                                         '/material/assets/lib/sparklines/jquery.sparkline.min.js',
                                         '/material/assets/lib/jquery.easy-pie-chart/dist/jquery.easypiechart.min.js',
-                                        '/material/assets/lib/simpleWeather/jquery.simpleWeather.min.js'//,
-                                        //'/material/assets//lib/moment/min/moment.min.js',
+                                        //'/material/assets/lib/simpleWeather/jquery.simpleWeather.min.js'//,
+                                        '/material/assets//lib/moment/min/moment.min.js',
                                         //'/material/assets/lib/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js'
                                     ]
                                 }

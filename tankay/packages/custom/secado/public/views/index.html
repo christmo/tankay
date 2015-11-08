@@ -21,38 +21,44 @@
                                    placeholder="Número de lote" ng-model="secado.id"/>
                         </div>-->
                         <div class="form-group fg-line">
-                            <label for="drying_time">Duración del Secado</label>
-                            <input type="number" class="input-lg form-control fg-input" id="drying_time"
-                                   placeholder="Número de horas de secado" ng-model="secado.drying_time"/>
-                        </div>
-                        <div class="form-group fg-line">
                             <label for="fruit_flow">Flujo de Fruta</label>
                             <input type="number" class="input-lg form-control fg-input" id="fruit_flow"
-                                   placeholder="Flujo de fruta por día # Kg" ng-model="secado.fruit_flow"/>
+                                   ng-change="updateBarFruitFlow()" ng-model="secado.fruit_flow"
+                                   placeholder="Flujo de fruta por día # Kg" max="{{max}}"/>
+                        </div>
+                        <div class="form-group fg-line">
+                            <progressbar class="progress-striped active m-b-10" value="dynamic" type="{{type}}">
+                            </progressbar>
                         </div>
                         <div class="form-group fg-line">
                             <label for="capacity">Capacidad</label>
                             <input type="text" class="input-lg form-control fg-input" id="capacity"
-                                   placeholder="# de personas" ng-model="secado.capacity"/>
+                                   placeholder="Número de personas" ng-model="secado.capacity"/>
                         </div>
                         <div class="form-group fg-line">
                             <label for="responsible">Responsable</label>
                             <input type="text" class="input-lg form-control fg-input" id="responsible"
                                    placeholder="Ingresar responsable" ng-model="secado.responsible"/>
                         </div>
-
+                        <div class="form-group fg-line">
+                            <label for="drying_time">Duración del Secado</label>
+                            <input type="number" class="input-lg form-control fg-input" id="drying_time"
+                                   placeholder="Número de horas de secado" ng-model="secado.drying_time"/>
+                        </div>
                         <div class="row">
                             <div class="col-sm-6 m-b-20">
                                 <div class="toggle-switch">
                                     <label for="humidity_control" class="ts-label">Control de Humedad</label>
-                                    <input id="humidity_control" type="checkbox" hidden="hidden" ng-model="secado.humidity_control">
+                                    <input id="humidity_control" type="checkbox" hidden="hidden"
+                                           ng-model="secado.humidity_control">
                                     <label for="humidity_control" class="ts-helper"></label>
                                 </div>
                             </div>
                             <div class="col-sm-6 m-b-20">
                                 <div class="toggle-switch">
                                     <label for="hot_air_control" class="ts-label">Control de Aire Caliente</label>
-                                    <input id="hot_air_control" type="checkbox" hidden="hidden" ng-model="secado.hot_air_control">
+                                    <input id="hot_air_control" type="checkbox" hidden="hidden"
+                                           ng-model="secado.hot_air_control">
                                     <label for="hot_air_control" class="ts-helper"></label>
                                 </div>
                             </div>
@@ -69,7 +75,8 @@
                             <div class="col-sm-6 m-b-20">
                                 <div class="toggle-switch">
                                     <label for="temperature" class="ts-label">Temperatura</label>
-                                    <input id="temperature" type="checkbox" hidden="hidden" ng-model="secado.temperature">
+                                    <input id="temperature" type="checkbox" hidden="hidden"
+                                           ng-model="secado.temperature">
                                     <label for="temperature" class="ts-helper"></label>
                                 </div>
                             </div>
@@ -79,6 +86,7 @@
                         <button type="submit" class="btn btn-primary btn-sm m-t-10">Guadar</button>
                     </form>
                 </div>
+            </div>
         </div>
     </section>
 </section>

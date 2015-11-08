@@ -20,7 +20,7 @@ angular.module('mean.material')
     .controller('materialadminCtrl', ['$timeout','$state','growlService',
         function ($timeout, $state, growlService) {
             //Welcome Message
-            growlService.growl('Welcome back Mallinda!', 'inverse');
+            growlService.growl('Bienvenido!', 'inverse');
 
             // Detact Mobile Browser
             if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {

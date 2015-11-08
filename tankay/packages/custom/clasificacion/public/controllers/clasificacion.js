@@ -2,17 +2,19 @@
 
 /* jshint -W098 */
 angular.module('mean.clasificacion')
-    .controller('ClasificacionController', ['$scope', 'Global', 'Clasificacion', '$location',
-        function ($scope, Global, Clasificacion, $location) {
+    .controller('ClasificacionController', ['$scope', 'Global', 'Clasificacion', '$location', 'categories',
+        function ($scope, Global, Clasificacion, $location, categories) {
 
             var lote = $location.search().lote;
 
             $scope.clasification = {
                 presion: 0,
                 temperature: 0,
-                light:0,
-                id:lote
+                light: 0,
+                id: lote
             };
+
+            $scope.selectCategory = categories.get();
 
             $scope.global = Global;
             $scope.package = {
@@ -25,7 +27,7 @@ angular.module('mean.clasificacion')
                 clasificacion.$save(function (response) {
                     console.log(response);
                     if (response.status === 'OK') {
-                        $location.path('/secado').search('clasification',$scope.clasification.id);
+                        $location.path('/secado').search('clasification', $scope.clasification.id);
                         $scope.clasification = {};
                     } else {
                         $scope.error = response.error;

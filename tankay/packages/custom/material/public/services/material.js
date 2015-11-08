@@ -7,6 +7,40 @@ angular.module('mean.material')
                 name: 'material'
             };
         }
+    ])
+    .service('errorMessage', [
+        function () {
+            return {
+                show: function (show,msg) {
+                    if (show) {
+                        swal({
+                            title: 'Error!!!',
+                            text: msg,
+                            type: 'error',
+                            showCancelButton: false,
+                            confirmButtonColor: '#F44336',
+                            confirmButtonText: 'Aceptar',
+                            closeOnConfirm: true
+                        });
+                    }
+                }
+            }
+        }
+    ])
+    .service('categories', [
+        function () {
+            return {
+                get: function () {
+                    var categories = [
+                        {id:1,label:'Categoría I'},
+                        {id:2,label:'Categoría II'},
+                        {id:3,label:'Categoría III'},
+                        {id:4,label:'Categoría IV'}
+                    ];
+                    return categories;
+                }
+            }
+        }
     ]);
 
 

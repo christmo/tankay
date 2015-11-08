@@ -1,8 +1,8 @@
 (function (angular) {
-    "use strict";
+    'use strict';
 
-    angular.module("oc.lazyLoad").config(["$provide", function ($provide) {
-        $provide.decorator("$ocLazyLoad", ["$delegate", "$q", function ($delegate, $q) {
+    angular.module('oc.lazyLoad').config(["$provide", function ($provide) {
+        $provide.decorator('$ocLazyLoad', ["$delegate", "$q", function ($delegate, $q) {
             /**
              * jsLoader function
              * @type Function
@@ -11,7 +11,10 @@
              * @param params object config parameters
              * because the user can overwrite jsLoader and it will probably not use promises :(
              */
-            $delegate.jsLoader = require;
+            $delegate.jsLoader = function (paths, callback, params) {
+                require(paths, callback, callback, params);
+            };
+            $delegate.jsLoader.requirejs = true;
 
             return $delegate;
         }]);

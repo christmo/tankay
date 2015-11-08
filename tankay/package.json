@@ -34,6 +34,7 @@
     "jsonwebtoken": "latest",
     "lodash": "https://registry.npmjs.org/lodash/-/lodash-3.10.1.tgz",
     "meanio": "latest",
+    "moment": "^2.10.6",
     "mongoose": "latest",
     "morgan": "latest",
     "ms": "latest",

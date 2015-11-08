@@ -23,27 +23,54 @@
                         <div class="form-group fg-line">
                             <label for="peeled_fruit">Rendimiento Fruta Pelada</label>
                             <input type="number" class="input-lg form-control fg-input" id="peeled_fruit"
-                                   placeholder="Producción fruta pelada # Kg" ng-model="clasification.peeled_fruit"/>
+                                   ng-change="updateBarPeeled()" ng-model="clasification.peeled_fruit"
+                                   placeholder="Producción fruta pelada # Kg" max="{{max}}"/>
+                        </div>
+                        <div class="form-group fg-line">
+                            <progressbar class="progress-striped active m-b-10" value="dynamic" type="{{type}}">
+                            </progressbar>
                         </div>
                         <div class="form-group fg-line">
                             <label for="clasified_fruit">Rendimiento Fruta Clasificada</label>
                             <input type="number" class="input-lg form-control fg-input" id="clasified_fruit"
-                                   placeholder="Producción fruta clasificada # Kg" ng-model="clasification.clasified_fruit"/>
+                                   ng-change="updateBarClasified()" ng-model="clasification.clasified_fruit"
+                                   placeholder="Producción fruta clasificada # Kg" max="{{max}}"/>
+                        </div>
+                        <div class="form-group fg-line">
+                            <progressbar class="progress-striped active m-b-10" value="dynamic" type="{{type}}">
+                            </progressbar>
                         </div>
                         <div class="form-group fg-line">
                             <label for="fruit_flow">Flujo de Fruta</label>
                             <input type="number" class="input-lg form-control fg-input" id="fruit_flow"
-                                   placeholder="Flujo de fruta por día # Kg" ng-model="clasification.fruit_flow"/>
+                                   ng-change="updateBarFruitFlow()" ng-model="clasification.fruit_flow"
+                                   placeholder="Flujo de fruta por día # Kg" max="{{max}}"/>
+                        </div>
+                        <div class="form-group fg-line">
+                            <progressbar class="progress-striped active m-b-10" value="dynamic" type="{{type}}">
+                            </progressbar>
                         </div>
                         <div class="form-group fg-line">
                             <label for="category">Categoría</label>
+
+                            <div class="select">
+                                <select class="input-lg form-control" ng-model="clasification.category" id="category"
+                                        placeholder="Seleccionar Categoría"
+                                        ng-options="item.label for item in selectCategory track by item.id">
+                                    <option value="">Seleccionar Categoría</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!--<div class="form-group fg-line">
+                            <label for="category">Categoría</label>
                             <input type="text" class="input-lg form-control fg-input" id="category"
                                    placeholder="Seleccionar categoría" ng-model="clasification.category"/>
-                        </div>
+                        </div>-->
                         <div class="form-group fg-line">
                             <label for="capacity">Capacidad</label>
-                            <input type="text" class="input-lg form-control fg-input" id="capacity"
-                                   placeholder="# de personas" ng-model="clasification.capacity"/>
+                            <input type="number" class="input-lg form-control fg-input" id="capacity"
+                                   placeholder="Número de personas" ng-model="clasification.capacity"/>
                         </div>
                         <div class="form-group fg-line">
                             <label for="responsible">Responsable</label>
@@ -55,7 +82,8 @@
                             <div class="col-sm-4 m-b-20">
                                 <div class="toggle-switch">
                                     <label for="presion" class="ts-label">Presión</label>
-                                    <input id="presion" type="checkbox" hidden="hidden" ng-model="clasification.presion">
+                                    <input id="presion" type="checkbox" hidden="hidden"
+                                           ng-model="clasification.presion">
                                     <label for="presion" class="ts-helper"></label>
                                 </div>
                             </div>
@@ -63,7 +91,8 @@
                             <div class="col-sm-4 m-b-20">
                                 <div class="toggle-switch">
                                     <label for="temperature" class="ts-label">Temperatura</label>
-                                    <input id="temperature" type="checkbox" hidden="hidden" ng-model="clasification.temperature">
+                                    <input id="temperature" type="checkbox" hidden="hidden"
+                                           ng-model="clasification.temperature">
                                     <label for="temperature" class="ts-helper"></label>
                                 </div>
                             </div>
@@ -81,6 +110,7 @@
                     </form>
                 </div>
             </div>
+        </div>
     </section>
 </section>
 <footer id="footer" data-ng-include="'material/template/footer.html'"></footer>

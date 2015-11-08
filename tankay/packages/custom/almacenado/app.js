@@ -26,5 +26,7 @@ Almacenado.register(function (app, auth, database) {
         icon: 'zmdi-store'
     });
 
+    Almacenado.aggregateAsset('css', 'almacenado.css',{weight: 16});
+
     return Almacenado;
 });

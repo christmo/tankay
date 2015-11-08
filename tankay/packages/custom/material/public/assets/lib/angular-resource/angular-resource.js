@@ -1,5 +1,5 @@
 /**
- * @license AngularJS v1.5.0-build.4326+sha.33c67ce
+ * @license AngularJS v1.5.0-build.4376+sha.aff74ec
  * (c) 2010-2015 Google, Inc. http://angularjs.org
  * License: MIT
  */
@@ -579,8 +579,17 @@ angular.module('ngResource', ['ng']).
               undefined;
 
             forEach(action, function(value, key) {
-              if (key != 'params' && key != 'isArray' && key != 'interceptor') {
-                httpConfig[key] = copy(value);
+              switch (key) {
+                default:
+                  httpConfig[key] = copy(value);
+                  break;
+                case 'params':
+                case 'isArray':
+                case 'interceptor':
+                  break;
+                case 'timeout':
+                  httpConfig[key] = value;
+                  break;
               }
             });
 
