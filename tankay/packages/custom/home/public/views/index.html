@@ -1,0 +1,175 @@
+<header id="header" data-ng-include="'material/template/header.html'" data-ng-controller="headerCtrl as hctrl"></header>
+
+<section id="main">
+    <aside id="sidebar" data-ng-include="'material/template/sidebar-left.html'"
+           data-ng-class="{ 'toggled': mactrl.sidebarToggle.left === true }"></aside>
+
+    <section id="content" data-ng-controller="HomeController as home">
+        <div class="container">
+            <div class="block-header">
+                <h2>Dashboard</h2>
+
+                <ul class="actions">
+                    <li>
+                        <a href="">
+                            <i class="zmdi zmdi-trending-up"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <i class="zmdi zmdi-check-all"></i>
+                        </a>
+                    </li>
+                    <li class="dropdown" dropdown>
+                        <a href="" dropdown-toggle>
+                            <i class="zmdi zmdi-more-vert"></i>
+                        </a>
+
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li>
+                                <a href="">Refresh</a>
+                            </li>
+                            <li>
+                                <a href="">Manage Widgets</a>
+                            </li>
+                            <li>
+                                <a href="">Widgets Settings</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+
+            </div>
+
+
+            <div class="card">
+                <div class="card-header">
+                    <h2>Striped rows
+                        <small>Add zebra-striping to any table row within the tbody</small>
+                    </h2>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th># Lote</th>
+                            <th>Sector</th>
+                            <th>Etapa</th>
+                            <th>Fecha Ingreso</th>
+                            <th>Capacidad</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="lote in lotes">
+                            <td>{{lote.lote}}</td>
+                            <td>{{lote.sector}}</td>
+                            <td>{{lote.phase}}</td>
+                            <td>{{lote.start_date}}</td>
+                            <td>{{lote.capacity}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h2>Sales Statistics
+                        <small>Vestibulum purus quam scelerisque, mollis nonummy metus</small>
+                    </h2>
+
+                    <ul class="actions">
+                        <li>
+                            <a href="">
+                                <i class="zmdi zmdi-refresh-alt"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                <i class="zmdi zmdi-download"></i>
+                            </a>
+                        </li>
+                        <li class="dropdown" dropdown>
+                            <a href="" dropdown-toggle>
+                                <i class="zmdi zmdi-more-vert"></i>
+                            </a>
+
+                            <ul class="dropdown-menu dropdown-menu-right">
+                                <li>
+                                    <a href="">Change Date Range</a>
+                                </li>
+                                <li>
+                                    <a href="">Change Graph Type</a>
+                                </li>
+                                <li>
+                                    <a href="">Other Settings</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="card-body">
+                    <div class="chart-edge">
+                        <div class="flot-chart" data-curvedline-chart></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mini-charts">
+                <div class="row">
+                    <div class="col-sm-6 col-md-3">
+                        <div class="mini-charts-item bgm-cyan">
+                            <div class="clearfix">
+                                <div class="chart stats-bar" data-sparkline-bar></div>
+                                <div class="count">
+                                    <small>Website Traffics</small>
+                                    <h2>987,459</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 col-md-3">
+                        <div class="mini-charts-item bgm-lightgreen">
+                            <div class="clearfix">
+                                <div class="chart stats-bar-2" data-sparkline-bar></div>
+                                <div class="count">
+                                    <small>Website Impressions</small>
+                                    <h2>356,785K</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 col-md-3">
+                        <div class="mini-charts-item bgm-orange">
+                            <div class="clearfix">
+                                <div class="chart stats-line" data-sparkline-line></div>
+                                <div class="count">
+                                    <small>Total Sales</small>
+                                    <h2>$ 458,778</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 col-md-3">
+                        <div class="mini-charts-item bgm-bluegray">
+                            <div class="clearfix">
+                                <div class="chart stats-line-2" data-sparkline-line></div>
+                                <div class="count">
+                                    <small>Support Tickets</small>
+                                    <h2>23,856</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>
+<footer id="footer" data-ng-include="'material/template/footer.html'"></footer>
+
