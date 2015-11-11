@@ -2,14 +2,16 @@
 
 /* jshint -W098 */
 angular.module('mean.acopio')
-    .controller('AcopioController', ['$scope', 'Global', 'Acopio', '$location','errorMessage','categories',
-        function ($scope, Global, Acopio, $location, errorMessage,categories) {
+    .controller('AcopioController', ['$scope', 'Global', 'Acopio', '$location', 'errorMessage', 'categories',
+        'updateBar',
+        function ($scope, Global, Acopio, $location, errorMessage, categories, updateBar) {
 
             $scope.lote = {
                 start_date: new Date(),
                 start_time: '',
                 presion: 0,
-                temperature: 0
+                temperature: 0//,
+                //capacity: 0
             };
 
             var $input = $('.datepicker').pickatime({
@@ -42,7 +44,7 @@ angular.module('mean.acopio')
                         $location.path('/clasificacion').search('lote', $scope.lote.lote);
                         $scope.lote = {};
                     } else {
-                        errorMessage.show(true,response.msg);
+                        errorMessage.show(true, response.msg);
                         $scope.error = response.error;
                         //$location.path('/acopio');
                     }
@@ -51,32 +53,18 @@ angular.module('mean.acopio')
             };
 
             $scope.updateBar = function () {
-                var type;
-                $scope.max = 10000;
-                var meta = 5000;
-                var lim_low = 2000;
+                $scope.$watch('name', function () {
+                    $scope.max = 10000;
+                    var meta = 5000;
+                    var lim_low = 2000;
+                    var bar = {read: $scope.lote.capacity};
+                    bar = updateBar.progress($scope.max, meta, lim_low, bar);
 
-                var value = ($scope.lote.capacity * 100) / $scope.max;
-                if (value >= (meta * 100) / $scope.max) {
-                    type = 'success';
-                }
-                else if (value > (lim_low * 100) / $scope.max && value < (meta * 100) / $scope.max) {
-                    type = 'warning';
-                }
-                else {
-                    type = 'danger';
-                }
-
-                $scope.showWarning = (type === 'danger' || type === 'warning');
-
-                $scope.dynamic = value;
-                $scope.type = type;
+                    $scope.showWarning = bar.showWarning;
+                    $scope.dynamic = bar.dynamic;
+                    $scope.type = bar.type;
+                });
             };
-
-            //var User = $resource('/api/acopio/step-1/all');
-            //var user = User.query();
-
-            console.log(user);
 
         }
 

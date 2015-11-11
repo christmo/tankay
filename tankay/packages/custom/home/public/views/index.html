@@ -41,45 +41,48 @@
 
             </div>
 
-
             <div class="card">
                 <div class="card-header">
-                    <h2>Striped rows
-                        <small>Add zebra-striping to any table row within the tbody</small>
+                    <h2>Producción
+                        <small>Información de producción Uvilla - Tankay</small>
                     </h2>
                 </div>
 
-                <div class="table-responsive">
-                    <table class="table table-striped">
-                        <thead>
-                        <tr>
-                            <th># Lote</th>
-                            <th>Sector</th>
-                            <th>Etapa</th>
-                            <th>Fecha Ingreso</th>
-                            <th>Capacidad</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr ng-repeat="lote in lotes">
-                            <td>{{lote.lote}}</td>
-                            <td>{{lote.sector}}</td>
-                            <td>{{lote.phase}}</td>
-                            <td>{{lote.start_date}}</td>
-                            <td>{{lote.capacity}}</td>
-                        </tr>
-                        </tbody>
-                    </table>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table ng-table="home.tableBasic" class="table table-striped table-vmiddle">
+                            <tr ng-repeat="row in rows track by $index" ng-click="continuar(row)">
+                                <td data-title="'# Lote'">
+                                    {{ row.lote }}
+                                </td>
+                                <td data-title="'Fecha Ingreso'">
+                                    {{row.start_date | date:'yyyy-MM-dd'}}
+                                </td>
+                                <td data-title="'Hora Ingreso'">
+                                    {{row.start_time | date:'HH:mm A'}}
+                                </td>
+                                <td data-title="'Categoría'">
+                                    {{row.category}}
+                                </td>
+                                <td data-title="'Capacidad'">
+                                    {{row.capacity}}
+                                </td>
+                                <td data-title="'Flujo'">
+                                    <button type="submit" class="btn btn-primary btn-sm">{{row.step_detail}}</button>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
             </div>
 
             <div class="card">
                 <div class="card-header">
-                    <h2>Sales Statistics
+                    <h2>Producción
                         <small>Vestibulum purus quam scelerisque, mollis nonummy metus</small>
                     </h2>
 
-                    <ul class="actions">
+                    <!--<ul class="actions">
                         <li>
                             <a href="">
                                 <i class="zmdi zmdi-refresh-alt"></i>
@@ -107,7 +110,7 @@
                                 </li>
                             </ul>
                         </li>
-                    </ul>
+                    </ul>-->
                 </div>
 
                 <div class="card-body">

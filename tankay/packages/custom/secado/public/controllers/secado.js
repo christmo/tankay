@@ -2,8 +2,8 @@
 
 /* jshint -W098 */
 angular.module('mean.secado')
-    .controller('SecadoController', ['$scope', 'Global', 'Secado', '$location',
-        function ($scope, Global, Secado, $location) {
+    .controller('SecadoController', ['$scope', 'Global', 'Secado', '$location', 'errorMessage', 'updateBar',
+        function ($scope, Global, Secado, $location, errorMessage,updateBar) {
 
             var id = $location.search().clasification;
 
@@ -28,11 +28,27 @@ angular.module('mean.secado')
                         $location.path('/empacado').search('secado',$scope.secado.id);
                         $scope.secado = {};
                     } else {
+                        errorMessage.show(true, response.msg);
                         $scope.error = response.error;
-                        $location.path('/secado');
+                        //$location.path('/secado');
                     }
                 });
 
+            };
+
+            $scope.updateBarFruitFlowSecado = function (){
+                $scope.$watch('name', function () {
+                    var max = 5000;
+                    var meta = 3000;
+                    var lim_low = 1000;
+                    var bar = {read: $scope.secado.fruit_flow};
+                    bar = updateBar.progress(max, meta, lim_low, bar);
+
+                    $scope.maxFlow = max;
+                    $scope.showWarning = bar.showWarning;
+                    $scope.dynamicFlow = bar.dynamic;
+                    $scope.typeFlow = bar.type;
+                });
             };
         }
     ]);

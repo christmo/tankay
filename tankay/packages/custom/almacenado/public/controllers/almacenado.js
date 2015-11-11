@@ -2,8 +2,8 @@
 
 /* jshint -W098 */
 angular.module('mean.almacenado')
-    .controller('AlmacenadoController', ['$scope', 'Global', 'Almacenado','$location',
-        function ($scope, Global, Almacenado,$location) {
+    .controller('AlmacenadoController', ['$scope', 'Global', 'Almacenado','$location', 'errorMessage',
+        function ($scope, Global, Almacenado,$location, errorMessage) {
 
             var id = $location.search().empacado;
 
@@ -29,8 +29,9 @@ angular.module('mean.almacenado')
                         $location.path('/').search('almacenado',$scope.almacenado.id);
                         $scope.almacenado = {};
                     } else {
+                        errorMessage.show(true, response.msg);
                         $scope.error = response.error;
-                        $location.path('/almacenado');
+                        //$location.path('/almacenado');
                     }
                 });
 

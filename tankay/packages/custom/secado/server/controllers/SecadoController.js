@@ -7,35 +7,41 @@ var Module = require('meanio').Module;
 //var winston = require('winston');
 var path = require('path');
 var db = require('../../../persister');
-db.loadModels(path.resolve(__dirname,'../models/'));
+db.loadModels(path.resolve(__dirname, '../models/'));
 
 var Secado = db.getModel('Secado');
 
 
-module.exports = function(secado) {
+module.exports = function (secado) {
 
-    secado.settings({'dir_module': path.resolve(__dirname,'../models/')});
+    secado.settings({'dir_module': path.resolve(__dirname, '../models/')});
 
-    var clasificacion = new Module('clasificacion');
-    clasificacion.settings(function(err,settings){
-        console.log('controller: '+settings.settings.dir_module);
+    var Clasification = db.getModelModule('Clasification', 'clasificacion');
+    Secado.belongsTo(Clasification, {foreignKey: 'id'});
+
+    /*var clasificacion = new Module('clasificacion');
+    clasificacion.settings(function (err, settings) {
+        console.log('controller: ' + settings.settings.dir_module);
         db.loadModels(settings.settings.dir_module);
         var Clasification = db.getModel('Clasification');
 
-        Secado.belongsTo(Clasification,{foreignKey: 'id'});
-    });
+        Secado.belongsTo(Clasification, {foreignKey: 'id'});
+    });*/
+
+    var Dashboard = db.getModelModule('Dashboard', 'home');
 
     return {
-        save:function(req, res,next){
-            req.body.step_detail="Iniciar Empacado";
-            req.body.next_step="/empacado";
-            console.log('Guardar secado'+req.body);
-                Secado.create(req.body)
-                .then(function(secado) {
-                    res.json({status:'OK'});
-                }).catch(function(error) {
+        save: function (req, res, next) {
+            //req.body.step_detail="Iniciar Empacado";
+            //req.body.next_step="/empacado";
+            console.log('Guardar secado' + req.body);
+            Secado.create(req.body)
+                .then(function (secado) {
+                    saveDashboard(req.body, Dashboard);
+                    res.json({status: 'OK'});
+                }).catch(function (error) {
                     var response = {
-                        status:'NOK',
+                        status: 'NOK',
                         error: error
                     };
                     res.json(response);
@@ -43,5 +49,35 @@ module.exports = function(secado) {
 
         }
     };
+
+};
+
+function saveDashboard(body, Dashboard) {
+    var detail = 'Iniciar Empacado';
+    var next = '/empacado';
+    Dashboard.findOrCreate({
+        where: {id: body.id},
+        defaults: {
+            step_detail: detail,
+            next_step: next
+        }
+    }).spread(function (dash, created) {
+        console.log(dash.get({
+            plain: true
+        }));
+        console.log('created:' + created);
+        if (!created) {
+            Dashboard.update(
+                {
+                    step_detail: detail,
+                    next_step: next
+                }, {
+                    where: {
+                        id: dash.id
+                    }
+                }
+            );
+        }
+    });
 
 }

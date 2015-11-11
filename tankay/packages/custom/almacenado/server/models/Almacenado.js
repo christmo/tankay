@@ -7,9 +7,9 @@ module.exports = function(sequelize, DataTypes) {
             temperature:DataTypes.BOOLEAN,
             dehumidifier: DataTypes.BOOLEAN,
             fourth_aroma: DataTypes.BOOLEAN,
-            packing_list: DataTypes.BOOLEAN,
+            packing_list: DataTypes.BOOLEAN/*,
             step_detail:DataTypes.STRING,
-            next_step:DataTypes.STRING
+            next_step:DataTypes.STRING*/
         }
     );
 

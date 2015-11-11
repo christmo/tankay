@@ -49,6 +49,10 @@ function loadModels(pathModels) {
     //sync();
 };
 
+function getModelModule(model,module) {
+    console.log(__dirname);
+    return sequelize.import(path.resolve(__dirname, '../'+module+'/server/models/') + path.sep + model);
+}
 function getModel(model) {
     return sequelize.import(modelPath + path.sep + model);
 };
@@ -59,6 +63,7 @@ module.exports = _.extend({
     Sequelize: Sequelize,
     loadModels: loadModels,
     getModel: getModel,
+    getModelModule: getModelModule,
     sync: sync
 }, db_app);
 

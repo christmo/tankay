@@ -23,18 +23,25 @@
                         <div class="form-group fg-line">
                             <label for="fruit_flow">Flujo de Fruta</label>
                             <input type="number" class="input-lg form-control fg-input" id="fruit_flow"
-                                   ng-change="updateBarFruitFlow()" ng-model="empacado.fruit_flow"
-                                   placeholder="Flujo de fruta por día # Kg" max="{{max}}"/>
+                                   ng-change="updateBarFruitFlowEmpacado()" ng-model="empacado.fruit_flow"
+                                   placeholder="Flujo de fruta por día # Kg" max="{{maxFlow}}"/>
                         </div>
                         <div class="form-group fg-line">
-                            <progressbar class="progress-striped active m-b-10" value="dynamic" type="{{type}}">
+                            <progressbar class="progress-striped active m-b-10" value="dynamicFlow" type="{{typeFlow}}">
                             </progressbar>
                         </div>
+
                         <div class="form-group fg-line">
-                            <label for="production">Rendimiento</label>
+                            <label for="fruit_flow">Rendimiento</label>
                             <input type="number" class="input-lg form-control fg-input" id="production"
-                                   placeholder="Número de cajas por persona" ng-model="empacado.production"/>
+                                   ng-change="updateBarProduction()" ng-model="empacado.production"
+                                   placeholder="Número de cajas por persona" max="{{maxProduction}}"/>
                         </div>
+                        <div class="form-group fg-line">
+                            <progressbar class="progress-striped active m-b-10" value="dynamicProduction" type="{{typeProduction}}">
+                            </progressbar>
+                        </div>
+
                         <div class="form-group fg-line">
                             <label for="capacity">Capacidad</label>
                             <input type="munber" class="input-lg form-control fg-input" id="capacity"
