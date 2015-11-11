@@ -9,6 +9,8 @@ module.exports = function (Acopio1, app, auth, database) {
     var acopio = require('../controllers/AcopioController')(Acopio1);
 
     app.post('/api/acopio/step-1/save',acopio.save);
+    app.get('/api/acopio/step-1/:lote',acopio.get);
+
     app.post('/api/acopio/step-1/all',acopio.queryAll);
 
     app.get('/api/acopio1/example/anyone', function (req, res, next) {

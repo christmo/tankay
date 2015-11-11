@@ -51,6 +51,15 @@ module.exports = function (acopio) {
 
         },
 
+        get: function(req, res){
+            console.log(req.params);
+
+            Lote.findById(req.params.lote).then(function(lote){
+                res.json(lote);
+            });
+
+        },
+
         queryAll: function (req, res) {
             Lote.findAll().then(function (lotes) {
                 // projects will be an array of all Project instances

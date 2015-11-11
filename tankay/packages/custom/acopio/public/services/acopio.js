@@ -2,7 +2,7 @@
 
 angular.module('mean.acopio')
     .factory('Acopio', ['$resource',
-        function($resource) {
+        function ($resource) {
             return $resource('/api/acopio/step-1/save', {
                 lote: '@lote'
             }, {
@@ -10,5 +10,10 @@ angular.module('mean.acopio')
                     method: 'PUT'
                 }
             });
+        }
+    ])
+    .factory('AcopioQuery', ['$resource',
+        function ($resource) {
+            return $resource('/api/acopio/step-1/:lote');
         }
     ]);
