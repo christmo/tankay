@@ -51,8 +51,8 @@
                 <div class="card-body">
                     <div class="table-responsive">
                         <table ng-table="home.tableBasic" class="table table-striped table-vmiddle">
-                            <tr ng-repeat="row in $data track by $index" ng-click="continuar(row)">
-                                <td data-title="'# Lote'">
+                            <tr ng-repeat="row in $data track by $index">
+                                <td data-title="'# Lote'" filter="{lote: 'number'}">
                                     {{ row.lote }}
                                 </td>
                                 <td data-title="'Fecha Ingreso'">
@@ -68,7 +68,9 @@
                                     {{row.capacity}}
                                 </td>
                                 <td data-title="'Flujo'">
-                                    <button type="submit" class="btn btn-primary btn-sm">{{row.step_detail}}</button>
+                                    <button type="submit" class="btn btn-primary btn-sm" ng-click="continuar(row)">
+                                        {{row.step_detail}}
+                                    </button>
                                 </td>
                             </tr>
                         </table>
@@ -79,43 +81,33 @@
             <div class="card">
                 <div class="card-header">
                     <h2>Producción
-                        <small>Vestibulum purus quam scelerisque, mollis nonummy metus</small>
+                        <small>Cantidad en Kg ingresada por fecha</small>
                     </h2>
 
-                    <!--<ul class="actions">
-                        <li>
-                            <a href="">
-                                <i class="zmdi zmdi-refresh-alt"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="">
-                                <i class="zmdi zmdi-download"></i>
-                            </a>
-                        </li>
-                        <li class="dropdown" dropdown>
-                            <a href="" dropdown-toggle>
-                                <i class="zmdi zmdi-more-vert"></i>
-                            </a>
+                    <div class="row chart-filter">
+                        <div class="col-sm-6 m-b-10">
+                            <div class="form-group fg-line">
+                                <label for="start_date">Fecha Desde</label>
+                                <md-datepicker id="start_date" class="input-lg form-control" ng-change="updateChart()"
+                                               md-placeholder="Seleccionar Fecha" ng-model="filter.start_date">
+                                </md-datepicker>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 m-b-10">
+                            <div class="form-group fg-line">
+                                <label for="end_date">Fecha Hasta</label>
+                                <md-datepicker id="end_date" class="input-lg form-control" ng-change="updateChart()"
+                                               md-placeholder="Seleccionar Fecha" ng-model="filter.end_date">
+                                </md-datepicker>
+                            </div>
+                        </div>
+                    </div>
 
-                            <ul class="dropdown-menu dropdown-menu-right">
-                                <li>
-                                    <a href="">Change Date Range</a>
-                                </li>
-                                <li>
-                                    <a href="">Change Graph Type</a>
-                                </li>
-                                <li>
-                                    <a href="">Other Settings</a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>-->
                 </div>
 
                 <div class="card-body">
                     <div class="chart-edge">
-                        <div class="flot-chart" data-curvedline-chart></div>
+                        <div class="flot-chart" data-graph></div>
                     </div>
                 </div>
             </div>

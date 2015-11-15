@@ -5,14 +5,12 @@ module.exports = function(sequelize, DataTypes) {
             peeled_fruit: DataTypes.INTEGER,
             clasified_fruit: DataTypes.INTEGER,
             fruit_flow:DataTypes.INTEGER,
-            category:DataTypes.STRING,
+            category:DataTypes.INTEGER,
             capacity:DataTypes.INTEGER,
             responsible:DataTypes.STRING,
             light:DataTypes.BOOLEAN,
             presion:DataTypes.BOOLEAN,
-            temperature:DataTypes.BOOLEAN/*,
-            step_detail:DataTypes.STRING,
-            next_step:DataTypes.STRING*/
+            temperature:DataTypes.BOOLEAN
         }
     );
 

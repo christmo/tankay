@@ -7,6 +7,7 @@ module.exports = function (Almacenado, app, auth, database) {
     var almacenado = require('../controllers/AlmacenadoController')(Almacenado);
 
     app.post('/api/almacenado/step-5/save', almacenado.save);
+    app.get('/api/almacenado/step-5/:lote', almacenado.get);
 
     app.get('/api/almacenado/example/anyone', function (req, res, next) {
         res.send('Anyone can access this');

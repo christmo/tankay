@@ -48,6 +48,14 @@ module.exports = function (almacenado) {
                     res.json(response);
                 });
 
+        },
+        get: function(req, res){
+            console.log(req.params);
+
+            Almacenado.findById(req.params.lote).then(function(lote){
+                res.json(lote);
+            });
+
         }
     };
 

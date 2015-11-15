@@ -7,6 +7,7 @@ module.exports = function (Clasificacion2, app, auth, database) {
     var clasification = require('../controllers/ClasificationController')(Clasificacion2);
 
     app.post('/api/clasificacion/step-2/save', clasification.save);
+    app.get('/api/clasificacion/step-2/:lote', clasification.get);
 
     app.get('/api/clasificacion2/example/anyone', function (req, res, next) {
         res.send('Anyone can access this');

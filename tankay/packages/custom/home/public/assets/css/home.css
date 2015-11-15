@@ -1,0 +1,47 @@
+.flot-chart {
+    bottom: 0px;
+}
+
+[class*="flot-chart"] {
+    width: 100%;
+    display: block;
+}
+
+.flot-chart {
+    height: 300px;
+}
+
+.flot-chart-pie {
+    height: 300px;
+}
+
+@media (min-width: 768px) {
+    .flot-chart-pie {
+        margin-bottom: 20px;
+    }
+}
+
+.flot-tooltip, #flotTip {
+    position: absolute;
+    color: #333;
+    display: none;
+    font-size: 12px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    padding: 3px 10px;
+    z-index: 99999;
+}
+
+.chart-edge {
+    margin: 0px 8px 0 12px;
+    /*overflow: hidden*/
+}
+
+.chart-edge .charts-row {
+    margin-top: 50px;
+    margin-bottom: 20px;
+}
+
+.chart-filter{
+    margin-top: 2em;
+}

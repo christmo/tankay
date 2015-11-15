@@ -8,6 +8,7 @@ module.exports = function (Secado, app, auth, database) {
     var secado = require('../controllers/SecadoController')(Secado);
 
     app.post('/api/secado/step-3/save', secado.save);
+    app.get('/api/secado/step-3/:lote', secado.get);
 
     app.get('/api/secado/step-3/save', function (req, res, next) {
         res.send('Anyone can access this');

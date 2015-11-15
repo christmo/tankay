@@ -46,8 +46,6 @@ module.exports = function (home) {
                     Lote
                 ]
             }).then(function(lotes){
-                //console.log(moment(lotes[0].dataValues.start_date).format("YYYY-MM-DD HH:mm"));
-
                 res.send(lotes);
             });
 
@@ -62,6 +60,27 @@ module.exports = function (home) {
                 res.send(lotes);
             });
             */
+        },
+        getDataGraph: function(req, res, next){
+            console.log(req.query);
+            Lote.findAll({
+                where:{
+                    createdAt: {
+                        $gt: moment(req.query.start_date).toDate(),
+                        $lt: moment(req.query.end_date).toDate()
+                    }
+                },
+                attributes: ['lote', 'start_date', 'capacity']
+            }).then(function(lotes){
+                var data = [];
+                for (var row in lotes){
+                    if(lotes[row].start_date) {
+                        data.push([moment(lotes[row].start_date).toDate().getTime(), lotes[row].capacity]);
+                    }
+                }
+                res.send(lotes);
+            });
+
         }
     };
 

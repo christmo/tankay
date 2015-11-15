@@ -25,11 +25,9 @@ module.exports = function (acopio) {
 
         save: function (req, res) {
             console.log('Guardar lote: ' + req.body);
-            //req.body.step_detail = "Iniciar Clasificación";
-            //req.body.next_step = "/clasificacion";
-            if (req.body.category) {
+            /*if (req.body.category) {
                 req.body.category = req.body.category.label;
-            }
+            }*/
 
             Lote.create(req.body)
                 .then(function (lote) {

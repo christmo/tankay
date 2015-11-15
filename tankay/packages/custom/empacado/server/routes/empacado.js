@@ -8,6 +8,7 @@ module.exports = function (Empacado, app, auth, database) {
     var empacado = require('../controllers/EmpacadoController')(Empacado);
 
     app.post('/api/empacado/step-4/save', empacado.save);
+    app.get('/api/empacado/step-4/:lote', empacado.get);
 
     app.get('/api/empacado/example/anyone', function (req, res, next) {
         res.send('Anyone can access this');

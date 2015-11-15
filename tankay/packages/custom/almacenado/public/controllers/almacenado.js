@@ -3,18 +3,27 @@
 /* jshint -W098 */
 angular.module('mean.almacenado')
     .controller('AlmacenadoController', ['$scope', 'Global', 'Almacenado','$location', 'errorMessage',
-        function ($scope, Global, Almacenado,$location, errorMessage) {
+        'AlmacenadoQuery',
+        function ($scope, Global, Almacenado,$location, errorMessage,AlmacenadoQuery) {
 
-            var id = $location.search().empacado;
+            var params = $location.search();
+            var id = params.empacado;
 
-            $scope.almacenado = {
-                humidity_control:0,
-                temperature:0,
-                dehumidifier:0,
-                fourth_aroma:0,
-                packing_list:0,
-                id:id
-            };
+            if (params.query) {
+                var storing = AlmacenadoQuery.get({lote: id},
+                    function () {
+                        $scope.almacenado = storing;
+                    });
+            } else {
+                $scope.almacenado = {
+                    humidity_control: 0,
+                    temperature: 0,
+                    dehumidifier: 0,
+                    fourth_aroma: 0,
+                    packing_list: 0,
+                    id: id
+                };
+            }
 
             $scope.global = Global;
             $scope.package = {
@@ -31,10 +40,15 @@ angular.module('mean.almacenado')
                     } else {
                         errorMessage.show(true, response.msg);
                         $scope.error = response.error;
-                        //$location.path('/almacenado');
                     }
                 });
 
+            };
+
+
+            $scope.siguiente = function () {
+                $location.path('/home');
+                $scope.almacenado = {};
             };
         }
     ]);

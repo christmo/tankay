@@ -11,4 +11,9 @@ angular.module('mean.clasificacion')
                 }
             });
         }
+    ])
+    .factory('ClasificacionQuery', ['$resource',
+        function ($resource) {
+            return $resource('/api/clasificacion/step-2/:lote');
+        }
     ]);

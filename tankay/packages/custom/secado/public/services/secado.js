@@ -11,4 +11,9 @@ angular.module('mean.secado')
                 }
             });
         }
+    ])
+    .factory('SecadoQuery', ['$resource',
+        function ($resource) {
+            return $resource('/api/secado/step-3/:lote');
+        }
     ]);

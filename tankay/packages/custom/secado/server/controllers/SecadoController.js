@@ -47,6 +47,14 @@ module.exports = function (secado) {
                     res.json(response);
                 });
 
+        },
+        get: function(req, res){
+            console.log(req.params);
+
+            Secado.findById(req.params.lote).then(function(lote){
+                res.json(lote);
+            });
+
         }
     };
 

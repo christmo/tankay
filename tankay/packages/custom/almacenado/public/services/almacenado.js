@@ -11,4 +11,9 @@ angular.module('mean.almacenado')
                 }
             });
         }
+    ])
+    .factory('AlmacenadoQuery', ['$resource',
+        function ($resource) {
+            return $resource('/api/almacenado/step-5/:lote');
+        }
     ]);

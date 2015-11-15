@@ -11,4 +11,9 @@ angular.module('mean.empacado')
                 }
             });
         }
+    ])
+    .factory('EmpacadoQuery', ['$resource',
+        function ($resource) {
+            return $resource('/api/empacado/step-4/:lote');
+        }
     ]);

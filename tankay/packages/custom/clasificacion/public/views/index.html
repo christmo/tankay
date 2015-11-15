@@ -23,27 +23,32 @@
                         <div class="form-group fg-line">
                             <label for="peeled_fruit">Rendimiento Fruta Pelada</label>
                             <input type="number" class="input-lg form-control fg-input" id="peeled_fruit"
-                                   ng-change="updateBarPeeled()" ng-model="clasification.peeled_fruit"
+                                   ng-change="updateBarPeeled(clasification.peeled_fruit)"
+                                   ng-model="clasification.peeled_fruit"
                                    placeholder="Producción fruta pelada # Kg" max="{{maxPeeled}}"/>
                         </div>
                         <div class="form-group fg-line">
-                            <progressbar class="progress-striped active m-b-10" value="dynamicPeeled" type="{{typePeeled}}">
+                            <progressbar class="progress-striped active m-b-10" value="dynamicPeeled"
+                                         type="{{typePeeled}}">
                             </progressbar>
                         </div>
                         <div class="form-group fg-line">
                             <label for="clasified_fruit">Rendimiento Fruta Clasificada</label>
                             <input type="number" class="input-lg form-control fg-input" id="clasified_fruit"
-                                   ng-change="updateBarClasified()" ng-model="clasification.clasified_fruit"
+                                   ng-change="updateBarClasified(clasification.clasified_fruit)"
+                                   ng-model="clasification.clasified_fruit"
                                    placeholder="Producción fruta clasificada # Kg" max="{{maxClasified}}"/>
                         </div>
                         <div class="form-group fg-line">
-                            <progressbar class="progress-striped active m-b-10" value="dynamicClasified" type="{{typeClasified}}">
+                            <progressbar class="progress-striped active m-b-10" value="dynamicClasified"
+                                         type="{{typeClasified}}">
                             </progressbar>
                         </div>
                         <div class="form-group fg-line">
                             <label for="fruit_flow">Flujo de Fruta</label>
                             <input type="number" class="input-lg form-control fg-input" id="fruit_flow"
-                                   ng-change="updateBarFruitFlow()" ng-model="clasification.fruit_flow"
+                                   ng-change="updateBarFruitFlow(clasification.fruit_flow)"
+                                   ng-model="clasification.fruit_flow"
                                    placeholder="Flujo de fruta por día # Kg" max="{{maxFlow}}"/>
                         </div>
                         <div class="form-group fg-line">
@@ -56,17 +61,12 @@
                             <div class="select">
                                 <select class="input-lg form-control" ng-model="clasification.category" id="category"
                                         placeholder="Seleccionar Categoría"
-                                        ng-options="item.label for item in selectCategory track by item.id">
+                                        ng-options="item.id as item.label for item in selectCategory">
                                     <option value="">Seleccionar Categoría</option>
                                 </select>
                             </div>
                         </div>
 
-                        <!--<div class="form-group fg-line">
-                            <label for="category">Categoría</label>
-                            <input type="text" class="input-lg form-control fg-input" id="category"
-                                   placeholder="Seleccionar categoría" ng-model="clasification.category"/>
-                        </div>-->
                         <div class="form-group fg-line">
                             <label for="capacity">Capacidad</label>
                             <input type="number" class="input-lg form-control fg-input" id="capacity"
@@ -106,8 +106,9 @@
                             </div>
                         </div>
 
-                        <button type="submit" class="btn btn-primary btn-sm m-t-10">Guadar</button>
+                        <button type="submit" class="btn btn-primary btn-sm m-t-10" ng-hide="!query">Guadar</button>
                     </form>
+                    <button ng-click="siguiente()" class="btn btn-primary btn-sm m-t-10">Siguiente</button>
                 </div>
             </div>
         </div>

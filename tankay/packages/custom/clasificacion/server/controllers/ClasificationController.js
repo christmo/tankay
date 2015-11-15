@@ -19,28 +19,13 @@ module.exports = function (clasificacion) {
     Clasification.belongsTo(Lote, {foreignKey: 'id'});
 
     clasificacion.settings({'dir_module': path.resolve(__dirname, '../models/')});
-    /*var acopio = new Module('acopio');
-
-    acopio.settings(function (err, settings) {
-        console.log('controller: ' + settings.settings.dir_module);
-        db.loadModels(settings.settings.dir_module);
-        Lote = db.getModel('Lote');
-
-        Clasification.belongsTo(Lote, {foreignKey: 'id'});
-    });*/
 
     var Dashboard = db.getModelModule('Dashboard', 'home');
 
     return {
         model: Clasification,
         save: function (req, res, next) {
-            //req.body.step_detail = "Iniciar Secado";
-            //req.body.next_step = "/secado";
             console.log('Guardar clasificacion: ' + req.body);
-
-            if (req.body.category) {
-                req.body.category = req.body.category.label;
-            }
 
             Clasification.create(req.body)
                 .then(function (clasification) {
@@ -71,6 +56,14 @@ module.exports = function (clasificacion) {
                 storage_time: hour
             }, {
                 where: {lote: req.body.id}
+            });
+
+        },
+        get: function(req, res){
+            console.log(req.params);
+
+            Clasification.findById(req.params.lote).then(function(lote){
+                res.json(lote);
             });
 
         }
