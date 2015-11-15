@@ -20,7 +20,7 @@ Home.register(function (app, auth, database) {
     Home.menus.add({
         title: 'Home',
         link: 'dash',
-        roles: ['authenticated'],
+        //roles: ['authenticated'],
         menu: 'main',
         order: 0,
         icon: 'zmdi-home'

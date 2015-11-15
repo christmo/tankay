@@ -20,7 +20,7 @@ Empacado.register(function (app, auth, database) {
     Empacado.menus.add({
         title: 'Empacado',
         link: 'empacado',
-        roles: ['authenticated'],
+        //roles: ['authenticated'],
         menu: 'main',
         order: '4',
         icon: 'zmdi-case'

@@ -20,7 +20,7 @@ Almacenado.register(function (app, auth, database) {
     Almacenado.menus.add({
         title: 'Almacenado',
         link: 'almacenado',
-        roles: ['authenticated'],
+        //roles: ['authenticated'],
         menu: 'main',
         order: '5',
         icon: 'zmdi-store'

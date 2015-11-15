@@ -27,6 +27,16 @@ angular.module('mean.home')
     });
 
 function draw(serie, element, filter) {
+    var start_date = null;
+    var end_date = null;
+    if (element.prop('class') === 'flot-chart') {
+        start_date = filter.start_date;
+        end_date = filter.end_date;
+    }else{
+        start_date = filter.start_date_emp;
+        end_date = filter.end_date_emp;
+    }
+
     var options = {
         lines: {show: true},
         points: {fillColor: "#0062E3", show: true},
@@ -35,8 +45,8 @@ function draw(serie, element, filter) {
             mode: "time",
             timeformat: "%m/%d",
             minTickSize: [1, "day"],
-            min: filter.start_date,
-            max: filter.end_date,
+            min: start_date,
+            max: end_date,
             timezone: "browser"
         },
         grid: {

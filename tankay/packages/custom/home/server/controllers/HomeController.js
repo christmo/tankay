@@ -91,8 +91,8 @@ module.exports = function (home) {
             Empacado.findAll({
                 where:{
                     createdAt: {
-                        $gt: moment(req.query.start_date).toDate(),
-                        $lt: moment(req.query.end_date).toDate()
+                        $gt: moment(req.query.start_date_emp).toDate(),
+                        $lt: moment(req.query.end_date_emp).toDate()
                     }
                 },
                 group:['id'],

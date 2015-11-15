@@ -15,7 +15,9 @@ angular.module('mean.home')
 
             $scope.filter = {
                 start_date:moment().subtract(1,'month').startOf('day').toDate(),
-                end_date: moment().add(1,'days').startOf('day').toDate()
+                end_date: moment().add(1,'days').startOf('day').toDate(),
+                start_date_emp:moment().subtract(1,'month').startOf('day').toDate(),
+                end_date_emp: moment().add(1,'days').startOf('day').toDate()
             };
 
             $scope.lotes = Home.query();

@@ -20,7 +20,7 @@ Clasificacion.register(function(app, auth, database) {
     Clasificacion.menus.add({
         title: 'Clasificación',
         link: 'clasificacion',
-        roles: ['authenticated'],
+        //roles: ['authenticated'],
         menu: 'main',
         order: '2',
         icon:'zmdi-eye'

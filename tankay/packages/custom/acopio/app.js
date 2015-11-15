@@ -27,7 +27,7 @@ Acopio.register(function(app, auth, database) {
     Acopio.menus.add({
         title: 'Centro de Acopio',
         link: 'acopio',
-        roles: ['authenticated'],
+        //roles: ['authenticated'],
         menu: 'main',
         order: '1',
         icon:'zmdi-layers'

@@ -20,7 +20,7 @@ Secado.register(function (app, auth, database) {
     Secado.menus.add({
         title: 'Secado',
         link: 'secado',
-        roles: ['authenticated'],
+        //roles: ['authenticated'],
         menu: 'main',
         order: '3',
         icon:'zmdi-sun'
