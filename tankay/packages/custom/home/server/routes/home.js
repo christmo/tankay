@@ -8,7 +8,8 @@ module.exports = function (Home, app, auth, database) {
     var home = require('../controllers/HomeController')(Home);
 
     app.get('/api/home/query', home.queryAllLotes);
-    app.get('/api/home/graph', home.getDataGraph);
+    app.get('/api/home/graph/acopio', home.getDataGraph);
+    app.get('/api/home/graph/empacado', home.getDataGraphEmpacado);
 
     app.get('/api/home/example/anyone', function (req, res, next) {
         res.send('Anyone can access this');

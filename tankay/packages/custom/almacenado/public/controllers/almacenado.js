@@ -2,9 +2,9 @@
 
 /* jshint -W098 */
 angular.module('mean.almacenado')
-    .controller('AlmacenadoController', ['$scope', 'Global', 'Almacenado','$location', 'errorMessage',
+    .controller('AlmacenadoController', ['$scope', 'Global', 'Almacenado', '$location', 'errorMessage',
         'AlmacenadoQuery',
-        function ($scope, Global, Almacenado,$location, errorMessage,AlmacenadoQuery) {
+        function ($scope, Global, Almacenado, $location, errorMessage, AlmacenadoQuery) {
 
             var params = $location.search();
             var id = params.empacado;
@@ -14,7 +14,14 @@ angular.module('mean.almacenado')
                     function () {
                         $scope.almacenado = storing;
                     });
+                $scope.showButton = false;
             } else {
+                if (id) {
+                    $scope.hideMenu = false;
+                    $scope.showButton = true;
+                } else {
+                    $scope.hideMenu = true;
+                }
                 $scope.almacenado = {
                     humidity_control: 0,
                     temperature: 0,
@@ -35,7 +42,7 @@ angular.module('mean.almacenado')
 
                 almacenado.$save(function (response) {
                     if (response.status === 'OK') {
-                        $location.path('/').search('almacenado',$scope.almacenado.id);
+                        $location.path('/').search('almacenado', $scope.almacenado.id);
                         $scope.almacenado = {};
                     } else {
                         errorMessage.show(true, response.msg);
@@ -45,6 +52,12 @@ angular.module('mean.almacenado')
 
             };
 
+            $scope.anterior = function () {
+                $location.path('/empacado')
+                    .search('secado', id)
+                    .search('query', true);
+                $scope.almacenado = {};
+            };
 
             $scope.siguiente = function () {
                 $location.path('/home');

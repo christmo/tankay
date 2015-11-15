@@ -8,6 +8,9 @@ module.exports = function (System) {
         },
         aggregatedList: function (req, res) {
             res.send(res.locals.aggregatedassets);
+        },
+        error404: function (req, res) {
+            res.send('404');
         }
     };
 };

@@ -15,7 +15,7 @@ var Clasification = db.getModel('Clasification');
 
 module.exports = function (clasificacion) {
 
-    var Lote = db.getModelModule('Lote', 'acopio');;
+    var Lote = db.getModelModule('Lote', 'acopio');
     Clasification.belongsTo(Lote, {foreignKey: 'id'});
 
     clasificacion.settings({'dir_module': path.resolve(__dirname, '../models/')});
@@ -25,8 +25,6 @@ module.exports = function (clasificacion) {
     return {
         model: Clasification,
         save: function (req, res, next) {
-            console.log('Guardar clasificacion: ' + req.body);
-
             Clasification.create(req.body)
                 .then(function (clasification) {
                     saveDashboard(req.body, Dashboard);
@@ -48,21 +46,24 @@ module.exports = function (clasificacion) {
             var hour = 0;
 
             Lote.findById(req.body.id).then(function (lote) {
-                hour = moment().subtract(moment(lote.createdAt)).millisecond();
-                console.log(hour);
-            });
+                var mayor = moment().toDate().getTime();
+                var menor = moment(lote.createdAt).toDate().getTime();
+                console.log(mayor +' - '+ menor + " = "+ ((((mayor-menor)/1000)/60)/60));
+                hour = ((((mayor-menor)/1000)/60)/60);
 
-            Lote.update({
-                storage_time: hour
-            }, {
-                where: {lote: req.body.id}
+                console.log('Horas transcurridas Acopio: '+hour);
+                Lote.update({
+                    storage_time: hour
+                }, {
+                    where: {lote: req.body.id}
+                });
             });
 
         },
-        get: function(req, res){
+        get: function (req, res) {
             console.log(req.params);
 
-            Clasification.findById(req.params.lote).then(function(lote){
+            Clasification.findById(req.params.lote).then(function (lote) {
                 res.json(lote);
             });
 

@@ -6,24 +6,36 @@
 var Module = require('meanio').Module;
 //var winston = require('winston');
 var path = require('path');
+var moment = require('moment');
 var db = require('../../../persister');
-db.loadModels(path.resolve(__dirname,'../models/'));
+db.loadModels(path.resolve(__dirname, '../models/'));
 
 var Empacado = db.getModel('Empacado');
 
 
-module.exports = function(empacado) {
+module.exports = function (empacado) {
 
-    empacado.settings({'dir_module': path.resolve(__dirname,'../models/')});
+    empacado.settings({'dir_module': path.resolve(__dirname, '../models/')});
 
-    var secado = new Module('secado');
+    //var secado = new Module('secado');
 
-    secado.settings(function(err,settings){
-        console.log('controller: '+settings.settings.dir_module);
+    var Secado = db.getModelModule('Secado', 'secado');
+    Empacado.belongsTo(Secado, {foreignKey: 'id'});
+    /**
+     * Al ser el ultimo modelo que carga se debe sincronizar
+     * la base de datos con todas las relaciones cargadas, si
+     * se incluye un nuevo modelo esto se debe mover hasta el
+     * modulo que cargue despues.
+     * @christmo
+     */
+    db.sync();
+
+    /*secado.settings(function (err, settings) {
+        console.log('controller: ' + settings.settings.dir_module);
         db.loadModels(settings.settings.dir_module);
         var Secado = db.getModel('Secado');
 
-        console.log('empacado: '+ Empacado);
+        console.log('empacado: ' + Empacado);
         Empacado.belongsTo(Secado, {foreignKey: 'id'});
 
         /**
@@ -33,36 +45,52 @@ module.exports = function(empacado) {
          * modulo que cargue despues.
          * @christmo
          */
-        db.sync();
-    });
+        /*db.sync();
+    });*/
 
     var Dashboard = db.getModelModule('Dashboard', 'home');
 
     return {
-        save:function(req, res,next){
-            console.log('Guardar Empacado: '+req.body);
+        save: function (req, res, next) {
+            console.log('Guardar Empacado: ' + req.body);
             Empacado.create(req.body)
-                .then(function(empacado) {
+                .then(function (empacado) {
                     saveDashboard(req.body, Dashboard);
-                    res.json({status:'OK'});
-                }).catch(function(error) {
+                    res.json({status: 'OK'});
+                }).catch(function (error) {
                     var response = {
-                        status:'NOK',
+                        status: 'NOK',
                         error: error
                     };
                     res.json(response);
                 });
 
+            var hour = 0;
+
+            Secado.findById(req.body.id).then(function (lote) {
+                var mayor = moment().toDate().getTime();
+                var menor = moment(lote.createdAt).toDate().getTime();
+                console.log(mayor +' - '+ menor + " = "+ ((((mayor-menor)/1000)/60)/60));
+                hour = ((((mayor-menor)/1000)/60)/60);
+
+                console.log('Horas transcurridas Secado: ' + hour);
+                Secado.update({
+                    drying_time: hour
+                }, {
+                    where: {id: req.body.id}
+                });
+            });
+
         },
-        get: function(req, res){
+        get: function (req, res) {
             console.log(req.params);
 
-            Empacado.findById(req.params.lote).then(function(lote){
+            Empacado.findById(req.params.lote).then(function (lote) {
                 res.json(lote);
             });
 
         },
-        model:Empacado
+        model: Empacado
     };
 
 };

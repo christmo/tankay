@@ -11,6 +11,7 @@ var Lote = null;
 
 db.loadModels(path.resolve(__dirname,'../models/'));
 var Dashboard = db.getModel('Dashboard');
+var Empacado = db.getModelModule('Empacado','empacado');
 
 module.exports = function (home) {
 
@@ -70,12 +71,40 @@ module.exports = function (home) {
                         $lt: moment(req.query.end_date).toDate()
                     }
                 },
-                attributes: ['lote', 'start_date', 'capacity']
+                group:['start_date'],
+                attributes: ['lote', 'start_date', 'capacity',
+                    [db.sequelize.fn('SUM', db.sequelize.col('capacity')),'capacity']
+                ]
             }).then(function(lotes){
                 var data = [];
                 for (var row in lotes){
                     if(lotes[row].start_date) {
                         data.push([moment(lotes[row].start_date).toDate().getTime(), lotes[row].capacity]);
+                    }
+                }
+                res.send(lotes);
+            });
+
+        },
+        getDataGraphEmpacado: function(req, res, next){
+            console.log(req.query);
+            Empacado.findAll({
+                where:{
+                    createdAt: {
+                        $gt: moment(req.query.start_date).toDate(),
+                        $lt: moment(req.query.end_date).toDate()
+                    }
+                },
+                group:['id'],
+                attributes: ['id', 'createdAt', 'fruit_flow',
+                    [db.sequelize.fn('SUM', db.sequelize.col('fruit_flow')),'fruit_flow']
+                ]
+            }).then(function(lotes){
+                var data = [];
+                for (var row in lotes){
+                    var dateCreation = lotes[row].createdAt;
+                    if(dateCreation) {
+                        data.push([moment(dateCreation).toDate().getTime(), lotes[row].capacity]);
                     }
                 }
                 res.send(lotes);

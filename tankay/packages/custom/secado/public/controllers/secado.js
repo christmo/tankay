@@ -15,7 +15,14 @@ angular.module('mean.secado')
                         $scope.secado = drying;
                         $scope.updateBarFruitFlowSecado(drying.fruit_flow);
                     });
+                $scope.showButton = false;
             } else {
+                if (id) {
+                    $scope.hideMenu = false;
+                    $scope.showButton = true;
+                } else {
+                    $scope.hideMenu = true;
+                }
                 $scope.secado = {
                     air_flow: 0,
                     hot_air_control: 0,
@@ -46,7 +53,14 @@ angular.module('mean.secado')
 
             };
 
-            $scope.siguiente = function(){
+            $scope.anterior = function () {
+                $location.path('/clasificacion')
+                    .search('lote', $scope.secado.id)
+                    .search('query', true);
+                $scope.secado = {};
+            };
+
+            $scope.siguiente = function () {
                 $location.path('/empacado')
                     .search('secado', $scope.secado.id)
                     .search('query', true);

@@ -18,17 +18,17 @@ angular.module('mean.acopio')
                         //$('.datepicker').pickatime('setDate', new Date());
                         picker.set('select', moment(lote.start_time, 'HH:mm:ss').toDate());
                     });
+                $scope.showButton = false;
             } else {
+                $scope.showButton = true;
                 $scope.lote = {
-                    start_date: new Date(),
+                    start_date: moment().startOf('day').toDate(),
                     start_time: '',
                     presion: 0,
                     temperature: 0
                 };
                 $scope.lote.category = $scope.selectCategory[0];
             }
-
-            //$scope.lote.category = $scope.selectCategory[0];
 
             var $input = $('.datepicker').pickatime({
                 interval: 60,
@@ -43,7 +43,6 @@ angular.module('mean.acopio')
                 }
             });
             var picker = $input.pickatime('picker');
-
 
             $scope.global = Global;
             $scope.package = {
@@ -65,11 +64,7 @@ angular.module('mean.acopio')
 
             };
 
-
-            //$scope.$watch('lote.capacity',$scope.updateBar,true);
-
             $scope.updateBar = function (capacity) {
-                //$scope.$watch('name', function () {
                 $scope.max = 10000;
                 var meta = 5000;
                 var lim_low = 2000;
@@ -79,10 +74,9 @@ angular.module('mean.acopio')
                 $scope.showWarning = bar.showWarning;
                 $scope.dynamic = bar.dynamic;
                 $scope.type = bar.type;
-                //});
             };
 
-            $scope.siguiente = function(){
+            $scope.siguiente = function () {
                 $location.path('/clasificacion')
                     .search('lote', $scope.lote.lote)
                     .search('query', true);

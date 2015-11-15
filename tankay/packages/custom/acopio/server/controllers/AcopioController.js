@@ -25,9 +25,6 @@ module.exports = function (acopio) {
 
         save: function (req, res) {
             console.log('Guardar lote: ' + req.body);
-            /*if (req.body.category) {
-                req.body.category = req.body.category.label;
-            }*/
 
             Lote.create(req.body)
                 .then(function (lote) {

@@ -28,10 +28,7 @@ Home.register(function (app, auth, database) {
 
     Home.aggregateAsset('js', '../lib/flot/jquery.flot.min.js',{weight:1});
     Home.aggregateAsset('js', '../lib/flot/jquery.flot.time.min.js',{weight:2});
-    Home.aggregateAsset('css', 'home.css');
-
-    //Home.angularDependencies(['ngClipboard','ngResource','ui.router']);
-
+    Home.aggregateAsset('css', 'home.css',{weight:10});
 
     return Home;
 });

@@ -2,9 +2,10 @@
 
 /* jshint -W098 */
 angular.module('mean.home')
-    .controller('HomeController', ['$scope', 'Global', 'Home', '$location', 'NgTableParams','updateChart',
-        'categories','$filter',
-        function ($scope, Global, Home, $location, NgTableParams,updateChart,categories,$filter) {
+    .controller('HomeController', ['$scope', 'Global', 'Home', '$location', 'NgTableParams','updateChartAcopio',
+        'categories','$filter','updateChartEmpacado',
+        function ($scope, Global, Home, $location, NgTableParams,updateChartAcopio,categories,$filter,
+                  updateChartEmpacado) {
             var that = this;
             var categoriesData = categories.get();
             $scope.global = Global;
@@ -69,10 +70,19 @@ angular.module('mean.home')
                 }
             };
 
-            $scope.updateChart = function(){
+            $scope.updateChartAcopio = function(){
                 var element = angular.element(".flot-chart")
-                updateChart.filter($scope,element);
-            }
+                updateChartAcopio.filter($scope,element);
+            };
+
+            $scope.updateChartEmpacado = function(){
+                var element = angular.element(".flot-chart-empacado")
+                updateChartEmpacado.getData($scope,element);
+            };
+
+            var mayor = moment().toDate().getTime();
+            var menor = moment().subtract(1,'days').toDate().getTime();
+            console.log(mayor +' - '+ menor + " = "+ ((((mayor-menor)/1000)/60)/60));
 
         }
     ]);

@@ -18,7 +18,14 @@ angular.module('mean.clasificacion')
                         $scope.updateBarClasified(clasification.clasified_fruit);
                         $scope.updateBarFruitFlow(clasification.fruit_flow);
                     });
+                $scope.showButton = false;
             } else {
+                if (lote) {
+                    $scope.hideMenu = false;
+                    $scope.showButton = true;
+                } else {
+                    $scope.hideMenu = true;
+                }
                 $scope.clasification = {
                     presion: 0,
                     temperature: 0,
@@ -36,7 +43,6 @@ angular.module('mean.clasificacion')
                 var clasificacion = new Clasificacion($scope.clasification);
 
                 clasificacion.$save(function (response) {
-                    console.log(response);
                     if (response.status === 'OK') {
                         $location.path('/secado').search('clasification', $scope.clasification.id);
                         $scope.clasification = {};
@@ -48,7 +54,14 @@ angular.module('mean.clasificacion')
 
             };
 
-            $scope.siguiente = function(){
+            $scope.anterior = function () {
+                $location.path('/acopio')
+                    .search('lote', $scope.clasification.id)
+                    .search('query', true);
+                $scope.clasification = {};
+            };
+
+            $scope.siguiente = function () {
                 $location.path('/secado')
                     .search('clasification', $scope.clasification.id)
                     .search('query', true);

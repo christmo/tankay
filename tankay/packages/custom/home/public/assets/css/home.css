@@ -1,5 +1,6 @@
 .flot-chart {
     bottom: 0px;
+    height: 300px;
 }
 
 [class*="flot-chart"] {
@@ -7,8 +8,14 @@
     display: block;
 }
 
-.flot-chart {
+.flot-chart-empacado{
     height: 300px;
+    bottom: 0px;
+}
+
+[class*="flot-chart-empacado"] {
+    width: 100%;
+    display: block;
 }
 
 .flot-chart-pie {

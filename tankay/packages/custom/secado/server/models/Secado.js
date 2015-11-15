@@ -2,7 +2,7 @@
 
 module.exports = function(sequelize, DataTypes) {
     var Secado = sequelize.define('secado', {
-            drying_time: DataTypes.INTEGER,
+            drying_time: DataTypes.STRING,
             fruit_flow:DataTypes.INTEGER,
             capacity:DataTypes.INTEGER,
             responsible: DataTypes.STRING,

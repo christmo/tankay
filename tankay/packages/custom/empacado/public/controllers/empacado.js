@@ -4,7 +4,7 @@
 angular.module('mean.empacado')
     .controller('EmpacadoController', ['$scope', 'Global', 'Empacado', '$location', 'errorMessage', 'updateBar',
         'EmpacadoQuery',
-        function ($scope, Global, Empacado, $location, errorMessage, updateBar,EmpacadoQuery) {
+        function ($scope, Global, Empacado, $location, errorMessage, updateBar, EmpacadoQuery) {
 
             var params = $location.search();
             var id = params.secado;
@@ -16,7 +16,14 @@ angular.module('mean.empacado')
                         $scope.updateBarFruitFlowEmpacado(packagein.fruit_flow);
                         $scope.updateBarProduction(packagein.production);
                     });
+                $scope.showButton = false;
             } else {
+                if (id) {
+                    $scope.hideMenu = false;
+                    $scope.showButton = true;
+                } else {
+                    $scope.hideMenu = true;
+                }
                 $scope.empacado = {
                     temperature: 0,
                     id: id
@@ -43,6 +50,12 @@ angular.module('mean.empacado')
 
             };
 
+            $scope.anterior = function () {
+                $location.path('/secado')
+                    .search('clasification', $scope.empacado.id)
+                    .search('query', true);
+                $scope.empacado = {};
+            };
 
             $scope.siguiente = function () {
                 $location.path('/almacenado')
