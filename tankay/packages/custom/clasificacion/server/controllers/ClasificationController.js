@@ -8,18 +8,31 @@ var Module = require('meanio').Module;
 var path = require('path');
 var moment = require('moment');
 var db = require('../../../persister');
-db.loadModels(path.resolve(__dirname, '../models/'));
+//db.loadModels(path.resolve(__dirname, '../models/'));
 
-var Clasification = db.getModel('Clasification');
+//var Clasification;// = db.getModel('Clasification');
 
 
 module.exports = function (clasificacion) {
 
-    var Lote = db.getModelModule('Lote', 'acopio');
-    Clasification.belongsTo(Lote, {foreignKey: 'id'});
-
     clasificacion.settings({'dir_module': path.resolve(__dirname, '../models/')});
 
+    //var Lote = {};
+
+    //var acopio = new Module('acopio');
+    //acopio.settings(function(err,settings){
+    //    console.log('Path module Acopio: '+settings.settings.dir_module);
+    //    db.loadModels(settings.settings.dir_module);
+    //    Lote = db.getModel('Lote');
+//
+    //    Clasification.belongsTo(Lote,{foreignKey: 'id'});
+    //});
+
+    //var Lote = db.getModelModule('Lote', 'acopio');
+    //Clasification.belongsTo(Lote, {foreignKey: 'id'});
+
+    var Clasification = db.getModelModule('Clasification', 'clasificacion');
+    var Lote = db.getModelModule('Lote', 'acopio');
     var Dashboard = db.getModelModule('Dashboard', 'home');
 
     return {
@@ -30,16 +43,7 @@ module.exports = function (clasificacion) {
                     saveDashboard(req.body, Dashboard);
                     res.json({status: 'OK'});
                 }).catch(function (error) {
-                    var msg = '';
-                    if (error.name === 'SequelizeUniqueConstraintError') {
-                        msg = 'El código de lote ya existe. Debe modificarlo para poder guardar el registro.';
-                    }
-
-                    var response = {
-                        status: 'NOK',
-                        msg: msg,
-                        error: error
-                    };
+                    var response = db.util().getErrorResponse(error);
                     res.json(response);
                 });
 
@@ -100,3 +104,5 @@ function saveDashboard(body, Dashboard) {
     });
 
 }
+
+

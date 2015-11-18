@@ -33,6 +33,7 @@ function loadModels(pathModels) {
         .forEach(function (file) {
             winston.info('Loading model file ' + pathModels + '/' + file);
             var model = sequelize.import(path.join(pathModels, file));
+            console.log(' model: ' + model);
             db_app[model.name] = model;
         });
 
@@ -47,15 +48,16 @@ function loadModels(pathModels) {
     // Synchronizing any model changes with database.
     // WARNING: this will DROP your database everytime you re-run your application
     //sync();
-};
+}
 
-function getModelModule(model,module) {
-    console.log(__dirname);
-    return sequelize.import(path.resolve(__dirname, '../'+module+'/server/models/') + path.sep + model);
+function getModelModule(model, module) {
+    console.log('Cargando model from ' + module + ': ' + model);
+    return sequelize.import(path.resolve(__dirname, '../' + module + '/server/models/') + path.sep + model);
 }
 function getModel(model) {
+    console.log('Cargando model: ' + model);
     return sequelize.import(modelPath + path.sep + model);
-};
+}
 
 // assign the sequelize variables to the db object and returning the db.
 module.exports = _.extend({
@@ -64,17 +66,42 @@ module.exports = _.extend({
     loadModels: loadModels,
     getModel: getModel,
     getModelModule: getModelModule,
-    sync: sync
+    sync: sync,
+    util:util
 }, db_app);
 
 
 function sync() {
     sequelize
-        .sync({force: config.forceSequelizeSync, logging: console.log })
+        .sync({force: config.forceSequelizeSync, logging: console.log})
         .then(function () {
             console.log('Database ' + (config.forceSequelizeSync ? '*DROPPED* and ' : '') + 'synchronized');
             winston.info('Database ' + (config.forceSequelizeSync ? '*DROPPED* and ' : '') + 'synchronized');
         }).catch(function (err) {
             winston.error('An error occured: %j', err);
         });
+}
+
+
+function util() {
+    return {
+        getErrorResponse: function (error) {
+            winston.error(error);
+            var msg = '';
+
+            if (error.name === 'SequelizeUniqueConstraintError') {
+                msg = 'El código de lote ya existe. Debe modificarlo para poder guardar el registro.';
+            }else if (error.name === 'SequelizeForeignKeyConstraintError') {
+                msg = 'No se puede eliminar la información porque depende de otra etapa del flujo.';
+            }
+
+            var response = {
+                status: 'NOK',
+                msg: msg,
+                error: error
+            };
+
+            return response;
+        }
+    };
 }

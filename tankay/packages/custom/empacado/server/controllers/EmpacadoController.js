@@ -8,46 +8,40 @@ var Module = require('meanio').Module;
 var path = require('path');
 var moment = require('moment');
 var db = require('../../../persister');
-db.loadModels(path.resolve(__dirname, '../models/'));
+//db.loadModels(path.resolve(__dirname, '../models/'));
 
-var Empacado = db.getModel('Empacado');
+//var Empacado;// = db.getModel('Empacado');
 
 
 module.exports = function (empacado) {
 
     empacado.settings({'dir_module': path.resolve(__dirname, '../models/')});
 
-    //var secado = new Module('secado');
+    //var Secado = db.getModelModule('Secado', 'secado');
+    //Empacado.belongsTo(Secado, {foreignKey: 'id'});
 
+    //var Secado = {};
+    //var secadoM = new Module('secado');
+    //secadoM.settings(function (err, settings) {
+    //    console.log('Path module Secado: ' + settings.settings.dir_module);
+    //    db.loadModels(settings.settings.dir_module);
+    //    Secado = db.getModel('Secado');
+//
+    //    console.log('empacado: ' + Empacado);
+    //    Empacado.belongsTo(Secado, {foreignKey: 'id'});
+//
+    //    /**
+    //     * Al ser el ultimo modelo que carga se debe sincronizar
+    //     * la base de datos con todas las relaciones cargadas, si
+    //     * se incluye un nuevo modelo esto se debe mover hasta el
+    //     * modulo que cargue despues.
+    //     * @christmo
+    //     */
+    //    //db.sync();
+    //});
+
+    var Empacado = db.getModelModule('Empacado', 'empacado');
     var Secado = db.getModelModule('Secado', 'secado');
-    Empacado.belongsTo(Secado, {foreignKey: 'id'});
-    /**
-     * Al ser el ultimo modelo que carga se debe sincronizar
-     * la base de datos con todas las relaciones cargadas, si
-     * se incluye un nuevo modelo esto se debe mover hasta el
-     * modulo que cargue despues.
-     * @christmo
-     */
-    db.sync();
-
-    /*secado.settings(function (err, settings) {
-        console.log('controller: ' + settings.settings.dir_module);
-        db.loadModels(settings.settings.dir_module);
-        var Secado = db.getModel('Secado');
-
-        console.log('empacado: ' + Empacado);
-        Empacado.belongsTo(Secado, {foreignKey: 'id'});
-
-        /**
-         * Al ser el ultimo modelo que carga se debe sincronizar
-         * la base de datos con todas las relaciones cargadas, si
-         * se incluye un nuevo modelo esto se debe mover hasta el
-         * modulo que cargue despues.
-         * @christmo
-         */
-        /*db.sync();
-    });*/
-
     var Dashboard = db.getModelModule('Dashboard', 'home');
 
     return {
@@ -58,10 +52,7 @@ module.exports = function (empacado) {
                     saveDashboard(req.body, Dashboard);
                     res.json({status: 'OK'});
                 }).catch(function (error) {
-                    var response = {
-                        status: 'NOK',
-                        error: error
-                    };
+                    var response = db.util().getErrorResponse(error);
                     res.json(response);
                 });
 

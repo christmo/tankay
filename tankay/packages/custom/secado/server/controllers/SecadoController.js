@@ -7,30 +7,32 @@ var Module = require('meanio').Module;
 //var winston = require('winston');
 var path = require('path');
 var db = require('../../../persister');
-db.loadModels(path.resolve(__dirname, '../models/'));
+//db.loadModels(path.resolve(__dirname, '../models/'));
 
-var Secado = db.getModel('Secado');
-
+//var Secado;// = db.getModel('Secado');
+//var Dashboard;// = db.getModelModule('Dashboard', 'home');
 
 module.exports = function (secado) {
 
     secado.settings({'dir_module': path.resolve(__dirname, '../models/')});
 
-    var Clasification = db.getModelModule('Clasification', 'clasificacion');
-    Secado.belongsTo(Clasification, {foreignKey: 'id'});
+    //var Clasification = db.getModelModule('Clasification', 'clasificacion');
+    //Secado.belongsTo(Clasification, {foreignKey: 'id'});
 
-    /*var clasificacion = new Module('clasificacion');
-    clasificacion.settings(function (err, settings) {
-        console.log('controller: ' + settings.settings.dir_module);
-        db.loadModels(settings.settings.dir_module);
-        var Clasification = db.getModel('Clasification');
+    //var clasificacionM = new Module('clasificacion');
+    //clasificacionM.settings(function (err, settings) {
+    //    console.log('Path module Clasificacion: ' + settings.settings.dir_module);
+    //    db.loadModels(settings.settings.dir_module);
+    //    var Clasification = db.getModel('Clasification');
+//
+    //    Secado.belongsTo(Clasification, {foreignKey: 'id'});
+    //});
 
-        Secado.belongsTo(Clasification, {foreignKey: 'id'});
-    });*/
-
+    var Secado = db.getModelModule('Secado', 'secado');
     var Dashboard = db.getModelModule('Dashboard', 'home');
 
     return {
+        model: Secado,
         save: function (req, res, next) {
             //req.body.step_detail="Iniciar Empacado";
             //req.body.next_step="/empacado";
@@ -40,10 +42,7 @@ module.exports = function (secado) {
                     saveDashboard(req.body, Dashboard);
                     res.json({status: 'OK'});
                 }).catch(function (error) {
-                    var response = {
-                        status: 'NOK',
-                        error: error
-                    };
+                    var response = db.util().getErrorResponse(error);
                     res.json(response);
                 });
 

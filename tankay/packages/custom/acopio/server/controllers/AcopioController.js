@@ -7,9 +7,9 @@
 var Module = require('meanio').Module;
 var path = require('path');
 var db = require('../../../persister');
-db.loadModels(path.resolve(__dirname, '../models/'));
 
-var Lote = db.getModel('Lote');
+//db.loadModels(path.resolve(__dirname, '../models/'));
+//var Lote;// = db.getModel('Lote');
 
 module.exports = function (acopio) {
 
@@ -18,6 +18,7 @@ module.exports = function (acopio) {
     //var HomeM = new Module('home');
     //var home = require('../../../home/server/controllers/HomeController')(HomeM);
 
+    var Lote = db.getModelModule('Lote', 'acopio');
     var Dashboard = db.getModelModule('Dashboard', 'home');
 
     return {
@@ -31,16 +32,7 @@ module.exports = function (acopio) {
                     saveDashboard(req.body, Dashboard);
                     res.json({status: 'OK'});
                 }).catch(function (error) {
-                    var msg = '';
-                    if (error.name === 'SequelizeUniqueConstraintError') {
-                        msg = 'El código de lote ya existe. Debe modificarlo para poder guardar el registro.';
-                    }
-
-                    var response = {
-                        status: 'NOK',
-                        msg: msg,
-                        error: error
-                    };
+                    var response = db.util().getErrorResponse(error);
                     res.json(response);
                 });
 
@@ -94,5 +86,5 @@ function saveDashboard(body, Dashboard) {
             );
         }
     });
-
 }
+

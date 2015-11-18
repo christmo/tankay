@@ -79,7 +79,10 @@ function draw(serie, element, filter) {
     $.plot($(element), data, options);
 
     window.onresize = function (event) {
-        $.plot($(element), data, options);
+        var graphs = $('div[data-graph]');
+        graphs.each(function( index ) {
+            $.plot($(this), data, options);
+        });
     };
 
     if ($(element)[0]) {

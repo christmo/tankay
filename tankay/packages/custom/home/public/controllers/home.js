@@ -3,9 +3,9 @@
 /* jshint -W098 */
 angular.module('mean.home')
     .controller('HomeController', ['$scope', 'Global', 'Home', '$location', 'NgTableParams','updateChartAcopio',
-        'categories','$filter','updateChartEmpacado',
+        'categories','$filter','updateChartEmpacado','DeleteLote','errorMessage',
         function ($scope, Global, Home, $location, NgTableParams,updateChartAcopio,categories,$filter,
-                  updateChartEmpacado) {
+                  updateChartEmpacado,DeleteLote,errorMessage) {
             var that = this;
             var categoriesData = categories.get();
             $scope.global = Global;
@@ -20,27 +20,7 @@ angular.module('mean.home')
                 end_date_emp: moment().add(1,'days').startOf('day').toDate()
             };
 
-            $scope.lotes = Home.query();
-
-            $scope.lotes.$promise.then(function (data) {
-                var rows = [];
-                for (var lote in data) {
-                    if (lote.charAt(0) != '$' && data[lote].lote) {
-                        var row = {};
-                        row.lote = data[lote].lote.lote;
-                        row.start_date = data[lote].lote.start_date;
-                        row.start_time = data[lote].lote.start_time;
-                        row.category = getCategory(data[lote].lote.category,categoriesData,$filter);
-                        row.capacity = data[lote].lote.capacity;
-                        row.next_step = data[lote].next_step;
-                        row.step_detail = data[lote].step_detail;
-                        rows.push(row);
-                    }
-                }
-
-                $scope.rows = rows;
-                updateTable(rows, NgTableParams, that);
-            });
+            loadDataLotesTable($scope,Home,categoriesData,that,NgTableParams,$filter);
 
             $scope.continuar = function (data) {
                 var lote = data.lote;
@@ -72,6 +52,25 @@ angular.module('mean.home')
                 }
             };
 
+            $scope.eliminar = function(data){
+                var lote = data.lote;
+
+                var result = DeleteLote.delete({lote:lote});
+
+                result.$promise.then(function (response) {
+                    if (response.status === 'OK') {
+                        loadDataLotesTable($scope,Home,categoriesData,that,NgTableParams,$filter);
+                        $scope.updateChartAcopio();
+                        $scope.updateChartEmpacado();
+                    } else {
+                        errorMessage.show(true, response.msg);
+                        $scope.error = response.error;
+                    }
+                });
+            };
+
+
+
             $scope.updateChartAcopio = function(){
                 var element = angular.element(".flot-chart")
                 updateChartAcopio.filter($scope,element);
@@ -89,6 +88,29 @@ angular.module('mean.home')
         }
     ]);
 
+function loadDataLotesTable($scope,Home,categoriesData,that,NgTableParams,$filter) {
+    $scope.lotes = Home.query();
+
+    $scope.lotes.$promise.then(function (data) {
+        var rows = [];
+        for (var lote in data) {
+            if (lote.charAt(0) != '$' && data[lote].lote) {
+                var row = {};
+                row.lote = data[lote].lote.lote;
+                row.start_date = data[lote].lote.start_date;
+                row.start_time = data[lote].lote.start_time;
+                row.category = getCategory(data[lote].lote.category,categoriesData,$filter);
+                row.capacity = data[lote].lote.capacity;
+                row.next_step = data[lote].next_step;
+                row.step_detail = data[lote].step_detail;
+                rows.push(row);
+            }
+        }
+
+        $scope.rows = rows;
+        updateTable(rows, NgTableParams, that);
+    });
+}
 
 function updateTable(data, NgTableParams, that) {
 

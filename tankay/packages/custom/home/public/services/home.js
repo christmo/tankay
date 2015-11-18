@@ -5,9 +5,19 @@ angular.module('mean.home')
         function ($resource) {
             return $resource('/api/home/query', {
                 lote: '@lote'
+            });
+        }
+    ])
+    .factory('DeleteLote', ['$resource',
+        function ($resource) {
+            return $resource('/api/home/delete', {
+                lote: '@lote'
             }, {
-                update: {
-                    method: 'PUT'
+                delete: {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
                 }
             });
         }
@@ -28,9 +38,9 @@ angular.module('mean.home')
             filter: function (scope, element) {
                 var data = {};
                 if (element.prop('class') === 'flot-chart') {
-                    data = acopioGraph(scope,element);
+                    data = acopioGraph(scope, element);
                 } else {
-                    data = empacadoGraph(scope,element);
+                    data = empacadoGraph(scope, element);
                 }
 
                 return data;
@@ -41,14 +51,14 @@ angular.module('mean.home')
 
         return {
             getData: function (scope, element) {
-                var data = empacadoGraph(scope,element);
+                var data = empacadoGraph(scope, element);
                 return data;
             }
         };
     }]);
 
 
-function empacadoGraph(scope,element) {
+function empacadoGraph(scope, element) {
     var factory = element.injector().get('DataEmpacadoGraph');
 
     var data = factory.query(scope.filter, function () {
@@ -66,7 +76,7 @@ function empacadoGraph(scope,element) {
     return data;
 }
 
-function acopioGraph(scope,element){
+function acopioGraph(scope, element) {
     var factory = element.injector().get('DataAcopioGraph');
 
     var data = factory.query(scope.filter, function () {
