@@ -16,8 +16,8 @@ angular.module('mean.material')
     // Base controller for common functions
     // =========================================================================
 
-    .controller('materialadminCtrl', ['$timeout','$state','growlService',
-        function ($timeout, $state, growlService) {
+    .controller('materialadminCtrl', ['$timeout','$state','growlService','$location',
+        function ($timeout, $state, growlService,$location) {
             //Welcome Message
             growlService.growl('Bienvenido!', 'inverse');
 
@@ -44,6 +44,8 @@ angular.module('mean.material')
                     this.sidebarToggle.left = false;
                 }
             };
+
+            $location.path('/home');
         }
     ])
 

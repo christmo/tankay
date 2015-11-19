@@ -4,10 +4,10 @@ angular.module('mean.material')
     .config(['$stateProvider', '$urlRouterProvider',
         function ($stateProvider, $urlRouterProvider) {
 
-            $urlRouterProvider.otherwise('/');
+            //$urlRouterProvider.otherwise('/');
 
             // For any unmatched url, send to 404
-            $urlRouterProvider.otherwise('/404');
+            //$urlRouterProvider.otherwise('/404');
 
 
             $stateProvider
