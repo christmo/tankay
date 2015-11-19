@@ -57,17 +57,21 @@ angular.module('mean.clasificacion')
             };
 
             $scope.anterior = function () {
-                $location.path('/acopio')
-                    .search('lote', $scope.clasification.id)
-                    .search('query', true);
-                $scope.clasification = {};
+                if($scope.clasification.id) {
+                    $location.path('/acopio')
+                        .search('lote', $scope.clasification.id)
+                        .search('query', true);
+                    $scope.clasification = {};
+                }
             };
 
             $scope.siguiente = function () {
-                $location.path('/secado')
-                    .search('clasification', $scope.clasification.id)
-                    .search('query', true);
-                $scope.clasification = {};
+                if($scope.clasification.id) {
+                    $location.path('/secado')
+                        .search('clasification', $scope.clasification.id)
+                        .search('query', true);
+                    $scope.clasification = {};
+                }
             };
 
             $scope.updateBarPeeled = function (peeled_fruit) {

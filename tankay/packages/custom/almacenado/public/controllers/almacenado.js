@@ -55,10 +55,12 @@ angular.module('mean.almacenado')
             };
 
             $scope.anterior = function () {
-                $location.path('/empacado')
-                    .search('secado', id)
-                    .search('query', true);
-                $scope.almacenado = {};
+                if(id) {
+                    $location.path('/empacado')
+                        .search('secado', id)
+                        .search('query', true);
+                    $scope.almacenado = {};
+                }
             };
 
             $scope.siguiente = function () {

@@ -95,11 +95,6 @@ angular.module('mean.home')
                 var element = angular.element(".flot-chart-empacado")
                 updateChartEmpacado.getData($scope, element);
             };
-
-            var mayor = moment().toDate().getTime();
-            var menor = moment().subtract(1, 'days').toDate().getTime();
-            console.log(mayor + ' - ' + menor + " = " + ((((mayor - menor) / 1000) / 60) / 60));
-
         }
     ]);
 

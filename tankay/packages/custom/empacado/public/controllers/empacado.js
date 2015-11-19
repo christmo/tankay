@@ -53,17 +53,21 @@ angular.module('mean.empacado')
             };
 
             $scope.anterior = function () {
-                $location.path('/secado')
-                    .search('clasification', $scope.empacado.id)
-                    .search('query', true);
-                $scope.empacado = {};
+                if($scope.empacado.id) {
+                    $location.path('/secado')
+                        .search('clasification', $scope.empacado.id)
+                        .search('query', true);
+                    $scope.empacado = {};
+                }
             };
 
             $scope.siguiente = function () {
-                $location.path('/almacenado')
-                    .search('empacado', $scope.empacado.id)
-                    .search('query', true);
-                $scope.empacado = {};
+                if($scope.empacado.id) {
+                    $location.path('/almacenado')
+                        .search('empacado', $scope.empacado.id)
+                        .search('query', true);
+                    $scope.empacado = {};
+                }
             };
 
             $scope.updateBarFruitFlowEmpacado = function (fruit_flow) {
