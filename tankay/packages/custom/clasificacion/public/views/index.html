@@ -25,11 +25,12 @@
                             <input type="number" class="input-lg form-control fg-input" id="peeled_fruit"
                                    ng-change="updateBarPeeled(clasification.peeled_fruit)"
                                    ng-model="clasification.peeled_fruit"
-                                   placeholder="Producción fruta pelada # Kg" max="{{maxPeeled}}"/>
+                                   placeholder="Producción fruta pelada # Kg" max="{{maxPeeled}}"
+                                   ng-disabled="disabled" required/>
                         </div>
                         <div class="form-group fg-line">
                             <progressbar class="progress-striped active m-b-10" value="dynamicPeeled"
-                                         type="{{typePeeled}}">
+                                         type="{{typePeeled}}" ng-disabled="disabled">
                             </progressbar>
                         </div>
                         <div class="form-group fg-line">
@@ -37,11 +38,12 @@
                             <input type="number" class="input-lg form-control fg-input" id="clasified_fruit"
                                    ng-change="updateBarClasified(clasification.clasified_fruit)"
                                    ng-model="clasification.clasified_fruit"
-                                   placeholder="Producción fruta clasificada # Kg" max="{{maxClasified}}"/>
+                                   placeholder="Producción fruta clasificada # Kg" max="{{maxClasified}}"
+                                   ng-disabled="disabled" required/>
                         </div>
                         <div class="form-group fg-line">
                             <progressbar class="progress-striped active m-b-10" value="dynamicClasified"
-                                         type="{{typeClasified}}">
+                                         type="{{typeClasified}}" ng-disabled="disabled">
                             </progressbar>
                         </div>
                         <div class="form-group fg-line">
@@ -49,10 +51,12 @@
                             <input type="number" class="input-lg form-control fg-input" id="fruit_flow"
                                    ng-change="updateBarFruitFlow(clasification.fruit_flow)"
                                    ng-model="clasification.fruit_flow"
-                                   placeholder="Flujo de fruta por día # Kg" max="{{maxFlow}}"/>
+                                   placeholder="Flujo de fruta por día # Kg" max="{{maxFlow}}"
+                                   ng-disabled="disabled" required/>
                         </div>
                         <div class="form-group fg-line">
-                            <progressbar class="progress-striped active m-b-10" value="dynamicFlow" type="{{typeFlow}}">
+                            <progressbar class="progress-striped active m-b-10" value="dynamicFlow" type="{{typeFlow}}"
+                                         ng-disabled="disabled">
                             </progressbar>
                         </div>
                         <div class="form-group fg-line">
@@ -61,7 +65,8 @@
                             <div class="select">
                                 <select class="input-lg form-control" ng-model="clasification.category" id="category"
                                         placeholder="Seleccionar Categoría"
-                                        ng-options="item.id as item.label for item in selectCategory">
+                                        ng-options="item.id as item.label for item in selectCategory"
+                                        ng-disabled="disabled" required>
                                     <option value="">Seleccionar Categoría</option>
                                 </select>
                             </div>
@@ -70,12 +75,14 @@
                         <div class="form-group fg-line">
                             <label for="capacity">Capacidad</label>
                             <input type="number" class="input-lg form-control fg-input" id="capacity"
-                                   placeholder="Número de personas" ng-model="clasification.capacity"/>
+                                   placeholder="Número de personas" ng-model="clasification.capacity"
+                                   ng-disabled="disabled"/>
                         </div>
                         <div class="form-group fg-line">
                             <label for="responsible">Responsable</label>
                             <input type="text" class="input-lg form-control fg-input" id="responsible"
-                                   placeholder="Ingresar responsable" ng-model="clasification.responsible"/>
+                                   placeholder="Ingresar responsable" ng-model="clasification.responsible"
+                                   ng-disabled="disabled"/>
                         </div>
 
                         <div class="row">
@@ -83,7 +90,7 @@
                                 <div class="toggle-switch">
                                     <label for="presion" class="ts-label">Presión</label>
                                     <input id="presion" type="checkbox" hidden="hidden"
-                                           ng-model="clasification.presion">
+                                           ng-model="clasification.presion" ng-disabled="disabled">
                                     <label for="presion" class="ts-helper"></label>
                                 </div>
                             </div>
@@ -92,7 +99,7 @@
                                 <div class="toggle-switch">
                                     <label for="temperature" class="ts-label">Temperatura</label>
                                     <input id="temperature" type="checkbox" hidden="hidden"
-                                           ng-model="clasification.temperature">
+                                           ng-model="clasification.temperature" ng-disabled="disabled">
                                     <label for="temperature" class="ts-helper"></label>
                                 </div>
                             </div>
@@ -100,7 +107,8 @@
                             <div class="col-sm-4 m-b-20">
                                 <div class="toggle-switch">
                                     <label for="light" class="ts-label">Luz</label>
-                                    <input id="light" type="checkbox" hidden="hidden" ng-model="clasification.light">
+                                    <input id="light" type="checkbox" hidden="hidden" ng-model="clasification.light"
+                                           ng-disabled="disabled">
                                     <label for="light" class="ts-helper"></label>
                                 </div>
                             </div>
@@ -109,7 +117,7 @@
                         <button type="submit" class="btn btn-primary btn-sm m-t-10" ng-hide="!showButton">Guadar
                         </button>
                     </form>
-                    <div ng-hide="hideMenu">
+                    <div>
                         <button ng-click="anterior()" class="btn btn-primary btn-sm m-t-10" ng-hide="showButton">
                             Anterior
                         </button>

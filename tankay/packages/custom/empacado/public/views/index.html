@@ -25,10 +25,12 @@
                             <input type="number" class="input-lg form-control fg-input" id="fruit_flow"
                                    ng-change="updateBarFruitFlowEmpacado(empacado.fruit_flow)"
                                    ng-model="empacado.fruit_flow"
-                                   placeholder="Flujo de fruta por día # Kg" max="{{maxFlow}}"/>
+                                   placeholder="Flujo de fruta por día # Kg" max="{{maxFlow}}" ng-disabled="disabled"
+                                   required/>
                         </div>
                         <div class="form-group fg-line">
-                            <progressbar class="progress-striped active m-b-10" value="dynamicFlow" type="{{typeFlow}}">
+                            <progressbar class="progress-striped active m-b-10" value="dynamicFlow" type="{{typeFlow}}"
+                                         ng-disabled="disabled">
                             </progressbar>
                         </div>
 
@@ -36,23 +38,26 @@
                             <label for="fruit_flow">Rendimiento</label>
                             <input type="number" class="input-lg form-control fg-input" id="production"
                                    ng-change="updateBarProduction(empacado.production)" ng-model="empacado.production"
-                                   placeholder="Número de cajas por persona" max="{{maxProduction}}"/>
+                                   placeholder="Número de cajas por persona" max="{{maxProduction}}"
+                                   ng-disabled="disabled" required/>
                         </div>
                         <div class="form-group fg-line">
                             <progressbar class="progress-striped active m-b-10" value="dynamicProduction"
-                                         type="{{typeProduction}}">
+                                         type="{{typeProduction}}" ng-disabled="disabled">
                             </progressbar>
                         </div>
 
                         <div class="form-group fg-line">
                             <label for="capacity">Capacidad</label>
                             <input type="munber" class="input-lg form-control fg-input" id="capacity"
-                                   placeholder="Número de personas" ng-model="empacado.capacity"/>
+                                   placeholder="Número de personas" ng-model="empacado.capacity"
+                                   ng-disabled="disabled" required/>
                         </div>
                         <div class="form-group fg-line">
                             <label for="responsible">Responsable</label>
                             <input type="text" class="input-lg form-control fg-input" id="responsible"
-                                   placeholder="Ingresar Responsable" ng-model="empacado.responsible"/>
+                                   placeholder="Ingresar Responsable" ng-model="empacado.responsible"
+                                   ng-disabled="disabled" required/>
                         </div>
 
                         <div class="row">
@@ -60,7 +65,7 @@
                                 <div class="toggle-switch">
                                     <label for="temperature" class="ts-label">Temperatura</label>
                                     <input id="temperature" type="checkbox" hidden="hidden"
-                                           ng-model="empacado.temperature">
+                                           ng-model="empacado.temperature" ng-disabled="disabled">
                                     <label for="temperature" class="ts-helper"></label>
                                 </div>
                             </div>

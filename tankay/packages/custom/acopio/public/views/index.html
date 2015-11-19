@@ -19,7 +19,8 @@
                         <div class="form-group fg-line">
                             <label for="codigo_lote">Código de Lote</label>
                             <input type="number" class="input-lg form-control fg-input" id="codigo_lote"
-                                   placeholder="Número de Lote" ng-model="lote.lote"/>
+                                   placeholder="Número de Lote" ng-model="lote.lote" ng-disabled="disabled"
+                                   tabindex="1" required/>
                         </div>
 
                         <div class="row">
@@ -27,7 +28,8 @@
                                 <div class="form-group fg-line">
                                     <label for="start_date">Fecha de Ingreso</label>
                                     <md-datepicker id="start_date" class="input-lg form-control"
-                                                   md-placeholder="Seleccionar Fecha" ng-model="lote.start_date">
+                                                   md-placeholder="Seleccionar Fecha" ng-model="lote.start_date"
+                                                   ng-disabled="disabled" tabindex="2" required>
                                     </md-datepicker>
                                 </div>
                             </div>
@@ -38,62 +40,66 @@
                                             id="start_time"
                                             placeholder="Seleccionar Hora"
                                             class="datepicker input-lg form-control fg-input"
-                                            type="time"
-                                            name="time"
-                                            autofocuss/>
+                                            type="time" name="time" autofocuss ng-disabled="disabled"
+                                            tabindex="3" required/>
                                 </div>
                             </div>
                         </div>
+
                         <div class="form-group fg-line">
                             <label for="capacity">Capacidad</label>
                             <input type="number" class="input-lg form-control fg-input" id="capacity"
                                    ng-change="updateBar(lote.capacity)"
-                                   placeholder="Capacidad # Kg" ng-model="lote.capacity" max="{{max}}"/>
+                                   placeholder="Capacidad # Kg" ng-model="lote.capacity" max="{{max}}"
+                                   ng-disabled="disabled" tabindex="4" required/>
                         </div>
                         <div class="form-group fg-line">
                             <progressbar class="progress-striped active m-b-10" value="dynamic" type="{{type}}">
                             </progressbar>
                         </div>
-
                         <div class="form-group fg-line">
                             <label for="category">Categoría</label>
 
                             <div class="select">
                                 <select class="input-lg form-control" ng-model="lote.category" id="category"
                                         placeholder="Seleccionar Categoría"
-                                        ng-options="item.id as item.label for item in selectCategory">
+                                        ng-options="item.id as item.label for item in selectCategory"
+                                        ng-disabled="disabled" tabindex="5" required>
                                     <option value="">Seleccionar Categoría</option>
                                 </select>
                             </div>
                         </div>
-
-
                         <div class="form-group fg-line" ng-hide="showButton">
                             <label for="storage_time">Tiempo de Almacenamiento</label>
                             <input type="text" class="input-lg form-control fg-input" id="storage_time"
-                                   placeholder="Número de Horas" ng-model="lote.storage_time" />
+                                   placeholder="Número de Horas" ng-model="lote.storage_time"
+                                   ng-disabled="disabled" tabindex="6"/>
                         </div>
                         <div class="form-group fg-line">
                             <label for="sector">Sector</label>
                             <input type="text" class="input-lg form-control fg-input" id="sector"
-                                   placeholder="Seleccionar Sector" ng-model="lote.sector"/>
+                                   placeholder="Seleccionar Sector" ng-model="lote.sector" ng-disabled="disabled"
+                                   tabindex="7"/>
                         </div>
                         <div class="form-group fg-line">
                             <label for="phase">Etapa</label>
                             <input type="text" class="input-lg form-control fg-input" id="phase"
-                                   placeholder="Seleccionar Etapa" ng-model="lote.phase"/>
+                                   placeholder="Seleccionar Etapa" ng-model="lote.phase" ng-disabled="disabled"
+                                   tabindex="8"/>
                         </div>
                         <div class="form-group fg-line">
                             <label for="responsible">Responsable</label>
                             <input type="text" class="input-lg form-control fg-input" id="responsible"
-                                   placeholder="Ingresar Responsable" ng-model="lote.responsible"/>
+                                   placeholder="Ingresar Responsable" ng-model="lote.responsible"
+                                   ng-disabled="disabled" tabindex="9"/>
                         </div>
 
                         <div class="row">
                             <div class="col-sm-6 m-b-20">
                                 <div class="toggle-switch">
                                     <label for="presion" class="ts-label">Presión</label>
-                                    <input id="presion" type="checkbox" hidden="hidden" ng-model="lote.presion">
+                                    <input id="presion" type="checkbox" hidden="hidden" ng-model="lote.presion"
+                                           ng-disabled="disabled" tabindex="10">
                                     <label for="presion" class="ts-helper"></label>
                                 </div>
                             </div>
@@ -101,15 +107,19 @@
                             <div class="col-sm-6 m-b-20">
                                 <div class="toggle-switch">
                                     <label for="temperature" class="ts-label">Temperatura</label>
-                                    <input id="temperature" type="checkbox" hidden="hidden" ng-model="lote.temperature">
+                                    <input id="temperature" type="checkbox" hidden="hidden" ng-model="lote.temperature"
+                                           ng-disabled="disabled" tabindex="11">
                                     <label for="temperature" class="ts-helper"></label>
                                 </div>
                             </div>
                         </div>
 
-                        <button type="submit" class="btn btn-primary btn-sm m-t-10" ng-hide="!showButton">Guadar</button>
+                        <button type="submit" class="btn btn-primary btn-sm m-t-10" ng-hide="!showButton">Guadar
+                        </button>
                     </form>
-                    <button ng-click="siguiente()" class="btn btn-primary btn-sm m-t-10" ng-hide="showButton">Siguiente</button>
+                    <button ng-click="siguiente()" class="btn btn-primary btn-sm m-t-10" ng-hide="showButton">
+                        Siguiente
+                    </button>
                 </div>
             </div>
         </div>

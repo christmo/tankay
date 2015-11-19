@@ -3,8 +3,8 @@
 /* jshint -W098 */
 angular.module('mean.secado')
     .controller('SecadoController', ['$scope', 'Global', 'Secado', '$location', 'errorMessage', 'updateBar',
-        'SecadoQuery',
-        function ($scope, Global, Secado, $location, errorMessage, updateBar, SecadoQuery) {
+        'SecadoQuery', '$filter',
+        function ($scope, Global, Secado, $location, errorMessage, updateBar, SecadoQuery,$filter) {
 
             var params = $location.search();
             var id = params.clasification;
@@ -13,10 +13,13 @@ angular.module('mean.secado')
                 var drying = SecadoQuery.get({lote: id},
                     function () {
                         $scope.secado = drying;
+                        $scope.secado.drying_time = $filter('number')($scope.secado.drying_time,2);
                         $scope.updateBarFruitFlowSecado(drying.fruit_flow);
                     });
                 $scope.showButton = false;
+                $scope.disabled = true;
             } else {
+                $scope.disabled = false;
                 if (id) {
                     $scope.hideMenu = false;
                     $scope.showButton = true;

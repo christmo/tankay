@@ -22,7 +22,8 @@
                         <div class="form-group fg-line">
                             <label for="responsible">Responsable</label>
                             <input type="text" class="input-lg form-control fg-input" id="responsible"
-                                   placeholder="Ingresar Responsable" ng-model="almacenado.responsible"/>
+                                   placeholder="Ingresar Responsable" ng-model="almacenado.responsible"
+                                   ng-disabled="disabled" required/>
                         </div>
 
                         <div class="row">
@@ -30,7 +31,7 @@
                                 <div class="toggle-switch">
                                     <label for="humidity_control" class="ts-label">Humedad</label>
                                     <input id="humidity_control" type="checkbox" hidden="hidden"
-                                           ng-model="almacenado.humidity_control">
+                                           ng-model="almacenado.humidity_control" ng-disabled="disabled">
                                     <label for="humidity_control" class="ts-helper"></label>
                                 </div>
                             </div>
@@ -39,7 +40,7 @@
                                 <div class="toggle-switch">
                                     <label for="temperature" class="ts-label">Temperatura</label>
                                     <input id="temperature" type="checkbox" hidden="hidden"
-                                           ng-model="almacenado.temperature">
+                                           ng-model="almacenado.temperature" ng-disabled="disabled">
                                     <label for="temperature" class="ts-helper"></label>
                                 </div>
                             </div>
@@ -48,7 +49,7 @@
                                 <div class="toggle-switch">
                                     <label for="dehumidifier" class="ts-label">Deshumidificador</label>
                                     <input id="dehumidifier" type="checkbox" hidden="hidden"
-                                           ng-model="almacenado.dehumidifier">
+                                           ng-model="almacenado.dehumidifier" ng-disabled="disabled">
                                     <label for="dehumidifier" class="ts-helper"></label>
                                 </div>
                             </div>
@@ -60,7 +61,7 @@
                                 <div class="toggle-switch">
                                     <label for="fourth_aroma" class="ts-label">Aroma del Cuarto</label>
                                     <input id="fourth_aroma" type="checkbox" hidden="hidden"
-                                           ng-model="almacenado.fourth_aroma">
+                                           ng-model="almacenado.fourth_aroma" ng-disabled="disabled">
                                     <label for="fourth_aroma" class="ts-helper"></label>
                                 </div>
                             </div>
@@ -69,7 +70,7 @@
                                 <div class="toggle-switch">
                                     <label for="packing_list" class="ts-label">Lista de Empaque</label>
                                     <input id="packing_list" type="checkbox" hidden="hidden"
-                                           ng-model="almacenado.packing_list">
+                                           ng-model="almacenado.packing_list" ng-disabled="disabled">
                                     <label for="packing_list" class="ts-helper"></label>
                                 </div>
                             </div>

@@ -3,8 +3,8 @@
 /* jshint -W098 */
 angular.module('mean.acopio')
     .controller('AcopioController', ['$scope', 'Global', 'Acopio', '$location', 'errorMessage', 'categories',
-        'updateBar', 'AcopioQuery',
-        function ($scope, Global, Acopio, $location, errorMessage, categories, updateBar, AcopioQuery) {
+        'updateBar', 'AcopioQuery', '$filter',
+        function ($scope, Global, Acopio, $location, errorMessage, categories, updateBar, AcopioQuery, $filter) {
 
             $scope.selectCategory = categories.get();
             var params = $location.search();
@@ -14,12 +14,14 @@ angular.module('mean.acopio')
                     function () {
                         lote.start_date = moment(lote.start_date).toDate();
                         $scope.lote = lote;
+                        $scope.lote.storage_time = $filter('number')($scope.lote.storage_time,2);
                         $scope.updateBar(lote.capacity);
-                        //$('.datepicker').pickatime('setDate', new Date());
                         picker.set('select', moment(lote.start_time, 'HH:mm:ss').toDate());
                     });
                 $scope.showButton = false;
+                $scope.disabled = true;
             } else {
+                $scope.disabled = false;
                 $scope.showButton = true;
                 $scope.lote = {
                     start_date: moment().startOf('day').toDate(),
@@ -29,6 +31,7 @@ angular.module('mean.acopio')
                 };
                 $scope.lote.category = $scope.selectCategory[0];
             }
+
 
             var $input = $('.datepicker').pickatime({
                 interval: 60,

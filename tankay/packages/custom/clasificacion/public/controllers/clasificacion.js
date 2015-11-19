@@ -19,7 +19,9 @@ angular.module('mean.clasificacion')
                         $scope.updateBarFruitFlow(clasification.fruit_flow);
                     });
                 $scope.showButton = false;
+                $scope.disabled = true;
             } else {
+                $scope.disabled = false;
                 if (lote) {
                     $scope.hideMenu = false;
                     $scope.showButton = true;

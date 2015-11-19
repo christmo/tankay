@@ -15,7 +15,9 @@ angular.module('mean.almacenado')
                         $scope.almacenado = storing;
                     });
                 $scope.showButton = false;
+                $scope.disabled = true;
             } else {
+                $scope.disabled = false;
                 if (id) {
                     $scope.hideMenu = false;
                     $scope.showButton = true;

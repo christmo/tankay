@@ -2,6 +2,13 @@
 
 module.exports = {
     db: 'mongodb://' + (process.env.DB_PORT_27017_TCP_ADDR || 'localhost') + '/mean-test',
+    db_app: {
+        name: 'tankay',
+        password: 'root',
+        username: 'root',
+        host: 'localhost',
+        port: 8889
+    },
     http: {
         port: 3001
     },

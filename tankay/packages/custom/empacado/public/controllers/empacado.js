@@ -17,7 +17,9 @@ angular.module('mean.empacado')
                         $scope.updateBarProduction(packagein.production);
                     });
                 $scope.showButton = false;
+                $scope.disabled = true;
             } else {
+                $scope.disabled = false;
                 if (id) {
                     $scope.hideMenu = false;
                     $scope.showButton = true;
