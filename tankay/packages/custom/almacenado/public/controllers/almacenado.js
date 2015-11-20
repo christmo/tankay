@@ -44,8 +44,9 @@ angular.module('mean.almacenado')
 
                 almacenado.$save(function (response) {
                     if (response.status === 'OK') {
-                        $location.path('/').search('almacenado', $scope.almacenado.id);
-                        $scope.almacenado = {};
+                        //$location.path('/').search('almacenado', $scope.almacenado.id);
+                        //$scope.almacenado = {};
+                        $scope.siguiente();
                     } else {
                         errorMessage.show(true, response.msg);
                         $scope.error = response.error;

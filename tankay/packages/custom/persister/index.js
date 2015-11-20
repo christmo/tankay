@@ -11,15 +11,28 @@ var db_app = {};
 
 var modelPath = "";
 winston.info('Initializing Sequelize...');
+winston.info('Databese dialect: '+config.db_dialect);
 
-// create your instance of sequelize
-var sequelize = new Sequelize(config.db_app.name, config.db_app.username, config.db_app.password, {
-    host: config.db_app.host,
-    port: config.db_app.port,
-    dialect: 'mysql',
-    storage: config.db_app.storage,
-    logging: config.enableSequelizeLog ? winston.verbose : false
-});
+var sequelize = {};
+
+if (config.db_dialect === 'mysql') {
+    // create your instance of sequelize
+    sequelize = new Sequelize(config.db_mysql.name, config.db_mysql.username, config.db_mysql.password, {
+        host: config.db_mysql.host,
+        port: config.db_mysql.port,
+        dialect: 'mysql',
+        storage: config.db_mysql.storage,
+        logging: config.enableSequelizeLog ? winston.verbose : false
+    });
+} else {
+    sequelize = new Sequelize(config.db_postgres.name, config.db_postgres.username, config.db_postgres.password, {
+        host: config.db_postgres.host,
+        port: config.db_postgres.port,
+        dialect: 'postgres',
+        storage: config.db_postgres.storage,
+        logging: config.enableSequelizeLog ? winston.verbose : false
+    });
+}
 
 function loadModels(pathModels) {
 
@@ -67,7 +80,7 @@ module.exports = _.extend({
     getModel: getModel,
     getModelModule: getModelModule,
     sync: sync,
-    util:util
+    util: util
 }, db_app);
 
 
@@ -91,7 +104,7 @@ function util() {
 
             if (error.name === 'SequelizeUniqueConstraintError') {
                 msg = 'El código de lote ya existe. Debe modificarlo para poder guardar el registro.';
-            }else if (error.name === 'SequelizeForeignKeyConstraintError') {
+            } else if (error.name === 'SequelizeForeignKeyConstraintError') {
                 msg = 'No se puede eliminar la información porque depende de otra etapa del flujo.';
             }
 

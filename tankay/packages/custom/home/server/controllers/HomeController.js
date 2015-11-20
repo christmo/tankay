@@ -58,7 +58,7 @@ module.exports = function (home) {
                         $lt: moment(req.query.end_date).toDate()
                     }
                 },
-                group: ['start_date'],
+                group: ['start_date','lote'],
                 attributes: ['lote', 'start_date', 'capacity',
                     [db.sequelize.fn('SUM', db.sequelize.col('capacity')), 'capacity']
                 ]

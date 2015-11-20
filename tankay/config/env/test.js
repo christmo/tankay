@@ -2,13 +2,21 @@
 
 module.exports = {
     db: 'mongodb://' + (process.env.DB_PORT_27017_TCP_ADDR || 'localhost') + '/mean-test',
-    db_app: {
+    db_mysql: {
         name: 'tankay',
         password: 'root',
         username: 'root',
         host: 'localhost',
         port: 8889
     },
+    db_postgres: {
+        name: 'tankay',
+        username: 'postgres',
+        password: 'christmo',
+        host: 'localhost',
+        port: 5432
+    },
+    db_dialect:'postgres',
     http: {
         port: 3001
     },
@@ -26,37 +34,7 @@ module.exports = {
         local: {
             enabled: true
         },
-        landingPage: '/',
-        /* facebook: {
-         clientID: 'APP_ID',
-         clientSecret: 'APP_SECRET',
-         callbackURL: 'http://localhost:3000/auth/facebook/callback',
-         enabled: false
-         },
-         twitter: {
-         clientID: 'CONSUMER_KEY',
-         clientSecret: 'CONSUMER_SECRET',
-         callbackURL: 'http://localhost:3000/auth/twitter/callback',
-         enabled: false
-         },
-         github: {
-         clientID: 'APP_ID',
-         clientSecret: 'APP_SECRET',
-         callbackURL: 'http://localhost:3000/auth/github/callback',
-         enabled: false
-         },
-         google: {
-         clientID: 'APP_ID',
-         clientSecret: 'APP_SECRET',
-         callbackURL: 'http://localhost:3000/auth/google/callback',
-         enabled: false
-         },
-         linkedin: {
-         clientID: 'API_KEY',
-         clientSecret: 'SECRET_KEY',
-         callbackURL: 'http://localhost:3000/auth/linkedin/callback',
-         enabled: false
-         }*/
+        landingPage: '/'
     },
     emailFrom: 'SENDER EMAIL ADDRESS', // sender address like ABC <abc@example.com>
     mailer: {

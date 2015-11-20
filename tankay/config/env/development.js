@@ -2,13 +2,21 @@
 
 module.exports = {
     db: 'mongodb://' + (process.env.DB_PORT_27017_TCP_ADDR || 'localhost') + '/mean-dev',
-    db_app: {
+    db_mysql: {
         name: 'tankay',
         password: 'root',
         username: 'root',
         host: 'localhost',
         port: 8889
     },
+    db_postgres: {
+        name: 'tankay',
+        username: 'postgres',
+        password: 'christmo',
+        host: 'localhost',
+        port: 5432
+    },
+    db_dialect:'postgres',
     debug: true,
     logging: {
         format: 'tiny'
