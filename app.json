@@ -1,0 +1,16 @@
+{
+  "name": "tankay",
+  "description": "Flujo de proceso Tankay",
+  "scripts": {
+    "postdeploy": "tankay/server.js"
+  },
+  "env": {
+    "BUILDPACK_URL": {
+      "required": true
+    },
+    "NODE_ENV": "production"
+  },
+  "addons": [
+    "heroku-postgresql"
+  ]
+}
