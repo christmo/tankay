@@ -30,7 +30,10 @@ if (config.db_dialect === 'mysql') {
         port: config.db_postgres.port,
         dialect: 'postgres',
         storage: config.db_postgres.storage,
-        logging: config.enableSequelizeLog ? winston.verbose : false
+        logging: config.enableSequelizeLog ? winston.verbose : false,
+        dialectOptions: {
+            ssl: config.db_postgres.ssl
+        }
     });
 }
 
