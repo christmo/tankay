@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-    db: 'mongodb://' + (process.env.DB_PORT_27017_TCP_ADDR || 'localhost') + '/mean-test',
+    db: process.env.MONGOHQ_URL || 'mongodb://tankay:tankaypass@ds057234.mongolab.com:57234/mean_prod',
     db_mysql: {
         name: 'tankay',
         password: 'root',
@@ -14,9 +14,10 @@ module.exports = {
         username: 'postgres',
         password: 'christmo',
         host: 'localhost',
-        port: 5432
+        port: 5432,
+        ssl: false
     },
-    db_dialect:'postgres',
+    db_dialect: 'postgres',
     http: {
         port: 3001
     },

@@ -1,13 +1,6 @@
 'use strict';
 
 angular.module('mean.material')
-    .factory('Material', [
-        function () {
-            return {
-                name: 'material'
-            };
-        }
-    ])
     .service('errorMessage', [
         function () {
             return {
@@ -45,7 +38,7 @@ angular.module('mean.material')
     .service('updateBar', [
         function () {
             return {
-                progress: function (max,meta,min,bar) {
+                progress: function (max, meta, min, bar) {
                     var type;
                     bar.max = max;
                     var meta = meta;
@@ -70,53 +63,7 @@ angular.module('mean.material')
                 }
             }
         }
-    ]);
-
-
-// =========================================================================
-// Header Messages and Notifications list Data
-// =========================================================================
-
-angular.module('mean.material')
-    .service('messageService', ['$resource', function ($resource) {
-        this.getMessage = function (img, user, text) {
-            var gmList = $resource('material/data/messages-notifications.json');
-
-            return gmList.get({
-                img: img,
-                user: user,
-                text: text
-            });
-        }
-    }])
-
-
-    // =========================================================================
-    // Nice Scroll - Custom Scroll bars
-    // =========================================================================
-    .service('nicescrollService', function () {
-        var ns = {};
-        ns.niceScroll = function (selector, color, cursorWidth) {
-
-            $(selector).niceScroll({
-                cursorcolor: color,
-                cursorborder: 0,
-                cursorborderradius: 0,
-                cursorwidth: cursorWidth,
-                bouncescroll: true,
-                mousescrollstep: 100,
-                autohidemode: false
-            });
-        }
-
-        return ns;
-    })
-
-
-    //==============================================
-    // BOOTSTRAP GROWL
-    //==============================================
-
+    ])
     .service('growlService', function () {
         var gs = {};
         gs.growl = function (message, type) {
@@ -141,7 +88,7 @@ angular.module('mean.material')
                     y: 85
                 }
             });
-        }
+        };
 
         return gs;
     });

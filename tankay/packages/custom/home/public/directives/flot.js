@@ -9,8 +9,9 @@ angular.module('mean.home')
         return {
             restrict: 'A',
             link: function (scope, element, attrs) {
-                var updateChartAcopio = element.injector().get('updateChartAcopio');
-                updateChartAcopio.filter(scope, element);
+                //var updateChartAcopio = element.injector().get('updateChartAcopio');
+                //updateChartAcopio.filter(scope, element);
+                acopioGraph();
             }
         }
     })
@@ -18,10 +19,7 @@ angular.module('mean.home')
         return {
             restrict: 'A',
             link: function (scope, element, attrs) {
-                $(window).load(function() {
-                    var updateChartEmpacado = element.injector().get('updateChartEmpacado');
-                    updateChartEmpacado.getData(scope, element);
-                });
+                empacadoGraph();
             }
         }
     });
@@ -32,7 +30,7 @@ function draw(serie, element, filter) {
     if (element.prop('class') === 'flot-chart') {
         start_date = filter.start_date;
         end_date = filter.end_date;
-    }else{
+    } else {
         start_date = filter.start_date_emp;
         end_date = filter.end_date_emp;
     }
@@ -79,10 +77,8 @@ function draw(serie, element, filter) {
     $.plot($(element), data, options);
 
     window.onresize = function (event) {
-        var graphs = $('div[data-graph]');
-        graphs.each(function( index ) {
-            $.plot($(this), data, options);
-        });
+        acopioGraph();
+        empacadoGraph();
     };
 
     if ($(element)[0]) {
@@ -97,7 +93,6 @@ function draw(serie, element, filter) {
                         left: item.pageX + 5
                     })
                     .show();
-
             }
             else {
                 $(".flot-tooltip").hide();

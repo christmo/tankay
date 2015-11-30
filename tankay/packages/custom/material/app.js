@@ -34,7 +34,8 @@ Material.register(function (app, auth, database) {
     Material.aggregateAsset('js', '../lib/oclazyload/dist/ocLazyLoad.min.js');
     Material.aggregateAsset('js', '../lib/angular-bootstrap/ui-bootstrap-tpls.min.js');
     Material.aggregateAsset('js', '../lib/bootstrap-growl/bootstrap-growl.min.js');
-    Material.aggregateAsset('js', '../lib/ng-table/dist/ng-table.min.js');
+    //Material.aggregateAsset('js', '../lib/ng-table/dist/ng-table.min.js');
+    Material.aggregateAsset('js', '../lib/ng-table/dist/ng-table.js');
     Material.aggregateAsset('js', '../lib/angular-nouislider/src/nouislider.min.js');
     Material.aggregateAsset('js', '../lib/sparklines/jquery.sparkline.min.js');
     Material.aggregateAsset('js', '../lib/jquery.easy-pie-chart/dist/jquery.easypiechart.min.js');

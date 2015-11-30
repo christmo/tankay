@@ -32,36 +32,34 @@ angular.module('mean.home')
             return $resource('/api/home/graph/empacado');
         }
     ])
-    .factory('updateChartAcopio', [function () {
+    //----------------------------------------------------------------------
+    // Permite compartir los filtros de las graficas para llamarlos de todos
+    // los lugares para refrescar las graficas
+    //----------------------------------------------------------------------
+    .service('chartsFilter', function () {
+        var filter = {};
 
         return {
-            filter: function (scope, element) {
-                var data = {};
-                if (element.prop('class') === 'flot-chart') {
-                    data = acopioGraph(scope, element);
-                } else {
-                    data = empacadoGraph(scope, element);
-                }
-
-                return data;
+            getFilter: function () {
+                return filter;
+            },
+            setFilter: function (value) {
+                filter = value;
             }
         };
-    }])
-    .factory('updateChartEmpacado', [function () {
-
-        return {
-            getData: function (scope, element) {
-                var data = empacadoGraph(scope, element);
-                return data;
-            }
-        };
-    }]);
+    });
 
 
-function empacadoGraph(scope, element) {
+/**
+ * Grafica de Empaquetado, esta es la segunda grafica mostrada en el dashboard
+ * @returns data -> retorna los datos de la grafica
+ */
+function empacadoGraph() {
+    var element = angular.element(".flot-chart-empacado");
     var factory = element.injector().get('DataEmpacadoGraph');
+    var chartsFilter = element.injector().get('chartsFilter');
 
-    var data = factory.query(scope.filter, function () {
+    var data = factory.query(chartsFilter.getFilter(), function () {
         var serie = [];
 
         for (var row in data) {
@@ -70,16 +68,23 @@ function empacadoGraph(scope, element) {
             }
         }
 
-        draw(serie, element, scope.filter);
+        draw(serie, element, chartsFilter.getFilter());
     });
 
     return data;
 }
 
-function acopioGraph(scope, element) {
-    var factory = element.injector().get('DataAcopioGraph');
 
-    var data = factory.query(scope.filter, function () {
+/**
+ * Grafica de Acopio, esta es la primera grafica mostrada en el dashboard
+ * @returns data -> retorna los datos de la grafica
+ */
+function acopioGraph() {
+    var element = angular.element(".flot-chart");
+    var factory = element.injector().get('DataAcopioGraph');
+    var chartsFilter = element.injector().get('chartsFilter');
+
+    var data = factory.query(chartsFilter.getFilter(), function () {
         var serie = [];
 
         for (var row in data) {
@@ -88,7 +93,7 @@ function acopioGraph(scope, element) {
             }
         }
 
-        draw(serie, element, scope.filter);
+        draw(serie, element, chartsFilter.getFilter());
     });
 
     return data;

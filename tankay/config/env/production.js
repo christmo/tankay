@@ -15,7 +15,7 @@ module.exports = {
         password: 'christmo',
         host: 'localhost',
         port: 5432,
-        ssl:true
+        ssl:false
     },
     db_dialect:'postgres',
     /**

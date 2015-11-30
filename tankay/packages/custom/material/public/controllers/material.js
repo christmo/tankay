@@ -1,16 +1,7 @@
 'use strict';
 
 /* jshint -W098 */
-//angular.module('mean.material')
 angular.module('mean.material')
-    .controller('MaterialController', ['$scope', 'Global', 'Material',
-        function ($scope, Global, Material) {
-            $scope.global = Global;
-            $scope.package = {
-                name: 'material'
-            };
-        }
-    ])
 
     // =========================================================================
     // Base controller for common functions
@@ -48,22 +39,4 @@ angular.module('mean.material')
             $location.path('/home');
         }
     ])
-
-
-    // =========================================================================
-    // Header
-    // =========================================================================
-    .controller('headerCtrl', function ($timeout) {
-
-        // Top Search
-        this.openSearch = function () {
-            angular.element('#header').addClass('search-toggled');
-            //growlService.growl('Welcome back Mallinda Hollaway', 'inverse');
-        };
-
-        this.closeSearch = function () {
-            angular.element('#header').removeClass('search-toggled');
-        };
-
-
-    });
+;

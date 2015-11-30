@@ -10,13 +10,7 @@ module.exports = function (Acopio1, app, auth, database) {
 
     app.post('/api/acopio/step-1/save',acopio.save);
     app.get('/api/acopio/step-1/:lote',acopio.get);
-
     app.post('/api/acopio/step-1/all',acopio.queryAll);
-
-    app.get('/api/acopio1/example/anyone', function (req, res, next) {
-        //res.send('Anyone can access this');
-        res.json('christmo');
-    });
 
     app.get('/api/acopio1/example/auth', auth.requiresLogin, function (req, res, next) {
         res.send('Only authenticated users can access this');

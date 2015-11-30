@@ -2,10 +2,10 @@
 
 /* jshint -W098 */
 angular.module('mean.home')
-    .controller('HomeController', ['$scope', 'Global', 'Home', '$location', 'NgTableParams', 'updateChartAcopio',
-        'categories', '$filter', 'updateChartEmpacado', 'DeleteLote', 'errorMessage',
-        function ($scope, Global, Home, $location, NgTableParams, updateChartAcopio, categories, $filter,
-                  updateChartEmpacado, DeleteLote, errorMessage) {
+    .controller('HomeController', ['$scope', 'Global', 'Home', '$location', 'NgTableParams',
+        'categories', '$filter',  'DeleteLote', 'errorMessage','chartsFilter',
+        function ($scope, Global, Home, $location, NgTableParams,  categories, $filter,
+                   DeleteLote, errorMessage, chartsFilter) {
             var that = this;
             var categoriesData = categories.get();
             $scope.global = Global;
@@ -19,6 +19,7 @@ angular.module('mean.home')
                 start_date_emp: moment().subtract(1, 'month').startOf('day').toDate(),
                 end_date_emp: moment().add(1, 'days').startOf('day').toDate()
             };
+            chartsFilter.setFilter($scope.filter);
 
             loadDataLotesTable($scope, Home, categoriesData, that, NgTableParams, $filter);
 
@@ -87,13 +88,11 @@ angular.module('mean.home')
 
 
             $scope.updateChartAcopio = function () {
-                var element = angular.element(".flot-chart")
-                updateChartAcopio.filter($scope, element);
+                acopioGraph();
             };
 
             $scope.updateChartEmpacado = function () {
-                var element = angular.element(".flot-chart-empacado")
-                updateChartEmpacado.getData($scope, element);
+                empacadoGraph();
             };
         }
     ]);
@@ -136,7 +135,13 @@ function updateTable(data, NgTableParams, that) {
     });
 }
 
-
+/**
+ * Obtiene el valor de la categoria seleccionada para cargar los combos cuando se consulta los datos
+ * @param category
+ * @param categoriesData
+ * @param $filter
+ * @returns {string}
+ */
 function getCategory(category, categoriesData, $filter) {
     var label = "";
     var found = $filter('filter')(categoriesData, {id: category}, true);

@@ -1,4 +1,4 @@
-<header id="header" data-ng-include="'material/template/header.html'" data-ng-controller="headerCtrl as hctrl"></header>
+<header id="header" data-ng-include="'material/template/header.html'"></header>
 
 <section id="main">
     <aside id="sidebar" data-ng-include="'material/template/sidebar-left.html'"
@@ -42,7 +42,7 @@
                                     </button>
                                 </td>
                                 <td data-title="''">
-                                    <img  ng-src="home/assets/img/delete.png"  ng-click="eliminar(row)"/>
+                                    <img ng-src="home/assets/img/delete.png" ng-click="eliminar(row)"/>
                                 </td>
                             </tr>
                         </table>
@@ -117,62 +117,11 @@
 
                 <div class="card-body">
                     <div class="chart-edge">
-                        <div class="flot-chart-empacado" data-graph></div>
+                        <div class="flot-chart-empacado" data-graph-empacado></div>
                     </div>
                 </div>
             </div>
 
-            <!--<div class="mini-charts">
-                <div class="row">
-                    <div class="col-sm-6 col-md-3">
-                        <div class="mini-charts-item bgm-cyan">
-                            <div class="clearfix">
-                                <div class="chart stats-bar" data-sparkline-bar></div>
-                                <div class="count">
-                                    <small>Website Traffics</small>
-                                    <h2>987,459</h2>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6 col-md-3">
-                        <div class="mini-charts-item bgm-lightgreen">
-                            <div class="clearfix">
-                                <div class="chart stats-bar-2" data-sparkline-bar></div>
-                                <div class="count">
-                                    <small>Website Impressions</small>
-                                    <h2>356,785K</h2>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6 col-md-3">
-                        <div class="mini-charts-item bgm-orange">
-                            <div class="clearfix">
-                                <div class="chart stats-line" data-sparkline-line></div>
-                                <div class="count">
-                                    <small>Total Sales</small>
-                                    <h2>$ 458,778</h2>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6 col-md-3">
-                        <div class="mini-charts-item bgm-bluegray">
-                            <div class="clearfix">
-                                <div class="chart stats-line-2" data-sparkline-line></div>
-                                <div class="count">
-                                    <small>Support Tickets</small>
-                                    <h2>23,856</h2>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>-->
-        </div>
         </div>
     </section>
 </section>

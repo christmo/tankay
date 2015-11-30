@@ -10,7 +10,7 @@ var moment = require('moment');
 
 module.exports = function (home) {
 
-    var Almacenado = db.getModelModule('Almacenado','almacenado');
+    var Almacenado = db.getModelModule('Almacenado', 'almacenado');
     var Empacado = db.getModelModule('Empacado', 'empacado');
     var Secado = db.getModelModule('Secado', 'secado');
     var Clasification = db.getModelModule('Clasification', 'clasificacion');
@@ -20,15 +20,6 @@ module.exports = function (home) {
     return {
         model: Dashboard,
         queryAllLotes: function (req, res, next) {
-            var response = null;
-            /*db.sequelize.query("SELECT * FROM `lotes`", {type: db.sequelize.QueryTypes.SELECT})
-             .then(function (lotes) {
-             // We don't need spread here, since only the results will be returned for select queries
-             response = lotes;
-             console.log(response);
-             res.send(response);
-             });*/
-
             Dashboard.findAll({
                 include: [
                     Lote
@@ -36,18 +27,6 @@ module.exports = function (home) {
             }).then(function (lotes) {
                 res.send(lotes);
             });
-
-            /*
-             Lote.findAll({
-             include: [
-             Lote
-             ]
-             }).then(function(lotes){
-             //console.log(moment(lotes[0].dataValues.start_date).format("YYYY-MM-DD HH:mm"));
-
-             res.send(lotes);
-             });
-             */
         },
         getDataGraph: function (req, res, next) {
             console.log(req.query);
@@ -58,7 +37,7 @@ module.exports = function (home) {
                         $lt: moment(req.query.end_date).toDate()
                     }
                 },
-                group: ['start_date','lote'],
+                group: ['start_date', 'lote'],
                 attributes: ['lote', 'start_date', 'capacity',
                     [db.sequelize.fn('SUM', db.sequelize.col('capacity')), 'capacity']
                 ]
@@ -101,16 +80,19 @@ module.exports = function (home) {
         deleteLote: function (req, res, next) {
             console.log(req.query);
 
-            deleteDataModel(req.query.lote,Dashboard,res)
-                .then(function() {
-                    deleteDataModel(req.query.lote, Almacenado,res)
-                        .then(function() {
-                            deleteDataModel(req.query.lote, Empacado,res)
-                                .then(function() {
-                                    deleteDataModel(req.query.lote, Secado,res)
-                                        .then(function() {
-                                            deleteDataModel(req.query.lote, Clasification,res)
-                                                .then(function() {
+            /**
+             * Borrado en cascada de todos los datos del lotes
+             */
+            deleteDataModel(req.query.lote, Dashboard, res)
+                .then(function () {
+                    deleteDataModel(req.query.lote, Almacenado, res)
+                        .then(function () {
+                            deleteDataModel(req.query.lote, Empacado, res)
+                                .then(function () {
+                                    deleteDataModel(req.query.lote, Secado, res)
+                                        .then(function () {
+                                            deleteDataModel(req.query.lote, Clasification, res)
+                                                .then(function () {
                                                     Lote.destroy({
                                                         where: {
                                                             lote: req.query.lote
@@ -132,7 +114,7 @@ module.exports = function (home) {
 
 };
 
-function deleteDataModel(id, model,res){
+function deleteDataModel(id, model, res) {
     var action = model.destroy({
         where: {
             id: id

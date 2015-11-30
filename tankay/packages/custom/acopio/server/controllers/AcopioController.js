@@ -8,15 +8,9 @@ var Module = require('meanio').Module;
 var path = require('path');
 var db = require('../../../persister');
 
-//db.loadModels(path.resolve(__dirname, '../models/'));
-//var Lote;// = db.getModel('Lote');
-
 module.exports = function (acopio) {
 
     acopio.settings({'dir_module': path.resolve(__dirname, '../models/')});
-
-    //var HomeM = new Module('home');
-    //var home = require('../../../home/server/controllers/HomeController')(HomeM);
 
     var Lote = db.getModelModule('Lote', 'acopio');
     var Dashboard = db.getModelModule('Dashboard', 'home');

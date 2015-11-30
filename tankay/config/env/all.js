@@ -8,7 +8,6 @@ module.exports = {
     forceSequelizeSync: process.env.FORCE_DB_SYNC === 'true',
     enableSequelizeLog: true,
     expressSessionSecret: '$uper$ecret$e$$ionKey', // replace with your own
-    modelsDir: rootPath + '/packages/custom/acopio-1/models',
     http: {
         port: process.env.PORT || 3000
     },

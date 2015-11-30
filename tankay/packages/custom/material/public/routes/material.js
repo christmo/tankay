@@ -8,6 +8,7 @@ angular.module('mean.material')
 
             // For any unmatched url, send to 404
             //$urlRouterProvider.otherwise('/404');
+            $urlRouterProvider.when('', '/home');
 
 
             $stateProvider

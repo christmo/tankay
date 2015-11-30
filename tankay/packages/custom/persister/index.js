@@ -109,6 +109,10 @@ function util() {
                 msg = 'El código de lote ya existe. Debe modificarlo para poder guardar el registro.';
             } else if (error.name === 'SequelizeForeignKeyConstraintError') {
                 msg = 'No se puede eliminar la información porque depende de otra etapa del flujo.';
+            } else if( error.name === 'SequelizeDatabaseError'){
+                msg = error.message;
+            } else {
+                msg = error.message;
             }
 
             var response = {

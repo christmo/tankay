@@ -1,4 +1,4 @@
-<header id="header" data-ng-include="'material/template/header.html'" data-ng-controller="headerCtrl as hctrl"></header>
+<header id="header" data-ng-include="'material/template/header.html'" ></header>
 
 <section id="main">
     <aside id="sidebar" data-ng-include="'material/template/sidebar-left.html'"
@@ -15,11 +15,6 @@
                 <div class="card-body card-padding">
 
                     <form role="form" data-ng-submit="save()">
-                        <!--<div class="form-group fg-line">
-                            <label for="codigo_lote">Código de Lote</label>
-                            <input type="number" class="input-lg form-control fg-input" id="codigo_lote"
-                                   placeholder="Número de lote" ng-model="empacado.id"/>
-                        </div>-->
                         <div class="form-group fg-line">
                             <label for="fruit_flow">Flujo de Fruta</label>
                             <input type="number" class="input-lg form-control fg-input" id="fruit_flow"
@@ -49,7 +44,7 @@
 
                         <div class="form-group fg-line">
                             <label for="capacity">Capacidad</label>
-                            <input type="munber" class="input-lg form-control fg-input" id="capacity"
+                            <input type="number" class="input-lg form-control fg-input" id="capacity"
                                    placeholder="Número de personas" ng-model="empacado.capacity"
                                    ng-disabled="disabled" required/>
                         </div>

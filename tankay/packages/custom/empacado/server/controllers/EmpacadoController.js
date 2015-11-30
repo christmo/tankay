@@ -4,41 +4,13 @@
  * Module dependencies.
  */
 var Module = require('meanio').Module;
-//var winston = require('winston');
 var path = require('path');
 var moment = require('moment');
 var db = require('../../../persister');
-//db.loadModels(path.resolve(__dirname, '../models/'));
-
-//var Empacado;// = db.getModel('Empacado');
-
 
 module.exports = function (empacado) {
 
     empacado.settings({'dir_module': path.resolve(__dirname, '../models/')});
-
-    //var Secado = db.getModelModule('Secado', 'secado');
-    //Empacado.belongsTo(Secado, {foreignKey: 'id'});
-
-    //var Secado = {};
-    //var secadoM = new Module('secado');
-    //secadoM.settings(function (err, settings) {
-    //    console.log('Path module Secado: ' + settings.settings.dir_module);
-    //    db.loadModels(settings.settings.dir_module);
-    //    Secado = db.getModel('Secado');
-//
-    //    console.log('empacado: ' + Empacado);
-    //    Empacado.belongsTo(Secado, {foreignKey: 'id'});
-//
-    //    /**
-    //     * Al ser el ultimo modelo que carga se debe sincronizar
-    //     * la base de datos con todas las relaciones cargadas, si
-    //     * se incluye un nuevo modelo esto se debe mover hasta el
-    //     * modulo que cargue despues.
-    //     * @christmo
-    //     */
-    //    //db.sync();
-    //});
 
     var Empacado = db.getModelModule('Empacado', 'empacado');
     var Secado = db.getModelModule('Secado', 'secado');
@@ -61,8 +33,8 @@ module.exports = function (empacado) {
             Secado.findById(req.body.id).then(function (lote) {
                 var mayor = moment().toDate().getTime();
                 var menor = moment(lote.createdAt).toDate().getTime();
-                console.log(mayor +' - '+ menor + " = "+ ((((mayor-menor)/1000)/60)/60));
-                hour = ((((mayor-menor)/1000)/60)/60);
+                console.log(mayor + ' - ' + menor + " = " + ((((mayor - menor) / 1000) / 60) / 60));
+                hour = ((((mayor - menor) / 1000) / 60) / 60);
 
                 console.log('Horas transcurridas Secado: ' + hour);
                 Secado.update({

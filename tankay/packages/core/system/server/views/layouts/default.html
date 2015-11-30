@@ -6,9 +6,7 @@
 {% include '../includes/head.html' %}
 
 <body data-ng-class="{ 'sw-toggled': mactrl.layoutType === '1', 'modal-open': mactrl.sidebarToggle.left === true }">
-<!--<body data-ng-controller="ThemeController" ng-cloak class="ng-cloak" ng-class="state">-->
-   <!-- <div class="navbar navbar-inverse navbar-fixed-top" data-ng-include="'/system/views/header.html'" data-role="navigation"></div>-->
-    <!--<div data-ng-include="'/admin/views/index.html'"></div>-->
+
     <data ui-view></data>
 
     <section class="content">
@@ -17,6 +15,7 @@
         </section>
     </section>
     {% include '../includes/foot.html' %}
+
 </body>
 
 </html>

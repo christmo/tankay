@@ -4,29 +4,12 @@
  * Module dependencies.
  */
 var Module = require('meanio').Module;
-//var winston = require('winston');
 var path = require('path');
 var db = require('../../../persister');
-//db.loadModels(path.resolve(__dirname, '../models/'));
-
-//var Secado;// = db.getModel('Secado');
-//var Dashboard;// = db.getModelModule('Dashboard', 'home');
 
 module.exports = function (secado) {
 
     secado.settings({'dir_module': path.resolve(__dirname, '../models/')});
-
-    //var Clasification = db.getModelModule('Clasification', 'clasificacion');
-    //Secado.belongsTo(Clasification, {foreignKey: 'id'});
-
-    //var clasificacionM = new Module('clasificacion');
-    //clasificacionM.settings(function (err, settings) {
-    //    console.log('Path module Clasificacion: ' + settings.settings.dir_module);
-    //    db.loadModels(settings.settings.dir_module);
-    //    var Clasification = db.getModel('Clasification');
-//
-    //    Secado.belongsTo(Clasification, {foreignKey: 'id'});
-    //});
 
     var Secado = db.getModelModule('Secado', 'secado');
     var Dashboard = db.getModelModule('Dashboard', 'home');
@@ -34,8 +17,6 @@ module.exports = function (secado) {
     return {
         model: Secado,
         save: function (req, res, next) {
-            //req.body.step_detail="Iniciar Empacado";
-            //req.body.next_step="/empacado";
             console.log('Guardar secado' + req.body);
             Secado.create(req.body)
                 .then(function (secado) {
@@ -45,12 +26,11 @@ module.exports = function (secado) {
                     var response = db.util().getErrorResponse(error);
                     res.json(response);
                 });
-
         },
-        get: function(req, res){
+        get: function (req, res) {
             console.log(req.params);
 
-            Secado.findById(req.params.lote).then(function(lote){
+            Secado.findById(req.params.lote).then(function (lote) {
                 res.json(lote);
             });
 

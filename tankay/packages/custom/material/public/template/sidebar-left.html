@@ -13,12 +13,6 @@
     </div>
 
     <ul class="main-menu" ng-controller="HeaderController as menu">
-        <!--<li data-ui-sref-active="active">
-            <a data-ui-sref="home" data-ng-click="mactrl.sidebarStat($event)">
-                <i class="zmdi zmdi-home"></i>Home
-            </a>
-        </li>-->
-
         <li data-ui-sref-active="active" ng-repeat="item in menu.menus.main">
             <a ui-sref='{{item.link}}' mean-token="item.link" data-ng-click="mactrl.sidebarStat($event)">
                 <i class="zmdi {{item.icon}}"></i> {{item.title}}

@@ -4,43 +4,15 @@
  * Module dependencies.
  */
 var Module = require('meanio').Module;
-//var winston = require('winston');
 var path = require('path');
 var db = require('../../../persister');
-//db.loadModels(path.resolve(__dirname, '../models/'));
-
-//var Almacenado = db.getModel('Almacenado');
 
 module.exports = function (almacenado) {
 
     almacenado.settings({'dir_module': path.resolve(__dirname, '../models/')});
-
-    //var Empacado = db.getModelModule('Empacado', 'empacado');
-    //Almacenado.belongsTo(Empacado, {foreignKey: 'id'});
-
-    var Empacado = {};
-
-    //var empacadoM = new Module('empacado');
-    //empacadoM.settings(function (err, settings) {
-    //    console.log('controller: ' + settings.settings.dir_module);
-    //    db.loadModels(settings.settings.dir_module);
-    //    Empacado = db.getModel('Empacado');
-//
-    //    Almacenado.belongsTo(Empacado, {foreignKey: 'id'});
-    //    /**
-    //     * Al ser el ultimo modelo que carga se debe sincronizar
-    //     * la base de datos con todas las relaciones cargadas, si
-    //     * se incluye un nuevo modelo esto se debe mover hasta el
-    //     * modulo que cargue despues.
-    //     * @christmo
-    //     */
-    //    db.sync();
-    //    console.log('SYNC - TODO');
-    //});
-
     syncDataBase(db);
 
-    var Almacenado = db.getModelModule('Almacenado','almacenado');
+    var Almacenado = db.getModelModule('Almacenado', 'almacenado');
     var Dashboard = db.getModelModule('Dashboard', 'home');
 
     return {
@@ -56,7 +28,6 @@ module.exports = function (almacenado) {
                     var response = db.util().getErrorResponse(error);
                     res.json(response);
                 });
-
         },
         get: function (req, res) {
             console.log(req.params);
@@ -85,8 +56,7 @@ function saveDashboard(body, Dashboard) {
         }));
         console.log('created:' + created);
         if (!created) {
-            Dashboard.update(
-                {
+            Dashboard.update({
                     step_detail: detail,
                     next_step: next
                 }, {
@@ -102,7 +72,7 @@ function saveDashboard(body, Dashboard) {
 
 
 function syncDataBase(db) {
-    var Almacenado = db.getModelModule('Almacenado','almacenado');
+    var Almacenado = db.getModelModule('Almacenado', 'almacenado');
     var Empacado = db.getModelModule('Empacado', 'empacado');
     var Secado = db.getModelModule('Secado', 'secado');
     var Clasification = db.getModelModule('Clasification', 'clasificacion');
