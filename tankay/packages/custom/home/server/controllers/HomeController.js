@@ -56,12 +56,12 @@ module.exports = function (home) {
         getDataGraphEmpacado: function (req, res, next) {
             console.log(req.query);
 
-            db.sequelize
-                .query('select date_trunc(\'day\',e."createdAt") as "createdAt",\
+           /* db.sequelize
+                .query('select e.packed_date as "createdAt",\
                         sum(e.fruit_flow) as fruit_flow\
                         from empacados e \
                         where e."createdAt" > ? and e."createdAt" < ? \
-                        GROUP BY 1',
+                        GROUP BY e.packed_date',
                 {
                     replacements: [
                         moment(req.query.start_date_emp).toDate(),
@@ -75,34 +75,27 @@ module.exports = function (home) {
                     for (var row in lotes) {
                         var dateCreation = lotes[row].createdAt;
                         if (dateCreation) {
-                            data.push([moment(dateCreation).toDate().getTime(), lotes[row].capacity]);
+                            data.push([moment(dateCreation).toDate().getTime(), lotes[row].fruit_flow]);
                         }
                     }
                     res.send(lotes);
-                });
+                });*/
 
-           /* Empacado.findAll({
+            Empacado.findAll({
                 where: {
                     createdAt: {
                         $gt: moment(req.query.start_date_emp).toDate(),
                         $lt: moment(req.query.end_date_emp).toDate()
                     }
                 },
-                attributes: [
-                    [db.sequelize.col('createdAt'), 'createdAt'],
+                attributes: [ 'packed_date',
                     [db.sequelize.fn('SUM', db.sequelize.col('fruit_flow')), 'fruit_flow']
                 ],
-                group: ['empacado.createdAt']
+                order: 'packed_date',
+                group: ['packed_date']
             }).then(function (lotes) {
-                var data = [];
-                for (var row in lotes) {
-                    var dateCreation = lotes[row].createdAt;
-                    if (dateCreation) {
-                        data.push([moment(dateCreation).toDate().getTime(), lotes[row].capacity]);
-                    }
-                }
                 res.send(lotes);
-            });*/
+            });
 
         },
         deleteLote: function (req, res, next) {

@@ -6,7 +6,8 @@ module.exports = function (sequelize, DataTypes) {
             fruit_flow: DataTypes.INTEGER,
             capacity: DataTypes.INTEGER,
             responsible: DataTypes.STRING,
-            temperature: DataTypes.BOOLEAN
+            temperature: DataTypes.BOOLEAN,
+            packed_date: DataTypes.DATE
         }
     );
 

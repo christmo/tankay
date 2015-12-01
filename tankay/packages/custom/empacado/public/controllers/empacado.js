@@ -28,7 +28,8 @@ angular.module('mean.empacado')
                 }
                 $scope.empacado = {
                     temperature: 0,
-                    id: id
+                    id: id,
+                    packed_date: moment().startOf('day').toDate()
                 };
             }
 

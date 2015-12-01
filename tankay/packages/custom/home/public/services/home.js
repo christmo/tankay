@@ -63,8 +63,8 @@ function empacadoGraph() {
         var serie = [];
 
         for (var row in data) {
-            if (data[row].createdAt) {
-                serie.push([moment(data[row].createdAt).startOf('day').toDate().getTime(), data[row].fruit_flow]);
+            if (data[row].packed_date) {
+                serie.push([moment(data[row].packed_date).startOf('day').toDate().getTime(), data[row].fruit_flow]);
             }
         }
 
