@@ -37,6 +37,7 @@ module.exports = function (home) {
                         $lt: moment(req.query.end_date).toDate()
                     }
                 },
+                order: 'start_date',
                 group: ['start_date', 'lote'],
                 attributes: ['lote', 'start_date', 'capacity',
                     [db.sequelize.fn('SUM', db.sequelize.col('capacity')), 'capacity']
@@ -54,17 +55,44 @@ module.exports = function (home) {
         },
         getDataGraphEmpacado: function (req, res, next) {
             console.log(req.query);
-            Empacado.findAll({
+
+            db.sequelize
+                .query('select date_trunc(\'day\',e."createdAt") as "createdAt",\
+                        sum(e.fruit_flow) as fruit_flow\
+                        from empacados e \
+                        where e."createdAt" > ? and e."createdAt" < ? \
+                        GROUP BY 1',
+                {
+                    replacements: [
+                        moment(req.query.start_date_emp).toDate(),
+                        moment(req.query.end_date_emp).toDate()
+                    ],
+                    type: db.sequelize.QueryTypes.SELECT,
+                    model: Empacado
+                })
+                .then(function (lotes) {
+                    var data = [];
+                    for (var row in lotes) {
+                        var dateCreation = lotes[row].createdAt;
+                        if (dateCreation) {
+                            data.push([moment(dateCreation).toDate().getTime(), lotes[row].capacity]);
+                        }
+                    }
+                    res.send(lotes);
+                });
+
+           /* Empacado.findAll({
                 where: {
                     createdAt: {
                         $gt: moment(req.query.start_date_emp).toDate(),
                         $lt: moment(req.query.end_date_emp).toDate()
                     }
                 },
-                group: ['id'],
-                attributes: ['id', 'createdAt', 'fruit_flow',
+                attributes: [
+                    [db.sequelize.col('createdAt'), 'createdAt'],
                     [db.sequelize.fn('SUM', db.sequelize.col('fruit_flow')), 'fruit_flow']
-                ]
+                ],
+                group: ['empacado.createdAt']
             }).then(function (lotes) {
                 var data = [];
                 for (var row in lotes) {
@@ -74,7 +102,7 @@ module.exports = function (home) {
                     }
                 }
                 res.send(lotes);
-            });
+            });*/
 
         },
         deleteLote: function (req, res, next) {
